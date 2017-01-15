@@ -16,6 +16,11 @@ styles: |
 ---
 
 <main class="post-list" itemscope itemtype="http://schema.org/Blog">
+
+    <div class="container">
+        <h1>Blog Post</h1>
+    </div>
+
     {% for post in site.posts %}
     
         <article class="post-list__item container" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">

@@ -1,0 +1,13 @@
+<footer class="page-footer">
+    <div class="container">
+        <div class="page-footer__copyright">
+            <span>© 2016 – 2017</span>
+            <span>Marco Pfeiffer</span>
+        </div>
+        <ul class="page-footer__nav">
+            {% for page in site.pages %}{% if page.footernav %}
+            <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
+            {% endif %}{% endfor %}
+        </ul>
+    </div>
+</footer>

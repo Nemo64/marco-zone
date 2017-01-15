@@ -25,17 +25,16 @@ pre {
     font-size: 1em;
 }
 
-h1, h2, h3 {
+h1, h2, h3, .headline {
     font-family: 'Josefin Slab', serif;
     font-weight: 600;
     line-height: 1.1;
-    margin-top: 1.4em;
+    margin-top: 2rem;
     margin-bottom: 0;
     color: indianred;
 }
 
-h1 + h2,
-h2 + h3 {
+h1 + h2, h2 + h3 {
     margin-top: 0;
 }
 
@@ -51,8 +50,7 @@ h3 {
     font-size: 1.4rem;
 }
 
-aside,
-p {
+aside, p {
     margin-top: .5em;
     margin-bottom: 0;
 }
@@ -66,13 +64,11 @@ a:hover, a:focus {
     color: orangered;
 }
 
-strong,
-b {
+strong, b {
     font-weight: 600;
 }
 
-amp-img,
-img {
+amp-img, img {
     width: 100%;
     height: auto;
 }
@@ -90,6 +86,12 @@ img {
     margin-right: auto;
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.container:before, .container:after {
+    content: "";
+    clear: both;
+    display: table;
 }
 
 @media (min-width: 42em) {
