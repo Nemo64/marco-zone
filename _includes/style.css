@@ -30,7 +30,7 @@ h1, h2, h3 {
     font-weight: 600;
     line-height: 1.1;
     margin-top: 1.4em;
-    margin-bottom: .4em;
+    margin-bottom: 0;
     color: indianred;
 }
 
@@ -54,7 +54,7 @@ h3 {
 aside,
 p {
     margin-top: .5em;
-    margin-bottom: .5em;
+    margin-bottom: 0;
 }
 
 a {
@@ -95,7 +95,7 @@ img {
 @media (min-width: 42em) {
     aside {
         width: 18rem;
-        margin: .1em 0;
+        margin: .4em 0;
         clear: left;
         float: left;
         text-align: left;

@@ -3,6 +3,7 @@ title:      MacBook Pro 13" (2016) Bildschirm Rant
 description: >
     Das MacBook Pro hat viele schwächen. Hier ist noch eine die mich wahnsinnig macht und scheinbar niemandem auffällt.
 categories: hardware
+date:       2017-01-15
 ---
 
 Ich hab nun Zugang zu einem MacBook Pro 13". Ich hab mir vorher die Reviews aus dem Ami-Land angeschaut und bin zu dem schluss gekommen das die Nachteile mich nicht wirklich stören. Nun gibt es aber einen Nachteil der mich stört und zwar gewalltig.

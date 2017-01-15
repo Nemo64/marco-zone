@@ -1,5 +1,29 @@
 ---
 layout: base
+styles: >
+    .post__subheadline {
+        font-size: .7em;
+        color: gray;
+    }
+
+    .post__content > amp-img,
+    .post__content > img {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .post__head-categories {
+        display: inline;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .post__head-categories > li {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+    }
 ---
 
 <article class="post" itemprop="mainEntity" itemscope itemtype="http://schema.org/BlogPosting">
@@ -7,9 +31,23 @@ layout: base
     <h1 class="post__headline container" itemprop="headline">
         {{ page.title | strip }}
     </h1>
+
+    <div class="post__subheadline container">
+        <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">
+            {{ page.date | date_to_long_string }}
+        </time>
+        ~
+        <ul class="post__head-categories">
+            {% for category in page.categories %}
+                <li>{{ category }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
     <p class="post__lead lead container" itemprop="description">
         {{ page.description | strip }}
     </p>
+
     <div class="post__content container" itemprop="articleBody">
         {{ content }}
     </div>
