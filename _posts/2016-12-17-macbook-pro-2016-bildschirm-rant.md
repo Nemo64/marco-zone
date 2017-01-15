@@ -20,7 +20,7 @@ Nach kurzer zeit ist es mir dann Aufgefallen.
 
 Das 13" Model hat eine 2560x1600 Pixel Bildschirm was eigentlich recht ordentlich ist. Leider ist das Scaling von macOS nicht fähig in Faktoren wie 1.5x oder 1.75x zu Skalieren. Das heißt, die Retina Auflösung müsste 1280x800 sein, ist sie aber nicht. Stattdessen nutzt der Rechner eine virtuelle Auflösung von 1440x900, skaliert diese durch macOS Scaling auf 2880x1800 und skaliert diese dann wieder grafisch auf die realen 2560x1600.
 
-{% include image.html path="/assets/macbook-pro-scaling.jpg" width=1280 height=592 %}
+{% include image.html path="/assets/macbook-pro-scaling-decolor.jpg" width=1280 height=592 %}
 
 Dies Bedeutet, dass kein Pixel direkt angesprochen werden kann. Linien verschwimmen je nachdem wo sie auf dem Bildschirm sind. Text ist nicht so scharf wie er sein könnte und dann haben wir auch noch den Performance Verlust.
 
