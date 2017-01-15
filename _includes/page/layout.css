@@ -4,12 +4,26 @@ main {
     min-height: 100vh;
 }
 
+
 .container {
     max-width: 40rem;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+figure {
+    clear: both;
+    margin: 1rem 0;
+    padding: 1rem;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+
+    /* if calc is supported than this will make it span the entire page width */
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: calc(50vw - 50%);
 }
 
 .container:before, .container:after {
@@ -77,7 +91,7 @@ main {
 
     .page-header__logo {
         display: block;
-        text-align: center;
+        text-align: right;
         padding: 2rem 0 1rem;
         margin: 0;
         font-size: 2rem;
@@ -86,5 +100,11 @@ main {
     .container {
         margin-left: 14rem;
         margin-right: auto;
+    }
+
+    figure {
+        width: 100vw;
+        margin-left: 0;
+        padding-left: 1rem;
     }
 }
