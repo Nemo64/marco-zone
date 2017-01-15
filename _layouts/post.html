@@ -43,7 +43,7 @@ styles: >
 
     .post__author {
         margin-top: 4rem;
-        margin-bottom: 4rem;
+        margin-bottom: -4rem;
     }
 
     .author__image {
@@ -93,18 +93,20 @@ styles: >
     </div>
 
     <div class="post__author container">
-        <h2>Author:</h2>
-        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <div class="author__meta">
-                <div class="author__image">
-                    {% include image.html path="/assets/person/marco-desaturate.jpg" itemprop="image" width=160 height=160 %}
-                </div>
-                <div class="author__body">
-                    <h3 class="author__name" itemprop="name">Marco Pfeiffer</h3>
-                    <a class="author__twitter" href="https://twitter.com/TheTrueNemo">@TheTrueNemo</a>
+        <figure>
+            <h2>Author:</h2>
+            <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <div class="author__meta">
+                    <div class="author__image">
+                        {% include image.html path="/assets/person/marco-desaturate.jpg" itemprop="image" width=160 height=160 %}
+                    </div>
+                    <div class="author__body">
+                        <h3 class="author__name" itemprop="name">Marco Pfeiffer</h3>
+                        <a class="author__twitter" href="https://twitter.com/TheTrueNemo">@TheTrueNemo</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </figure>
     </div>
 
 </article>

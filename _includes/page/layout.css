@@ -26,6 +26,11 @@ figure {
     padding-left: calc(50vw - 50%);
 }
 
+pre .s1,
+pre .s {
+    color: indianred;
+}
+
 .container:before, .container:after {
     content: "";
     clear: both;
@@ -43,8 +48,8 @@ figure {
 }
 
 .page-footer {
-    min-height: 3em;
-    margin-top: 6em;
+    min-height: 3rem;
+    margin-top: 3rem;
     padding: 1rem 0;
 
     background-color: #333;
@@ -106,5 +111,6 @@ figure {
         width: 100vw;
         margin-left: 0;
         padding-left: 1rem;
+        background-image: linear-gradient(to right, #f9f9f9, #f9f9f9 40rem, #ffffff);
     }
 }
