@@ -4,6 +4,20 @@ main {
     min-height: 100vh;
 }
 
+.container {
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.container:before, .container:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
 .page-header {
     margin: 0 auto;
 }

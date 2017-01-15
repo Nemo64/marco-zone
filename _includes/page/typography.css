@@ -51,7 +51,7 @@ h3 {
 }
 
 aside, p {
-    margin-top: .5em;
+    margin-top: 1rem;
     margin-bottom: 0;
 }
 
@@ -80,24 +80,9 @@ amp-img, img {
     letter-spacing: -.05em;
 }
 
-.container {
-    max-width: 40rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-
-.container:before, .container:after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
 @media (min-width: 42em) {
     aside {
         width: 18rem;
-        margin: .4em 0;
         clear: left;
         float: left;
         text-align: left;
