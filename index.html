@@ -1,0 +1,33 @@
+---
+# You don't need to edit this file, it's empty on purpose.
+# Edit theme's home layout instead if you wanna make some changes
+# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+title: Startpage
+layout: base
+styles: |
+    a.post-list__link {
+        color: inherit;
+    }
+    .post-list__bodytext {
+        line-height: 1.5em;
+        height: 4.5em;
+        overflow: hidden;
+    }
+---
+
+<main class="post-list" itemscope itemtype="http://schema.org/Blog">
+    {% for post in site.posts %}
+    
+        <article class="post-list__item container" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+            <a class="post-list__link" href="{{ post.url | prepend: site.baseurl }}" itemprop="url">
+                <h2 class="post-list__headline" itemprop="headline">
+                    {{ post.title }}
+                </h2>
+                <p class="post-list__bodytext" itemprop="description">
+                    {{ post.description | strip_html | strip_newlines | truncate: 160 }}
+                </p>
+            </a>
+        </article>
+    
+    {% endfor %}
+</main>

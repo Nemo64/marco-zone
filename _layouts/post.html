@@ -1,0 +1,18 @@
+---
+layout: base
+---
+
+<article class="post" itemprop="mainEntity" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <h1 class="post__headline container" itemprop="headline">
+        {{ page.title | strip }}
+    </h1>
+    <p class="post__lead lead container" itemprop="description">
+        {{ page.description | strip }}
+    </p>
+    <div class="post__content container" itemprop="articleBody">
+        {{ content }}
+    </div>
+
+</article>
+
