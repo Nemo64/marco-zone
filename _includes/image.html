@@ -1,2 +1,2 @@
-<noscript><img src="{{ include.path }}" alt="{{ include.alt }}"></noscript>
+<noscript><img src="{{ include.path }}" alt="{{ include.alt }}"{% if include.itemprop %} itemprop="{{ include.itemprop }}"{% endif %}></noscript>
 <amp-img src="{{ include.path }}" width="{{ include.width }}" height="{{ include.height }}" alt="{{ include.alt }}" layout="responsive"></amp-img>

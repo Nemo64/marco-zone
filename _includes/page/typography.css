@@ -30,7 +30,7 @@ h1, h2, h3, .headline {
     font-weight: 600;
     line-height: 1.1;
     margin-top: 2rem;
-    margin-bottom: 0;
+    margin-bottom: .2rem;
     color: indianred;
 }
 
@@ -38,15 +38,15 @@ h1 + h2, h2 + h3 {
     margin-top: 0;
 }
 
-h1 {
+h1, .headline--h1 {
     font-size: 2rem;
 }
 
-h2 {
+h2, .headline--h2 {
     font-size: 1.7rem;
 }
 
-h3 {
+h3, .headline--h3 {
     font-size: 1.4rem;
 }
 

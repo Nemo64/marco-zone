@@ -7,7 +7,7 @@ styles: >
     }
 
     .post__content > amp-img,
-    .post__content > img {
+    .post__content > noscript > img {
         margin-top: 1em;
         margin-bottom: 1em;
     }
@@ -23,6 +23,46 @@ styles: >
         display: inline-block;
         margin: 0;
         padding: 0;
+    }
+
+    .author__meta {
+        display: table;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .author__image,
+    .author__body {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .author__image {
+        width: 160px;
+    }
+
+    .post__author {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+
+    .author__image {
+        width: 80px;
+        float: left;
+        padding-right: .5rem;
+    }
+
+    .author__image > amp-img,
+    .author__image > noscript > img {
+        border-radius: 50%;
+    }
+
+    .author__name {
+        margin: 0;
+    }
+
+    .author__twitter {
+        display: block;
     }
 ---
 
@@ -50,6 +90,21 @@ styles: >
 
     <div class="post__content container" itemprop="articleBody">
         {{ content }}
+    </div>
+
+    <div class="post__author container">
+        <h2>Author:</h2>
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <div class="author__meta">
+                <div class="author__image">
+                    {% include image.html path="/assets/person/marco-desaturate.jpg" itemprop="image" width=160 height=160 %}
+                </div>
+                <div class="author__body">
+                    <h3 class="author__name" itemprop="name">Marco Pfeiffer</h3>
+                    <a class="author__twitter" href="https://twitter.com/TheTrueNemo">@TheTrueNemo</a>
+                </div>
+            </div>
+        </div>
     </div>
 
 </article>
