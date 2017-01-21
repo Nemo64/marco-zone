@@ -8,6 +8,10 @@ styles: |
     a.post-list__link {
         color: inherit;
     }
+    .post-list__subheadline {
+        font-size: .7em;
+        color: indianred;
+    }
     .post-list__bodytext {
         line-height: 1.5em;
         height: 4.5em;
@@ -29,6 +33,16 @@ styles: |
             <h2 class="post-list__headline" itemprop="headline">
                 {{ post.title }}
             </h2>
+            <div class="post-list__subheadline">
+                <time itemprop="datePublished" datetime="{{ post.date | date_to_xmlschema }}">
+                    {{ post.date | date_to_long_string }}
+                </time>
+                <meta itemprop="dateModified" content="{{ post.lastmod | default: post.date |date_to_xmlschema }}">
+                von
+                <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <span itemprop="name">{{ site.authors[post.author].name }}</span>
+                </span>
+            </div>
             <p class="post-list__bodytext" itemprop="description">
                 {{ post.description | strip_html | strip_newlines | truncate: 160 }}
             </p>

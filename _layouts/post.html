@@ -12,19 +12,6 @@ styles: >
         margin-bottom: 1em;
     }
 
-    .post__head-categories {
-        display: inline;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    .post__head-categories > li {
-        display: inline-block;
-        margin: 0;
-        padding: 0;
-    }
-
     .author__meta {
         display: table;
         margin-top: 1rem;
@@ -74,13 +61,12 @@ styles: >
     </h1>
 
     <div class="post__subheadline container">
-        <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">
+        <time class="post__head-date" itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">
             {{ page.date | date_to_long_string }}
         </time>
-        ~
-        <ul class="post__head-categories">
-            {% for category in page.categories %}<li>{{ category }}</li>{% endfor %}
-        </ul>
+        <meta itemprop="dateModified" content="{{ post.lastmod | default: post.date |date_to_xmlschema }}">
+        von
+        <a href="#author">{{ site.authors[page.author].name }}</a>
     </div>
 
     <p class="post__lead lead container" itemprop="description">
@@ -91,7 +77,7 @@ styles: >
         {{ content }}
     </div>
 
-    <div class="post__author container">
+    <div class="post__author container" id="author">
         <figure>
             <h2>Author:</h2>
             <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
