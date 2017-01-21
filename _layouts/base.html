@@ -10,7 +10,19 @@
 
         <title>{{ page.title }}</title>
 
+        {% if page.noindex %}<meta name="robots" content="no-index, nofollow">{% endif %}
+        {% if page.description %}<meta name="description" content="{{ page.description | strip_html | strip_newlines | truncate: 160 }}">{% endif %}
+        {% if page.author %}<meta name="author" content="Marco Pfeiffer">{% endif %}
+        {% if page.categories %}<meta name="keywords" content="{{ page.categories | join: ', ' }}">{% endif %}
+        {% if page.date %}<meta name="date" content="{{ page.date | date_to_rfc822 }}">{% endif %}
+        <meta name="generator" content="Jekyll v{{ jekyll.version }}">
         <meta name="theme-color" content="#CD5C5C">
+
+        <!-- open graph -->
+        <meta property="og:title" content="{{ page.title | truncate: 70 }}">
+        <meta property="og:description" content="{{ page.description | strip_html | strip_newlines | truncate: 200 }}">
+        <meta property="og:type" content="{% if page.og.type %}{{ page.og.type }}{% else %}website{% endif %}">
+        <meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
 
         <link rel="canonical" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
         <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml">
