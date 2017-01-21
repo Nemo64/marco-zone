@@ -1,0 +1,18 @@
+---
+layout:                     null
+permalink:                  /_headers
+is_server_configuration:    true
+---
+
+/*
+    X-UA-Compatible: IE=Edge
+    X-XSS-Protection: 1; mode=block
+
+/assets/*
+    # For images with permlink. Others will be delivered though the cdn and have other cache times anyways.
+    Cache-Control: public, max-age=86400
+
+{% for page in site.pages %}{% if page.headers %}
+{{ page.url }}{% for header in page.headers %}
+    {{ header[0] }}: {{ header[1] }}{% endfor %}
+{% endif %}{% endfor %}

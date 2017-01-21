@@ -1,0 +1,25 @@
+---
+layout:                     null
+permalink:                  /_redirects
+is_server_configuration:    true
+---
+
+
+# redirect attempts for mobile pages
+/mobile/*       /:splat
+/m/*            /:splat
+
+# it is not required to redirect the .html version
+# netlify does that on it's own
+
+# deny access to server configuration
+{% for page in site.pages %}{% if page.is_server_configuration %}{{ page.url }}  /404.html   404!
+{% endif %}{% endfor %}
+
+# page specific
+{% for page in site.pages %}{% for redirect in page.redirects %}{{ redirect.path }}  {{ page.url }}
+{% endfor %}{% endfor %}
+
+# post specific
+{% for page in site.posts %}{% for redirect in page.redirects %}{{ redirect.path }}  {{ page.url }}
+{% endfor %}{% endfor %}

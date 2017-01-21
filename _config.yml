@@ -58,3 +58,7 @@ hyphenate_filter:
   selector: p
   left: 4
   right: 3
+
+include:
+  - _redirects
+  - _headers
