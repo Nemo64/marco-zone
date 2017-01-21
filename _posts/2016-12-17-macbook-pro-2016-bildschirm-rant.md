@@ -2,7 +2,7 @@
 title:      MacBook Pro 13" (2016) Bildschirm Rant
 description: >
     Das MacBook Pro hat viele schwächen. Hier ist noch eine die mich wahnsinnig macht und scheinbar niemandem auffällt.
-categories: hardware
+categories: Hardware
 date:       2017-01-15
 ---
 
@@ -20,7 +20,7 @@ Nach kurzer zeit ist es mir dann Aufgefallen.
 
 Das 13" Model hat eine 2560x1600 Pixel Bildschirm was eigentlich recht ordentlich ist. Leider ist das Scaling von macOS nicht fähig in Faktoren wie 1.5x oder 1.75x zu Skalieren. Das heißt, die Retina Auflösung müsste 1280x800 sein, ist sie aber nicht. Stattdessen nutzt der Rechner eine virtuelle Auflösung von 1440x900, skaliert diese durch macOS Scaling auf 2880x1800 und skaliert diese dann wieder grafisch auf die realen 2560x1600.
 
-{% include image.html path="/assets/macbook-pro-scaling-decolor.jpg" width=1280 height=592 %}
+{% include image.html path="macbook-pro-scaling-decolor.jpg" width=1280 height=592 %}
 
 Dies Bedeutet, dass kein Pixel direkt angesprochen werden kann. Linien verschwimmen je nachdem wo sie auf dem Bildschirm sind. Text ist nicht so scharf wie er sein könnte und dann haben wir auch noch den Performance Verlust.
 
@@ -40,7 +40,7 @@ Es hat noch einen Nachteil. Dieser Bildschirm wird schön Hell, aber wenn man ih
 
 Ich bin ehrlich, ich lass mich hier gerade etwas aus. Der Monitor ist auf den ersten Blick echt schön und wäre es ein MacBook Air für 900€ hätte ich verstanden dass man an der Auflösung spart und es darauf trimmt bei Bildern und Filmen ein "ohh wie hübsch" Moment zu erzeugen.
 
-Nun, es handelt sich aber um das MacBook Pro für 2000€ und ich verstehe einfach nicht wer die Zeilgruppe ist. Wer Casual im Web surft sollte sich nach etwas deutlich billigerem umsehen, selbst das 12" MacBook wäre eine alternative wenn man im Apple universum bleiben will (von Außen betrachtet hat dies allerdings die selben Probleme). Illustratoren sollten dich allgemein eher die Surface Produkte ansehen und ich als jemand der Webseiten Entwickelt bin von dem Retina Scaling geärgert.
+Nun, es handelt sich aber um das MacBook Pro für 2000€ und ich verstehe einfach nicht wer die Zeilgruppe ist. Wer Casual im Web surft sollte sich nach etwas deutlich billigerem umsehen, selbst das 12" MacBook wäre eine alternative wenn man im Apple universum bleiben will (von Außen betrachtet hat dies allerdings die selben Probleme). Illustratoren sollten sich allgemein eher die Surface Produkte ansehen und ich als jemand der Webseiten Entwickelt bin von dem Retina Scaling geärgert.
 
 Die einzige Zielgruppe scheint noch der Video-Schnitt markt zu sein die mit Final Cut Pro wohl gute Leistung erzielen. Es gibt wohl auch noch Musiker die auf das MacBook schwören aber mit dieser Zielgruppe kenne ich mich zu wenig aus.
 

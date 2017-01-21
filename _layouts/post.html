@@ -43,7 +43,6 @@ styles: >
 
     .post__author {
         margin-top: 4rem;
-        margin-bottom: -4rem;
     }
 
     .author__image {
@@ -59,6 +58,7 @@ styles: >
 
     .author__name {
         margin: 0;
+        padding: 0;
     }
 
     .author__twitter {
@@ -78,9 +78,7 @@ styles: >
         </time>
         ~
         <ul class="post__head-categories">
-            {% for category in page.categories %}
-                <li>{{ category }}</li>
-            {% endfor %}
+            {% for category in page.categories %}<li>{{ category }}</li>{% endfor %}
         </ul>
     </div>
 
@@ -98,7 +96,7 @@ styles: >
             <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
                 <div class="author__meta">
                     <div class="author__image">
-                        {% include image.html path="/assets/person/marco-desaturate.jpg" itemprop="image" width=160 height=160 %}
+                        {% include image.html path="person/marco-desaturate.jpg" itemprop="image" width=160 height=160 %}
                     </div>
                     <div class="author__body">
                         <h3 class="author__name" itemprop="name">Marco Pfeiffer</h3>

@@ -13,17 +13,26 @@ main {
     padding-right: 1rem;
 }
 
+
+.highlighter-rouge, figure {
+    background-color: #f9f9f9;
+}
+
 figure {
     clear: both;
     margin: 1rem 0;
     padding: 1rem;
     box-sizing: border-box;
-    background-color: #f9f9f9;
+    overflow: auto;
 
     /* if calc is supported than this will make it span the entire page width */
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     padding-left: calc(50vw - 50%);
+}
+
+pre .c {
+    color: gray;
 }
 
 pre .s1,
@@ -53,9 +62,6 @@ pre .s {
     padding: 1rem 0;
 
     background-color: #333;
-    /*border-top: 1px solid black;*/
-    /*box-shadow: 0 .3em .3em -.3em rgba(0,0,0,1) inset, 0 0 2em rgba(0,0,0,.2) inset;*/
-
     color: white;
     font-size: .7em;
 }
@@ -108,8 +114,8 @@ pre .s {
     }
 
     figure {
-        width: 100vw;
         margin-left: 0;
+        margin-right: calc(55rem - 100vw);
         padding-left: 1rem;
         background-image: linear-gradient(to right, #f9f9f9, #f9f9f9 40rem, #ffffff);
     }
