@@ -64,7 +64,7 @@ styles: >
         <time class="post__head-date" itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">
             {{ page.date | date_to_long_string }}
         </time>
-        <meta itemprop="dateModified" content="{{ post.lastmod | default: post.date |date_to_xmlschema }}">
+        <meta itemprop="dateModified" content="{{ page.lastmod | default: page.date | date_to_xmlschema }}">
         von
         <a href="#author">{{ site.authors[page.author].name }}</a>
     </div>

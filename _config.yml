@@ -52,6 +52,7 @@ defaults:
     values:
       layout:     post
       priority:   0.75
+      og: {"type": "article"}
 
 hyphenate_filter:
   language: de
