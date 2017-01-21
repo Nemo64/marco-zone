@@ -11,21 +11,23 @@
         <title>{{ page.title }}</title>
 
         {% if page.noindex %}<meta name="robots" content="no-index, nofollow">{% endif %}
-        {% if page.description %}<meta name="description" content="{{ page.description | strip_html | strip_newlines | truncate: 160 }}">{% endif %}
-        {% if page.author %}<meta name="author" content="Marco Pfeiffer">{% endif %}
-        {% if page.categories %}<meta name="keywords" content="{{ page.categories | join: ', ' }}">{% endif %}
-        {% if page.date %}<meta name="date" content="{{ page.date | date_to_rfc822 }}">{% endif %}
+        <meta name="description" content="{{ page.description | default: site.description | strip_newlines | truncate: 160 }}">
+        <meta name="author" content="{{ site.authors[page.author].name }}">
         <meta name="generator" content="Jekyll v{{ jekyll.version }}">
         <meta name="theme-color" content="#CD5C5C">
+        {% if page.date %}<meta name="date" content="{{ page.date | date_to_rfc822 }}">{% endif %}
+        {% if page.categories %}<meta name="keywords" content="{{ page.categories | join: ', ' }}">{% endif %}
 
-        <!-- open graph -->
         <meta property="og:title" content="{{ page.title | truncate: 70 }}">
-        <meta property="og:description" content="{{ page.description | strip_html | strip_newlines | truncate: 200 }}">
+        <meta property="og:description" content="{{ page.description | default: site.description | strip_newlines | truncate: 200 }}">
         <meta property="og:type" content="{% if page.og.type %}{{ page.og.type }}{% else %}website{% endif %}">
         <meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@TheTrueNemo" />
+        <meta name="twitter:creator" content="{{ site.authors[page.author].twitter }}" />
 
         <link rel="canonical" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
-        <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml">
+        <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl }}">
 
         <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
         <script type="application/ld+json">{{ site.website_schema | jsonify }}</script>
