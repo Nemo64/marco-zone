@@ -22,17 +22,17 @@ styles: |
     </div>
 
     {% for post in site.posts %}
-    
-        <article class="post-list__item container" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-            <a class="post-list__link" href="{{ post.url | prepend: site.baseurl }}" itemprop="url">
-                <h2 class="post-list__headline" itemprop="headline">
-                    {{ post.title }}
-                </h2>
-                <p class="post-list__bodytext" itemprop="description">
-                    {{ post.description | strip_html | strip_newlines | truncate: 160 }}
-                </p>
-            </a>
-        </article>
-    
+    <article class="post-list__item container"
+             itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting"
+             itemid="{{ post.url | prepend: site.baseurl | prepend: site.url }}">
+        <a class="post-list__link" href="{{ post.url | prepend: site.baseurl }}" itemprop="url">
+            <h2 class="post-list__headline" itemprop="headline">
+                {{ post.title }}
+            </h2>
+            <p class="post-list__bodytext" itemprop="description">
+                {{ post.description | strip_html | strip_newlines | truncate: 160 }}
+            </p>
+        </a>
+    </article>
     {% endfor %}
 </main>

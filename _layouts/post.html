@@ -66,7 +66,8 @@ styles: >
     }
 ---
 
-<article class="post" itemprop="mainEntity" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="post" itemprop="mainEntity" itemscope itemtype="http://schema.org/BlogPosting"
+         itemid="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
 
     <h1 class="post__headline container" itemprop="headline">
         {{ page.title | strip }}
