@@ -6,6 +6,7 @@
         <meta charset="utf-8">
 
         <script async src="https://cdn.ampproject.org/v0.js"></script>
+        <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:600" rel="stylesheet">
 
         <title>{{ page.title }}</title>
@@ -64,6 +65,26 @@
 {{ content | hyphenate }}
 
 {% include page/footer.html %}
+
+        <amp-analytics type="googleanalytics">
+            <script type="application/json">
+                {
+                    "vars": {
+                        "account": "UA-60388424-1"
+                    },
+                    "triggers": {
+                        "trackPageview": {
+                            "on": "visible",
+                            "request": "pageview",
+                            "vars": {
+                                "title": {{ page.title | jsonify }},
+                                "ampdocUrl": {{ page.url | prepend: site.baseurl | prepend: site.url | jsonify }}
+                            }
+                        }
+                    }
+                }
+            </script>
+        </amp-analytics>
 
     </body>
 </html>
