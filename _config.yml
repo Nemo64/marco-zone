@@ -50,23 +50,9 @@ defaults:
         vars:
           account: UA-60388424-1
         triggers:
-          pageview:
-            "on": visible
-            request: pageview
-          headerLinkClick:
-            "on": click
-            request: event
-            selector: "#page-header a[href]"
-            vars:
-              eventCategory: header
-              eventAction: click-link
-          footerLinkClick:
-            "on": click
-            request: event
-            selector: "#page-footer a[href]"
-            vars:
-              eventCategory: footer
-              eventAction: click-link
+          pageview: {"on": visible, request: pageview}
+          headerLinkClick: {"on": click, request: event, selector: "#page-header a[href]", vars: {eventCategory: header, eventAction: click-link}}
+          footerLinkClick: {"on": click, request: event, selector: "#page-footer a[href]", vars: {eventCategory: footer, eventAction: click-link}}
   -
     scope:
       path: ""
@@ -77,13 +63,10 @@ defaults:
       og: {"type": "article"}
       analytics:
         triggers:
-          articleLinkClick:
-            "on": click
-            request: event
-            selector: "[itemprop=articleBody] a[href]"
-            vars:
-              eventCategory: article
-              eventAction: click-link
+          articleLinkClick: {"on": click, request: event, selector: "[itemprop=articleBody] a[href]", vars: {eventCategory: article, eventAction: click-link}}
+          scroll25: {"on": scroll, request: event, scrollSpec: {verticalBoundaries: [25]}, vars: {eventCategory: article, eventAction: scroll, eventValue: 25}}
+          scroll50: {"on": scroll, request: event, scrollSpec: {verticalBoundaries: [50]}, vars: {eventCategory: article, eventAction: scroll, eventValue: 50}}
+          scroll75: {"on": scroll, request: event, scrollSpec: {verticalBoundaries: [75]}, vars: {eventCategory: article, eventAction: scroll, eventValue: 75}}
 
 hyphenate_filter:
   language: de
