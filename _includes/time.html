@@ -1,0 +1,1 @@
+<time{% if include.itemprop %} itemprop="{{ include.itemprop }}"{% endif %} datetime="{{ include.time | date_to_xmlschema }}">{{ include.time | date_to_long_string }}</time>
