@@ -19,12 +19,14 @@ description: > # this means to ignore newlines until "baseurl:"
   Meinungen zu kram mit denen sich keine so viel beschäftigen will.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.marco.zone" # the base hostname & protocol for your site, e.g. http://example.com
+
 website_schema:
   "@context": http://schema.org
   "@type": WebSite
   name: Marco Zone
   alternateName: Die Marco Zone
   url: https://www.marco.zone/
+
 authors:
   marco:
     name: Marco Pfeiffer
@@ -41,10 +43,30 @@ defaults:
     scope:
       path: ""
     values:
-      amp:        false
       layout:     base
       author:     marco
       language:   de
+      analytics:
+        vars:
+          account: UA-60388424-1
+        triggers:
+          pageview:
+            "on": visible
+            request: pageview
+          headerLinkClick:
+            "on": click
+            request: event
+            selector: "#page-header a[href]"
+            vars:
+              eventCategory: header
+              eventAction: click-link
+          footerLinkClick:
+            "on": click
+            request: event
+            selector: "#page-footer a[href]"
+            vars:
+              eventCategory: footer
+              eventAction: click-link
   -
     scope:
       path: ""
@@ -53,6 +75,15 @@ defaults:
       layout:     post
       priority:   0.75
       og: {"type": "article"}
+      analytics:
+        triggers:
+          articleLinkClick:
+            "on": click
+            request: event
+            selector: "[itemprop=articleBody] a[href]"
+            vars:
+              eventCategory: article
+              eventAction: click-link
 
 hyphenate_filter:
   language: de
