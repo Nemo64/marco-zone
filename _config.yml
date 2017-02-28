@@ -49,6 +49,8 @@ defaults:
       analytics:
         vars:
           account: UA-60388424-1
+          # as far as i can tell, google analytics is automatically anonymized in amp
+          # https://support.google.com/analytics/answer/6343176?hl=en&vid=0-679344420636-1488275777141
         triggers:
           pageview: {"on": visible, request: pageview}
           headerLinkClick: {"on": click, request: event, selector: "#page-header a[href]", vars: {eventCategory: header, eventAction: click-link}}
