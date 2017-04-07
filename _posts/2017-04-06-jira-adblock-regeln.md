@@ -4,7 +4,8 @@ description: >
     Jira ist langsam und, wie viele moderne seiten, überladen.
     Ich hab versucht Jira mit AdBlock etwas benutzbarer zu bekommen.
 categories: Software
-date:       2017-04-06
+date:       2017-04-06 13:00:00 +0200
+lastmod:    2017-04-07 10:00:00 +0200
 ---
 
 Wir versuchen auf der Arbeit aktuell mit Jira zu arbeiten. Da viele dies scheinbar verwenden hielten wir das für eine gute Idee, doch inzwischen wissen wir dass das keine dauerlösung ist. Es ist Langsam, Projekte sind schwer ein zu richten und grundlegende Funktionen wie Zeiterfassung sind unbenutzbar und können nur durch noch langsamere und unzuverlässigere Plugins überhaupt verwendet werden.
