@@ -62,8 +62,7 @@ styles: >
 
     <div class="post__subheadline container">
         {% include time.html itemprop="datePublished" time=page.date %}
-        von
-        <a href="#author">{{ site.authors[page.author].name }}</a>
+        von <a href="#author">{{ site.authors[page.author].name }}</a>
         {% if page.lastmod %}(Bearbeitet am {% include time.html itemprop="dateModified" time=page.lastmod %}){% endif %}
     </div>
 
@@ -79,7 +78,7 @@ styles: >
 
     </div>
 
-    <div class="post__author container" id="author">
+    <aside class="post__author container" id="author">
         <figure>
             <h2>Author:</h2>
             <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -94,7 +93,7 @@ styles: >
                 </div>
             </div>
         </figure>
-    </div>
+    </aside>
 
 </article>
 

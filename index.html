@@ -35,9 +35,8 @@ styles: |
             </h2>
             <div class="post-list__subheadline">
                 {% include time.html itemprop="datePublished" time=post.date %}
-                von
                 <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-                    <span itemprop="name">{{ site.authors[post.author].name }}</span>
+                    von <span itemprop="name">{{ site.authors[post.author].name }}</span>
                 </span>
                 {% if post.lastmod %}(Bearbeitet am {% include time.html itemprop="dateModified" time=post.lastmod %}){% endif %}
             </div>
