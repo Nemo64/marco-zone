@@ -38,6 +38,8 @@ exclude:
   - Gemfile
   - Gemfile.lock
 permalink: /:title
+sass:
+    style: compressed
 defaults:
   -
     scope:
