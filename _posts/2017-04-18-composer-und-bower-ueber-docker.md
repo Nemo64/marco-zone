@@ -1,12 +1,12 @@
 ---
-title:      Composer und Bower über docker ausführen
+title:      Composer und Bower über Docker ausführen
 description: >
     Composer und Bower via Docker so einrichten als wären sie nativ auf dem Mac installiert.
 categories: Software
 date:       2017-04-18 9:00:00 +0200
 ---
 
-Ich brauche im alltag sehr oft die Abhängigkeits-Management-Tools composer und bower. Zwar lassen sich diese auf dem Mac installieren, aber irgendwie ist es doch schöner nicht alles global in irgend einen bin ordner zu werfen.
+Ich brauche im Alltag sehr oft die Abhängigkeits-Management-Tools composer und bower. Zwar lassen sich diese auf dem Mac installieren, aber irgendwie ist es doch schöner nicht alles global in irgend einen bin ordner zu werfen.
 
 [Docker for Mac] ist eine schöne Lösung für dieses Problem. Bis vor kurzem noch duch massive Performance-Probleme geplagt ist die Beta mit der `:cached` mount option inzwischen nutzbar. So kann man diese Befehle ausführen.
  
