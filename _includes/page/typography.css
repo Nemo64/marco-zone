@@ -85,14 +85,14 @@ amp-img, img {
 }
 
 @media (min-width: 42em) {
-    aside {
+    .tldr-left {
         width: 18rem;
         clear: left;
         float: left;
-        text-align: left;
     }
 
-    aside.right {
+    .tldr-right {
+        width: 18rem;
         clear: right;
         float: right;
         margin-left: 1em;
