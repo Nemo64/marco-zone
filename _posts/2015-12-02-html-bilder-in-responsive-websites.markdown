@@ -36,11 +36,11 @@ Diese Hack-Lösungen interessieren mich allerdings alle nicht! Ich möchte ein z
 
 ### Das `srcset` Attribut mit `x` Angabe
 
-{% highlight html %}
+```html
 <img srcset="image.jpg 1x, image-2.jpg 2x, image-3.jpg 3x"
      alt="Dieses Bild ist immer scharf"
      src="image.jpg">
-{% endhighlight %}
+```
 
 Diese Syntax erklärt sich von selbst. Wenn der Browser es unterstützt guckt er sich das srcset Attribut an und wählt anhand der `devicePixelRatio` welches Bild er lädt. Wenn der Browser es nicht unterstützt ignoriert er das `srcset` und lädt einfach das Bild in der `src`.
 
@@ -65,24 +65,24 @@ Noch etwas: Ich würde das `srcset` Attribut immer zuerst deklarieren, damit der
 
 Dieses Version hat nur minimal schlechteren [Browser-Support] als die `x` Version. Da jeder, der einen älteren Browser benutzt, die Seite dennoch problemlos sehen kann denke ich nicht, dass das ein Problem ist.
 
-{% highlight html %}
+```html
 <img srcset="banner-720.jpg 720w, banner-1080.jpg 1080w"
      sizes="100vw"
      alt="Dieses Bild wird perfekt ausgewählt"
      src="banner-720.jpg">
-{% endhighlight %}
+```
 
 In dieser Version definieren wir, wie breit das Bild in Pixel ist. Der Browser wählt sich dann das Beste aus. Es gibt momentan keine Möglichkeit die Auswahl anhand der Höhe zu treffen.
 
 Der Browser hat nur ein Problem mit diesem Weg. Er muss wissen wie groß das Bild im Layout sein wird. Da aber der Stylesheet meist nicht sofort verfügbar ist, müsste der Browser mit dem laden von dem Bild warten bis er alle CSS-Dateien geladen hat. Daher sieht der Standard ein weites Attribut vor. `sizes` definiert wie breit das Bild sein wird. Das heißt: wir müssen leider unser Layout zu einem Teil im Markup verewigen. Bei dem Banner-Beispiel ist dies noch recht einfach, aber es kann schnell kompliziert werden. Für diesem Blog benutze ich momentan für die Thumbnails diese Syntax:
 
-{% highlight html %}
+```html
 <img sizes="(min-width: 48em) 9rem, 3rem">
-{% endhighlight %}
+```
 
 Damit sag ich dem Browser, dass die Thumbnails `9rem` breit sind solang die Media-Query `(min-width: 48rem)` zutrifft. Das Beispiel kann aber beliebig kompliziert werden. Hier ein paar Beispiel für Bilder in Bootstrap:
 
-{% highlight html %}
+```html
 <!-- Bootstrap 3 mit Container-Breite -->
 <img sizes="(min-width: 1200px) 1170px, (min-width: 992px) 970px, (min-width: 768px) 750px, 100vw">
 <!-- Bootstrap 3 in einer Spalte -->
@@ -92,7 +92,7 @@ Damit sag ich dem Browser, dass die Thumbnails `9rem` breit sind solang die Medi
 <!-- Bootstrap 4 in einer Spalte -->
 <img sizes="(min-width: 75em) 70.375rem, (min-width: 62em) 58.125rem, (min-width: 48em) 43.125rem, (min-width: 34em) 32.125rem, calc(100vw - 1.875rem)">
 <!-- kleine warnung: ich hab die Angaben nicht getestet -->
-{% endhighlight %}
+```
 
 Wie man sieht ist es möglich `calc()` zu verwenden, aber das macht die Angaben leider nur noch Aufwendiger. Wenn wir nun eine Größe in CSS ändern müssen wir auch unser Markup ändern.... unschön.
 
@@ -115,18 +115,20 @@ Dies ist somit, sofern man die Zeit im Projekt hat die Bilder zu organisieren, d
 
 Dieses Element kann nun auch das Problem des Bildinhaltes lösen. Ich werfe einfach direkt ein Beispiel rein:
 
-{% highlight html %}
+```html
 <picture>
-    <source srcset="desktop-thumbnail-144.jpg 144w, desktop-thumbnail-288.jpg 288w" sizes="9rem"
+    <source srcset="desktop-thumbnail-144.jpg 144w, desktop-thumbnail-288.jpg 288w"
+            sizes="9rem"
             media="(min-width: 62em)">
-    <source srcset="tablet-thumbnail-128.jpg 128w, tablet-thumbnail-256.jpg 256w" sizes="8rem"
+    <source srcset="tablet-thumbnail-128.jpg 128w, tablet-thumbnail-256.jpg 256w"
+            sizes="8rem"
             media="(min-width: 48em)">
     <img src="dektop-thumbnail-144.jpg"
          srcset="mobile-thumbnail-48.jpg 48w, mobile-thumbnail-96.jpg 96w"
          sizes="3rem"
          alt="Wunderschönes Thumbnail">
 </picture>
-{% endhighlight %}
+```
 
 Es ist möglich jeder einzelnen `<source>` eine eigene Media-Query zu geben um zu definieren wann diese zu trifft. Der Browser geht die sources in der Definitions-Reihenfolge durch und nimmt sich die Erste die zutrifft, daher fange ich mit dem Größten an. Damit erspare ich mit die merkwürdigen `(max-width: 61.9em)` Abfragen um die Bildauswahl in beide Richtungen zu limitieren. In meinen Tests scheint das `<img>`-Element auch als source ohne Media-Abfrage zu gelten. Das ist auch deshalb interessant, da das `<picture>`-Element einen noch [schlechteren Browser-Support] hat als das `srcset`-Attribut.
 

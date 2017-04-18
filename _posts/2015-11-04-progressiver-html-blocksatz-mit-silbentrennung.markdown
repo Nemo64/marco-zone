@@ -36,7 +36,7 @@ Eine neues Feature in css, das ich bisher selten gesehen hab, ist die [@supports
 
 Allerdings wird der @support Block von Browsern, die es nicht unterstützen, ignoriert und da die hyphens Eigenschaft sowieso nur von wenigen Browsern verstanden wird, ist die überschneidung von Browsern mit @supports- und hyphens support relativ groß. Daher schlage ich so etwas vor:
 
-{% highlight css %}
+```css
 @supports ((-webkit-hyphens: auto)
         or (   -moz-hyphens: auto)
         or (    -ms-hyphens: auto)
@@ -68,7 +68,7 @@ Allerdings wird der @support Block von Browsern, die es nicht unterstützen, ign
                 hyphens: manual;
     }
 }
-{% endhighlight %}
+```
 
 ## Browser-Unterstützung
 
