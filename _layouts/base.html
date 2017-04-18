@@ -5,12 +5,13 @@
 <head>
     <meta charset="utf-8">
 
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
-    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:600" rel="stylesheet">
-
     <title>{{ page.title }}</title>
 
+    <!-- references -->
+    <link rel="canonical" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl }}">
+
+    <!-- favicon / browser configuration -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
@@ -19,14 +20,18 @@
     <meta name="apple-mobile-web-app-title" content="{{ site.title }}">
     <meta name="application-name" content="{{ site.title }}">
     <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 
-    {% if page.noindex %}<meta name="robots" content="no-index, nofollow">{% endif %}
+    <!-- normal meta information -->
     <meta name="description" content="{{ page.description | default: site.description | strip_newlines | truncate: 160 }}">
     <meta name="author" content="{{ site.authors[page.author].name }}">
     <meta name="generator" content="Jekyll v{{ jekyll.version }}">
     {% if page.date %}<meta name="date" content="{{ page.date | date_to_rfc822 }}">{% endif %}
     {% if page.categories %}<meta name="keywords" content="{{ page.categories | join: ', ' }}">{% endif %}
+    {% if page.noindex %}<meta name="robots" content="no-index, nofollow">{% endif %}
+    <script type="application/ld+json">{{ site.website_schema | jsonify }}</script>
 
+    <!-- open graph -->
     <meta property="og:title" content="{{ page.title | truncate: 70 }}">
     <meta property="og:description" content="{{ page.description | default: site.description | strip_newlines | truncate: 200 }}">
     <meta property="og:type" content="{% if page.og.type %}{{ page.og.type }}{% else %}website{% endif %}">
@@ -36,19 +41,20 @@
     {% if page.og.type == 'article' %}
     <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
     <meta property="article:modified_time" content="{{ page.lastmod | default: page.date | date_to_xmlschema }}">
-    {% for category in page.categories %}<meta property="article:tag" content="{{ category }}">
-    {% endfor %}
+    {% for category in page.categories %}<meta property="article:tag" content="{{ category }}">{% endfor %}
     {% endif %}
+    <!-- twitter card -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@TheTrueNemo" />
     <meta name="twitter:creator" content="{{ site.authors[page.author].twitter }}" />
 
-    <link rel="canonical" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
-    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl }}">
 
-    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-    <script type="application/ld+json">{{ site.website_schema | jsonify }}</script>
+    <!-- external resources -->
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:600" rel="stylesheet">
 
+    <!-- styles -->
     {% include page/amp-boilerplate.html %}
     {% capture styles %}
         {% include page/typography.css %}
