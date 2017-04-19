@@ -1,7 +1,7 @@
 ---
 ---
 <!DOCTYPE html>
-<html lang="{{ page.language }}" ⚡ prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+<html ⚡ lang="{{ page.language }}" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
 <head>
     <meta charset="utf-8">
 
@@ -48,11 +48,12 @@
     <meta name="twitter:site" content="@TheTrueNemo" />
     <meta name="twitter:creator" content="{{ site.authors[page.author].twitter }}" />
 
-
     <!-- external resources -->
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:600" rel="stylesheet">
+    <script async custom-element="amp-font" src="https://cdn.ampproject.org/v0/amp-font-0.1.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:600|Open+Sans:300">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- styles -->
     {% include page/amp-boilerplate.html %}
@@ -66,6 +67,8 @@
 
 </head>
 <body>
+    <amp-font layout="nodisplay" font-family="Open Sans" on-load-add-class="open-sans-loaded"></amp-font>
+    <amp-font layout="nodisplay" font-family="Josefin Slab" on-load-add-class="josefin-slab-loaded"></amp-font>
 
 {% include page/header.html %}
 

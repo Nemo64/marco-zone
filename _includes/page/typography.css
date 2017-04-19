@@ -1,40 +1,53 @@
 body {
     margin: 0;
     background-color: white;
-    font-family: Helvetica, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-weight: 300;
     font-size: 1.2em;
     line-height: 1.5;
     color: #333;
-
-    /* Make font rendering more consistent on OSX/macOS */
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
 
     /* Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS. */
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 }
 
-article, aside, footer, header, nav, section, main {
-    display: block;
+.open-sans-loaded body {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
-pre {
-    font-family: monospace, monospace;
-    margin: 0;
-    font-size: 1em;
+strong, b {
+    /* since i use bold so rarely I decided that loading an extra font weight would be a waste. */
+    /* In this case, I prefer platform consistency over style which is why I prefer Arial here. */
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+pre, code {
+    font-family: "Courier New", monospace;
+    font-size: .9rem;
 }
 
 h1, h2, h3, .headline {
-    font-family: 'Josefin Slab', serif;
-    font-weight: 600;
+    font-family: "Times New Roman", serif;
+    font-weight: 400;
     line-height: 1.1;
-    margin-top: 0; /* i use padding to make ankers work better */
-    margin-bottom: .2rem;
     color: indianred;
-    padding-top: 2rem;
-    padding-top: calc(4.1rem - 1.05em); /* adjust for font size */
+    margin-top: 2rem;
+    margin-top: calc(4.1rem - 1.05em); /* adjust for font size */
+    margin-bottom: .2rem;
+    /* todo fix ankers */
+}
+
+.josefin-slab-loaded h1,
+.josefin-slab-loaded h2,
+.josefin-slab-loaded h3,
+.josefin-slab-loaded .headline {
+    font-family: "Josefin Slab", "Times New Roman", serif;
+    /* I only load a 600 version of Josefin Slab */
+    /* but since the fallback fonts look too bold with that weight i don't define it correctly here. */
+    /* since only one weight is loaded anyways the browser will use that one. */
+    /* font-weight: 600; */
 }
 
 h1 + h2, h2 + h3 {
@@ -59,22 +72,27 @@ aside, p {
     margin-bottom: 0;
 }
 
+article, aside, footer, header, nav, section, main {
+    display: block;
+}
+
 a {
     color: indianred;
     text-decoration: none;
+    -webkit-tap-highlight-color: rgba(205, 92, 92, 0.2);
 }
 
 a:hover, a:focus {
     color: orangered;
 }
 
-strong, b {
-    font-weight: 600;
-}
-
 amp-img, img {
     max-width: 100%;
     height: auto;
+}
+
+pre {
+    margin: 0;
 }
 
 .lead {
