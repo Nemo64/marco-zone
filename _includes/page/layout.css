@@ -10,7 +10,7 @@
     background-color: #f9f9f9;
 }
 
-figure, div.highlighter-rouge {
+div.highlighter-rouge, figure {
     clear: both;
     margin: 1rem 0;
     padding: 1rem;
@@ -105,7 +105,7 @@ pre .s {
         margin-right: auto;
     }
 
-    figure, div.highlighter-rouge {
+    div.highlighter-rouge, figure {
         margin-left: 0;
         margin-right: calc(55rem - 100vw);
         padding-left: 1rem;
