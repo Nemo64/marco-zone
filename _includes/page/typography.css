@@ -10,10 +10,14 @@ body {
     /* Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS. */
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
+
+    /* better font rendering on osx */
+    -moz-osx-font-smoothing:grayscale;
+    -webkit-font-smoothing:antialiased;
 }
 
-.open-sans-loaded body {
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+.roboto-loaded body {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
 }
 
 strong, b {
