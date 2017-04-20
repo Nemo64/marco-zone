@@ -11,23 +11,33 @@ styles: |
         padding-top: 1rem;
         padding-bottom: 1rem;
     }
+
     a.post-list__link {
         display: block;
         color: inherit;
-        /* escape the post list box */
+        /* escape the post list box for a bigger click area */
         margin: -1rem;
         padding: 1rem;
+
+        &:hover {
+            .post-list__headline, .post-list__subheadline {
+                color: orangered;
+            }
+        }
     }
+
     .post-list__headline {
         margin-top: 0;
     }
+
     .post-list__subheadline {
         font-size: .7em;
         color: indianred;
     }
+
     .post-list__bodytext {
         line-height: 1.5em;
-        min-height: 4.5em;
+        /* min-height: 4.5em; */
         overflow: hidden;
         display: block;
     }

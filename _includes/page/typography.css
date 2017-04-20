@@ -55,21 +55,49 @@ h1, h2, h3, .headline {
 }
 
 h1 + h2, h2 + h3 {
-    margin-top: 0;
-    padding-top: 1rem;
+    margin-top: 1rem;
 }
 
-h1, .headline--h1 {
+h1 {
     font-size: 2rem;
 }
 
-h2, .headline--h2 {
+h2 {
     font-size: 1.7rem;
 }
 
-h3, .headline--h3 {
+h3 {
     font-size: 1.4rem;
 }
+
+a {
+    color: indianred;
+    text-decoration: none;
+}
+
+a:hover {
+    color: orangered;
+}
+
+:focus {
+    outline: orangered auto 5px;
+}
+
+* {
+    -webkit-tap-highlight-color: transparentize(indianred, 0.8);
+}
+
+::selection {
+    background: transparentize(orangered, 0.8);
+    color: black;
+}
+
+::-moz-selection {
+    background: transparentize(orangered, 0.8);
+    color: black;
+}
+
+/* block elements */
 
 aside, p {
     margin-top: 1rem;
@@ -78,16 +106,6 @@ aside, p {
 
 article, aside, footer, header, nav, section, main {
     display: block;
-}
-
-a {
-    color: indianred;
-    text-decoration: none;
-    -webkit-tap-highlight-color: rgba(205, 92, 92, 0.2);
-}
-
-a:hover, a:focus {
-    color: orangered;
 }
 
 amp-img, img {
@@ -120,9 +138,8 @@ pre {
         margin-left: 1em;
     }
 
-    @supports (-webkit-hyphens: manual) or (-ms-hyphens: manual) or (hyphens: manual) {
-        p {
-            text-align: justify;
-        }
+    p {
+        /* I assume the text is probably hyphenated using &shy; */
+        text-align: justify;
     }
 }
