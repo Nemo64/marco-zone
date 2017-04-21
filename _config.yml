@@ -38,8 +38,22 @@ exclude:
   - Gemfile
   - Gemfile.lock
 permalink: /:title
+
 sass:
-    style: compressed
+  style: compressed
+
+hyphenate_filter:
+  language: de
+  selector: p
+  left: 4
+  right: 3
+
+include:
+  - _redirects
+  - _headers
+
+# defaults
+
 defaults:
   -
     scope:
@@ -59,6 +73,11 @@ defaults:
           footerLinkClick: {"on": click, request: event, selector: "#page-footer a[href]", vars: {eventCategory: footer, eventAction: click-link}}
   -
     scope:
+      path: "meta"
+    values:
+      layout: null
+  -
+    scope:
       path: ""
       type: "posts"
     values:
@@ -71,13 +90,3 @@ defaults:
           scroll25: {"on": scroll, request: event, scrollSpec: {verticalBoundaries: [25]}, vars: {eventCategory: article, eventAction: scroll, eventValue: 25}}
           scroll50: {"on": scroll, request: event, scrollSpec: {verticalBoundaries: [50]}, vars: {eventCategory: article, eventAction: scroll, eventValue: 50}}
           scroll75: {"on": scroll, request: event, scrollSpec: {verticalBoundaries: [75]}, vars: {eventCategory: article, eventAction: scroll, eventValue: 75}}
-
-hyphenate_filter:
-  language: de
-  selector: p
-  left: 4
-  right: 3
-
-include:
-  - _redirects
-  - _headers
