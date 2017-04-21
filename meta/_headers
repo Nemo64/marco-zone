@@ -12,7 +12,11 @@ is_server_configuration:    true
     # For images with permlink. Others will be delivered though the cdn and have other cache times anyways.
     Cache-Control: public, max-age=86400
 
-{% for page in site.pages %}{% if page.headers %}
+{% for page in site.pages %}{% assign header_count = page.headers|size %}{% if header_count > 0 %}
+{{ page.url }}{% for header in page.headers %}
+    {{ header[0] }}: {{ header[1] }}{% endfor %}
+{% endif %}{% endfor %}
+{% for page in site.posts %}{% assign header_count = page.headers|size %}{% if header_count > 0 %}
 {{ page.url }}{% for header in page.headers %}
     {{ header[0] }}: {{ header[1] }}{% endfor %}
 {% endif %}{% endfor %}
