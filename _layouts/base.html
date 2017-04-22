@@ -5,13 +5,20 @@
 <head>
     <meta charset="utf-8">
 
+    <!-- external resources -->
+    <!-- it is important that the amp script is the second child according to the amp docs. -->
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-font" src="https://cdn.ampproject.org/v0/amp-font-0.1.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:600|Roboto:300">
+
     <title>{{ page.title }}</title>
 
     <!-- references -->
     <link rel="canonical" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl }}">
 
-    <!-- favicon / browser configuration -->
+    <!-- favicon/browser configuration -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
@@ -21,6 +28,7 @@
     <meta name="application-name" content="{{ site.title }}">
     <meta name="theme-color" content="#ffffff">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
 
     <!-- normal meta information -->
     <meta name="description" content="{{ page.description | default: site.description | strip_newlines | truncate: 160 }}">
@@ -47,12 +55,6 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@TheTrueNemo" />
     <meta name="twitter:creator" content="{{ site.authors[page.author].twitter }}" />
-
-    <!-- external resources -->
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
-    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-    <script async custom-element="amp-font" src="https://cdn.ampproject.org/v0/amp-font-0.1.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:600|Roboto:300">
 
     <!-- styles -->
     {% include page/amp-boilerplate.html %}
