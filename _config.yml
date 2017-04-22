@@ -37,6 +37,8 @@ markdown: kramdown
 exclude:
   - Gemfile
   - Gemfile.lock
+  - Dockerfile
+  - docker-compose.yml
 permalink: /:title
 
 sass:
@@ -47,6 +49,18 @@ hyphenate_filter:
   selector: p
   left: 4
   right: 3
+
+responsive_image:
+  template: _includes/image.html
+  default_quality: 80
+  sizes:
+    - width: 240
+    - width: 640
+    - width: 1280
+      quality: 70
+  auto_rotate: true
+  base_path: assets
+  output_path_format: assets/resized/%{width}/%{basename}
 
 include:
   - _redirects

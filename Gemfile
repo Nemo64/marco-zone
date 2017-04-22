@@ -13,5 +13,5 @@ gem "jekyll", "3.3.1"
 
 group :jekyll_plugins do
     gem "jekyll-hyphenate_filter"
-    #gem "jekyll-responsive_image"
+    gem "jekyll-responsive-image"
 end

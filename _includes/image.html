@@ -1,14 +1,45 @@
 {% capture image %}
-<amp-img src="/assets/{{ include.path }}"
-         width="{{ include.width }}"
-         height="{{ include.height }}"
-         alt="{{ include.alt }}"
+
+{% assign rem_width = width | default: original.width | divided_by: 16.0 %}
+
+{% assign best_image = original %}
+{% if best_image.width > 1280 %}
+    {% assign best_image = resized | sort: 'width' | last %}
+{% endif %}
+
+{% capture srcset %}
+    {% for i in resized %}
+        {{ i.path | prepend: site.baseurl | prepend: '/' }} {{ i.width }}w,
+    {% endfor %}
+    {% if original.width <= 1280 %}
+        {{ original.path | prepend: size.baseurl | prepend: '/' }} {{ original.width }}w
+    {% endif %}
+{% endcapture %}
+
+{% capture sizes %}
+    {% if sizes %}
+        {{ sizes }}
+    {% elsif rem_width < 40 %}
+        (max-width:{{ rem_width | plus: 2 }}rem)calc(100vw - 2rem),{{ rem_width }}rem
+    {% else %}
+        (max-width:42rem)100vw,40rem
+    {% endif %}
+{% endcapture %}
+
+<amp-img srcset="{{ srcset }}"
+         width="{{ original.width }}"
+         height="{{ original.height }}"
+         {% if alt %}alt="{{ alt }}"{% endif %}
          layout="responsive"
-         sizes="{{ include.width }}px">
+         sizes="{{ sizes }}">
 </amp-img>
+
 <noscript>
-    <img src="/assets/{{ include.path }}"
-         alt="{{ include.alt }}"
-         {% if include.itemprop %}itemprop="{{ include.itemprop }}"{% endif %}>
+    <img src="{{ best_image.path | prepend: site.baseurl | prepend: '/' }}"
+         srcset="{{ srcset | strip_newlines }}"
+         sizes="{{ sizes }}"
+         alt="{{ alt }}"
+         {% if include.itemprop %}itemprop="{{ itemprop }}"{% endif %}>
 </noscript>
+
 {% endcapture %}{{ image | strip_newlines | replace: '    ', '' }}
