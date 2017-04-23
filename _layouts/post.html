@@ -98,5 +98,24 @@ styles: >
         </figure>
     </aside>
 
+    <aside class="post__comments page-content" id="comments">
+        {% if jekyll.environment == 'development' %}
+            <iframe height="320"
+                    sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+                    style="width: 100%"
+                    resizable
+                    frameborder="0"
+                    src="/comments?title={{ page.title | url_encode }}&url={{  page.url | url_encode }}"></iframe>
+        {% else %}
+            <amp-iframe height="320"
+                        sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+                        resizable
+                        frameborder="0"
+                        src="{{ site.disqus.host }}/comments?title={{ page.title | url_encode }}&url={{  page.url | url_encode }}">
+                <div overflow tabindex="0" role="button" aria-label="Read more">Read more!</div>
+            </amp-iframe>
+        {% endif %}
+    </aside>
+
 </article>
 

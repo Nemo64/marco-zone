@@ -32,6 +32,11 @@ authors:
     name: Marco Pfeiffer
     twitter: "@TheTrueMemo"
 
+disqus:
+  name: marco-zone
+  # amp requires a secondary domain for iframes to work correctly. This is it
+  host: "https://marco-zone.netlify.com"
+
 # Build settings
 markdown: kramdown
 exclude:
@@ -58,7 +63,7 @@ responsive_image:
     - width: 640
     - width: 1280
       quality: 70
-  auto_rotate: true
+  auto_rotate: false
   base_path: assets
   output_path_format: assets/resized/%{width}/%{basename}
 
