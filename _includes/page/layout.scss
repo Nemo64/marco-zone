@@ -1,0 +1,133 @@
+$content-size: 40rem;
+$desktop-sidebar-size: 13rem;
+$desktop-sidebar-min-width: $desktop-sidebar-size + $content-size + 1rem;
+$desktop-sidebar-min-height: 30rem;
+
+amp-img, img {
+    max-width: 100%;
+    height: auto;
+}
+
+.highlighter-rouge,
+figure {
+    background-color: #f9f9f9;
+}
+
+div.highlighter-rouge,
+figure {
+    clear: both;
+    margin: 1rem 0;
+    padding: 1rem;
+    overflow: auto;
+}
+
+.page-content {
+    > p,
+    > ul, > ol,
+    > h1, > h2, > h3,
+    > amp-img, > noscript > img{
+        box-sizing: border-box;
+        max-width: $content-size;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    @media (min-width: $desktop-sidebar-min-width / 1rem * 1em) and (min-height: $desktop-sidebar-min-height / 1rem * 1em) {
+        margin-left: $desktop-sidebar-size + 1rem;
+    }
+
+    @media (max-width: 42em) {
+        [sizes*="(max-width:42rem)100vw"] {
+            display: block;
+            margin-left: 0;
+            margin-right: 0;
+            width: 100vw;
+        }
+    }
+}
+
+pre .c {
+    color: gray;
+}
+
+pre .s1,
+pre .s {
+    color: indianred;
+}
+
+.page-header {
+    margin: 0 auto;
+
+    &__logo {
+        display: inline-block;
+        padding: 1rem;
+        margin: 0;
+    }
+
+    @media (min-width: $desktop-sidebar-min-width / 1rem * 1em) and (min-height: $desktop-sidebar-min-height / 1rem * 1em) {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: $desktop-sidebar-size;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+
+        &__logo {
+            display: block;
+            text-align: right;
+            padding: 1rem 0;
+            margin: 1rem 0 0 1rem;
+            font-size: 2rem;
+        }
+    }
+}
+
+.page-footer {
+    min-height: 3rem;
+    margin-top: 3rem;
+    padding: 1rem 0;
+
+    background-color: #333;
+    color: white;
+    font-size: .7em;
+}
+
+.page-footer__copyright {
+    display: block;
+    float: left;
+}
+
+.page-footer__copyright > span {
+    display: inline-block;
+}
+
+.page-footer__nav {
+    display: block;
+    float: right;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.page-footer__nav > li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+//@media (min-width: 65em) and (min-height: 30em) {
+//    div.highlighter-rouge,
+//    figure,
+//    .fullsize {
+//        margin-left: 0;
+//        margin-right: calc(55rem - 100vw);
+//        padding-left: 0;
+//    }
+//
+//    div.highlighter-rouge,
+//    figure {
+//        background-image: linear-gradient(to right, #f9f9f9, #f9f9f9 40rem, #ffffff);
+//        padding-left: 1rem;
+//    }
+//}

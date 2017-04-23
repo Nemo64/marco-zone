@@ -1,9 +1,13 @@
 ---
 layout: base
+amp_tags:
+    amp-iframe: https://cdn.ampproject.org/v0/amp-iframe-0.1.js
 styles: >
     .post__subheadline {
         font-size: .7em;
         color: indianred;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     .post__content > amp-img,
@@ -53,32 +57,31 @@ styles: >
     }
 ---
 
-<article class="post" itemprop="mainEntity" itemscope itemtype="http://schema.org/BlogPosting"
+<article class="post"
+         itemprop="mainEntity" itemscope itemtype="http://schema.org/BlogPosting"
          itemid="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
 
-    <h1 class="post__headline container" itemprop="headline">
-        {{ page.title | strip }}
-    </h1>
+    <header class="page-content">
+        <h1 class="post__headline" itemprop="headline">
+            {{ page.title | strip }}
+        </h1>
 
-    <div class="post__subheadline container">
-        {% include time.html itemprop="datePublished" time=page.date %}
-        von <a href="#author">{{ site.authors[page.author].name }}</a>
-        {% if page.lastmod %}(Bearbeitet am {% include time.html itemprop="dateModified" time=page.lastmod %}){% endif %}
+        <p class="post__subheadline">
+            {% include time.html itemprop="datePublished" time=page.date %}
+            von <a href="#author">{{ site.authors[page.author].name }}</a>
+            {% if page.lastmod %}(Bearbeitet am {% include time.html itemprop="dateModified" time=page.lastmod %}){% endif %}
+        </p>
+
+        <p class="post__lead lead" itemprop="description">
+            {{ page.description | strip }}
+        </p>
+    </header>
+
+    <div class="post__content page-content" itemprop="articleBody">
+        {{ content }}
     </div>
 
-    <p class="post__lead lead container" itemprop="description">
-        {{ page.description | strip }}
-    </p>
-
-    <div class="post__content container" itemprop="articleBody">
-
-<!-- content start -->
-{{ content }}
-<!-- content end -->
-
-    </div>
-
-    <aside class="post__author container" id="author">
+    <aside class="post__author page-content" id="author">
         <figure>
             <h2>Author:</h2>
             <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
