@@ -36,8 +36,6 @@
 
 <noscript>
     <img src="{{ best_image.path | prepend: site.baseurl | prepend: '/' }}"
-         srcset="{{ srcset | strip_newlines }}"
-         sizes="{{ sizes }}"
          alt="{{ alt }}"
          {% if include.itemprop %}itemprop="{{ itemprop }}"{% endif %}>
 </noscript>
