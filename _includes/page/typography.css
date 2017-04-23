@@ -17,7 +17,7 @@ body {
 }
 
 .roboto-loaded body {
-    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 strong, b {
@@ -47,7 +47,7 @@ h1, h2, h3, .headline {
 .josefin-slab-loaded h2,
 .josefin-slab-loaded h3,
 .josefin-slab-loaded .headline {
-    font-family: "Josefin Slab", "Times New Roman", serif;
+    font-family: "Josefin Slab", serif;
     /* I only load a 600 version of Josefin Slab */
     /* but since the fallback fonts look too bold with that weight i don't define it correctly here. */
     /* since only one weight is loaded anyways the browser will use that one. */
