@@ -1,0 +1,30 @@
+---
+layout:     null
+permalink:  /sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- posts -->
+    {% for post in site.posts %}{% if post.noindex == null and post.title %}
+    <url>
+        <loc>{{ post.url | prepend: site.baseurl | prepend: site.url }}</loc>
+        <lastmod>{{ post.date | default: post.lastmod | date_to_xmlschema }}</lastmod>
+        <priority>{{ 1.0 | divided_by: forloop.index | round: 2 }}</priority>
+    </url>
+    {% endif %}{% endfor %}
+    <!-- pages -->
+    {% for page in site.pages %}{% if page.noindex == null and page.title %}
+    <url>
+        <loc>{{ page.url | prepend: site.baseurl | prepend: site.url }}</loc>
+        {% if page.startpage %}
+            {% assign last_post = site.posts | sort: 'date' | last %}
+            <lastmod>{{ last_post.date | default: last_post.lastmod | date_to_xmlschema }}</lastmod>
+            <priority>0.5</priority>
+        {% else %}
+            {% if page.date or page.lastmod %}<lastmod>{{ page.date | default: page.lastmod | date_to_xmlschema }}</lastmod>{% endif %}
+            <priority>0.0</priority>
+        {% endif %}
+    </url>
+    {% endif %}{% endfor %}
+</urlset>

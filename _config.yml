@@ -100,8 +100,7 @@ defaults:
       path: ""
       type: "posts"
     values:
-      layout:     post
-      priority:   0.75
+      layout: post
       og: {"type": "article"}
       analytics:
         triggers:

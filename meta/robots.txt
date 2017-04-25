@@ -1,0 +1,9 @@
+---
+layout:     null
+permalink:  /robots.txt
+---
+User-agent: *
+{% for page in site.pages %}{% if page.noindex %}
+Disallow: {{ page.url | prepend: site.baseurl }}{% endif %}{% endfor %}
+
+Sitemap: {{ site.url | prepend: site.baseurl }}/sitemap.xml
