@@ -63,17 +63,17 @@ styles: >
 
     <header class="page-content">
         <h1 class="post__headline" itemprop="headline">
-            {{ page.title | strip }}
+            {{ page.title | strip | escape }}
         </h1>
 
         <p class="post__subheadline">
             {% include time.html itemprop="datePublished" time=page.date %}
-            von <a href="#author">{{ site.authors[page.author].name }}</a>
+            von <a href="#author">{{ site.authors[page.author].name | strip | escape }}</a>
             {% if page.lastmod %}(Bearbeitet am {% include time.html itemprop="dateModified" time=page.lastmod %}){% endif %}
         </p>
 
         <p class="post__lead lead" itemprop="description">
-            {{ page.description | strip }}
+            {{ page.description | strip | escape }}
         </p>
     </header>
 

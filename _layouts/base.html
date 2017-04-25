@@ -12,16 +12,16 @@ amp_tags:
     <!-- it is important that the amp script is the second child according to the amp docs. -->
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     {% for script in layout.amp_tags %}
-    <script async custom-element="{{ script[0] }}" src="{{ script[1] }}"></script>{% endfor %}
+    <script async custom-element="{{ script[0] | escape }}" src="{{ script[1] | escape }}"></script>{% endfor %}
     {% for script in page.amp_tags %}{% unless layout.amp_tags contains script[0] %}
-    <script async custom-element="{{ script[0] }}" src="{{ script[1] }}"></script>{% endunless %}{% endfor %}
+    <script async custom-element="{{ script[0] | escape }}" src="{{ script[1] | escape }}"></script>{% endunless %}{% endfor %}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:600|Roboto:300">
 
-    <title>{{ page.title }}</title>
+    <title>{{ page.title | escape }}</title>
 
     <!-- references -->
-    <link rel="canonical" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
-    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl }}">
+    <link rel="canonical" href="{{ page.url | prepend: site.baseurl | prepend: site.url | escape }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | prepend: site.baseurl | escape }}">
 
     <!-- favicon/browser configuration -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -29,38 +29,38 @@ amp_tags:
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="manifest" href="/manifest.json">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#cd5c5c">
-    <meta name="apple-mobile-web-app-title" content="{{ site.title }}">
-    <meta name="application-name" content="{{ site.title }}">
+    <meta name="apple-mobile-web-app-title" content="{{ site.title | escape }}">
+    <meta name="application-name" content="{{ site.title | escape }}">
     <meta name="theme-color" content="#ffffff">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <meta name="format-detection" content="telephone=no">
 
     <!-- normal meta information -->
     <meta name="description" content="{{ page.description | default: site.description | strip_newlines | truncate: 160 }}">
-    <meta name="author" content="{{ site.authors[page.author].name }}">
-    <meta name="generator" content="Jekyll v{{ jekyll.version }}">
-    {% if page.date %}<meta name="date" content="{{ page.date | date_to_rfc822 }}">{% endif %}
-    {% if page.categories %}<meta name="keywords" content="{{ page.categories | join: ', ' }}">{% endif %}
+    <meta name="author" content="{{ site.authors[page.author].name | escape }}">
+    <meta name="generator" content="Jekyll v{{ jekyll.version | escape }}">
+    {% if page.date %}<meta name="date" content="{{ page.date | date_to_rfc822 | escape }}">{% endif %}
+    {% if page.categories %}<meta name="keywords" content="{{ page.categories | join: ', ' | escape }}">{% endif %}
     {% if page.noindex %}<meta name="robots" content="no-index, nofollow">{% endif %}
     <script type="application/ld+json">{{ site.website_schema | jsonify }}</script>
 
     <!-- open graph -->
-    <meta property="og:title" content="{{ page.title | truncate: 70 }}">
-    <meta property="og:description" content="{{ page.description | default: site.description | strip_newlines | truncate: 200 }}">
-    <meta property="og:type" content="{% if page.og.type %}{{ page.og.type }}{% else %}website{% endif %}">
+    <meta property="og:title" content="{{ page.title | truncate: 70 | escape }}">
+    <meta property="og:description" content="{{ page.description | default: site.description | strip_newlines | truncate: 200 | escape }}">
+    <meta property="og:type" content="{% if page.og.type %}{{ page.og.type | escape }}{% else %}website{% endif %}">
     <meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
-    <meta property="og:locale" content="{{ page.language }}">
-    <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:locale" content="{{ page.language | escape }}">
+    <meta property="og:site_name" content="{{ site.title | escape }}">
     {% if page.og.type == 'article' %}
-    <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
-    <meta property="article:modified_time" content="{{ page.lastmod | default: page.date | date_to_xmlschema }}">
+    <meta property="article:published_time" content="{{ page.date | date_to_xmlschema | escape }}">
+    <meta property="article:modified_time" content="{{ page.lastmod | default: page.date | date_to_xmlschema | escape }}">
     {% for category in page.categories %}
-    <meta property="article:tag" content="{{ category }}">{% endfor %}
+    <meta property="article:tag" content="{{ category | escape }}">{% endfor %}
     {% endif %}
     <!-- twitter card -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@TheTrueNemo" />
-    <meta name="twitter:creator" content="{{ site.authors[page.author].twitter }}" />
+    <meta name="twitter:creator" content="{{ site.authors[page.author].twitter | escape }}" />
 
     <!-- styles -->
     {% include page/amp-boilerplate.html %}

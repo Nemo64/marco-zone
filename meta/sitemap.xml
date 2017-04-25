@@ -8,18 +8,18 @@ permalink:  /sitemap.xml
     <!-- posts -->
     {% for post in site.posts %}{% if post.noindex == null and post.title %}
     <url>
-        <loc>{{ post.url | prepend: site.baseurl | prepend: site.url }}</loc>
-        <lastmod>{{ post.date | default: post.lastmod | date_to_xmlschema }}</lastmod>
-        <priority>{{ 1.0 | divided_by: forloop.index | round: 2 }}</priority>
+        <loc>{{ post.url | prepend: site.baseurl | prepend: site.url | xml_escape  }}</loc>
+        <lastmod>{{ post.date | default: post.lastmod | date_to_xmlschema  }}</lastmod>
+        <priority>{{ 1.0 | divided_by: forloop.index | round: 2 | xml_escape  }}</priority>
     </url>
     {% endif %}{% endfor %}
     <!-- pages -->
     {% for page in site.pages %}{% if page.noindex == null and page.title %}
     <url>
-        <loc>{{ page.url | prepend: site.baseurl | prepend: site.url }}</loc>
+        <loc>{{ page.url | prepend: site.baseurl | prepend: site.url | xml_escape  }}</loc>
         {% if page.startpage %}
             {% assign last_post = site.posts | sort: 'date' | last %}
-            <lastmod>{{ last_post.date | default: last_post.lastmod | date_to_xmlschema }}</lastmod>
+            <lastmod>{{ last_post.date | default: last_post.lastmod | date_to_xmlschema  }}</lastmod>
             <priority>0.5</priority>
         {% else %}
             {% if page.date or page.lastmod %}<lastmod>{{ page.date | default: page.lastmod | date_to_xmlschema }}</lastmod>{% endif %}
