@@ -86,48 +86,32 @@ pre .s {
 .page-footer {
     min-height: 3rem;
     margin-top: 3rem;
-    padding: 1rem 0;
+    padding: 1rem 1rem;
 
     background-color: #333;
     color: white;
     font-size: .7em;
-}
 
-.page-footer__copyright {
-    display: block;
-    float: left;
-}
+    &__copyright {
+        display: block;
+        float: left;
+    }
 
-.page-footer__copyright > span {
-    display: inline-block;
-}
+    &__copyright > span {
+        display: inline-block;
+    }
 
-.page-footer__nav {
-    display: block;
-    float: right;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
+    &__nav {
+        display: block;
+        float: right;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
 
-.page-footer__nav > li {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
+    &__nav > li {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+    }
 }
-
-//@media (min-width: 65em) and (min-height: 30em) {
-//    div.highlighter-rouge,
-//    figure,
-//    .fullsize {
-//        margin-left: 0;
-//        margin-right: calc(55rem - 100vw);
-//        padding-left: 0;
-//    }
-//
-//    div.highlighter-rouge,
-//    figure {
-//        background-image: linear-gradient(to right, #f9f9f9, #f9f9f9 40rem, #ffffff);
-//        padding-left: 1rem;
-//    }
-//}
