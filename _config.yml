@@ -38,6 +38,7 @@ disqus:
   host: "https://marco-zone.netlify.com"
 
 # Build settings
+timezone: Europe/Berlin
 markdown: kramdown
 exclude:
   - Gemfile
