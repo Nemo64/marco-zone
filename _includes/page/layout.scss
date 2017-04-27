@@ -3,6 +3,12 @@ $desktop-sidebar-size: 13rem;
 $desktop-sidebar-min-width: $desktop-sidebar-size + $content-size + 1rem;
 $desktop-sidebar-min-height: 30rem;
 
+body {
+    @media (min-width: $desktop-sidebar-min-width / 1rem * 1em) and (min-height: $desktop-sidebar-min-height / 1rem * 1em) {
+        padding-left: $desktop-sidebar-size + 1rem;
+    }
+}
+
 amp-img, img {
     max-width: 100%;
     height: auto;
@@ -30,10 +36,6 @@ figure {
         max-width: $content-size;
         margin-left: 1rem;
         margin-right: 1rem;
-    }
-
-    @media (min-width: $desktop-sidebar-min-width / 1rem * 1em) and (min-height: $desktop-sidebar-min-height / 1rem * 1em) {
-        margin-left: $desktop-sidebar-size + 1rem;
     }
 
     @media (max-width: 42em) {

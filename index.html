@@ -18,6 +18,8 @@ styles: |
     a.post-list__link {
         display: block;
         color: inherit;
+        margin: -1rem 0;
+        padding: 1rem 0;
 
         &:hover {
             .post-list__headline, .post-list__subheadline {
@@ -52,10 +54,10 @@ styles: |
     </div>
 
     {% for post in site.posts %}
-    <a class="post-list__link" href="{{ post.url | prepend: site.baseurl }}" itemprop="url">
-        <article class="post-list__item page-content"
-                 itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting"
-                 itemid="{{ post.url | prepend: site.baseurl | prepend: site.url }}">
+    <article class="post-list__item"
+             itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting"
+             itemid="{{ post.url | prepend: site.baseurl | prepend: site.url }}">
+        <a class="post-list__link page-content" href="{{ post.url | prepend: site.baseurl }}" itemprop="url">
             <h2 class="post-list__headline" itemprop="headline">
                 {{ post.title | strip | escape }}
             </h2>
@@ -69,7 +71,7 @@ styles: |
             <p class="post-list__bodytext" itemprop="description">
                 {{ post.description | strip_newlines | truncate: 160 | escape }}
             </p>
-        </article>
-    </a>
+        </a>
+    </article>
     {% endfor %}
 </main>
