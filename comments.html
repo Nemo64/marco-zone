@@ -9,13 +9,14 @@ title: Discuss Comments
         <title>{{ page.title }}</title>
         <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
         <meta name="robots" content="no-index, nofollow">
-        <script type="application/ld+json">{{ site.website_schema | jsonify }}</script>
-        <style>
+        {% capture styles %}
             body {
                 margin: 0;
                 padding: 0 1rem;
             }
-        </style>
+            {% include page/typography.scss %}
+        {% endcapture %}
+        <style>{{ styles | scssify | strip_newlines }}</style>
     </head>
     <body>
         <div id="disqus_thread"></div>
