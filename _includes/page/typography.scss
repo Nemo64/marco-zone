@@ -81,7 +81,8 @@ a:hover {
 }
 
 :focus {
-    outline: orangered auto 5px;
+    outline: none;
+    box-shadow: 0 0 1px 1px orangered, 0 0 1px orangered inset;
 }
 
 ::selection {
