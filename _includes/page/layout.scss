@@ -29,14 +29,16 @@ figure {
 }
 
 .page-content {
-    > p,
-    > ul, > ol,
-    > h1, > h2, > h3,
-    > amp-img, > noscript > img{
-        box-sizing: border-box;
-        max-width: $content-size;
-        margin-left: 1rem;
-        margin-right: 1rem;
+    @media screen {
+        > p,
+        > ul, > ol,
+        > h1, > h2, > h3,
+        > amp-img, > noscript > img {
+            box-sizing: border-box;
+            max-width: $content-size;
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
     }
 
     @media (max-width: 42em) {
@@ -76,6 +78,9 @@ pre .s {
         margin: 0;
         padding: 0;
 
+        // hack to make chrome create a layer
+        backface-visibility: hidden;
+
         &__logo {
             display: block;
             text-align: right;
@@ -83,6 +88,10 @@ pre .s {
             margin: 1rem 0 0 1rem;
             font-size: 2rem;
         }
+    }
+
+    @media print {
+        display: none;
     }
 }
 
