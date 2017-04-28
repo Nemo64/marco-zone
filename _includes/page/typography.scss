@@ -116,7 +116,7 @@ pre {
     letter-spacing: -.05em;
 }
 
-@media (min-width: 42em) {
+@media (screen or print) and (min-width: 42em) {
     .tldr-left {
         width: 18rem;
         clear: left;

@@ -5,7 +5,7 @@ $desktop-sidebar-min-height: 30rem;
 $background-color: #f9f9f9;
 
 body {
-    @media (min-width: $desktop-sidebar-min-width / 1rem * 1em) and (min-height: $desktop-sidebar-min-height / 1rem * 1em) {
+    @media screen and (min-width: $desktop-sidebar-min-width / 1rem * 1em) and (min-height: $desktop-sidebar-min-height / 1rem * 1em) {
         padding-left: $desktop-sidebar-size + 1rem;
     }
 }
@@ -67,7 +67,7 @@ pre .s {
         margin: 0;
     }
 
-    @media (min-width: $desktop-sidebar-min-width / 1rem * 1em) and (min-height: $desktop-sidebar-min-height / 1rem * 1em) {
+    @media screen and (min-width: $desktop-sidebar-min-width / 1rem * 1em) and (min-height: $desktop-sidebar-min-height / 1rem * 1em) {
         position: fixed;
         left: 0;
         top: 0;

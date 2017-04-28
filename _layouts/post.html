@@ -55,6 +55,12 @@ styles: >
     .author__twitter {
         display: block;
     }
+
+    @media print {
+        .post__comments {
+            display: none;
+        }
+    }
 ---
 
 <article class="post"
