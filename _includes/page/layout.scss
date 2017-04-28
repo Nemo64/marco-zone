@@ -2,6 +2,7 @@ $content-size: 40rem;
 $desktop-sidebar-size: 13rem;
 $desktop-sidebar-min-width: $desktop-sidebar-size + $content-size + 1rem;
 $desktop-sidebar-min-height: 30rem;
+$background-color: #f9f9f9;
 
 body {
     @media (min-width: $desktop-sidebar-min-width / 1rem * 1em) and (min-height: $desktop-sidebar-min-height / 1rem * 1em) {
@@ -16,7 +17,7 @@ amp-img, img {
 
 .highlighter-rouge,
 figure {
-    background-color: #f9f9f9;
+    background-color: $background-color;
 }
 
 div.highlighter-rouge,
@@ -90,8 +91,7 @@ pre .s {
     margin-top: 3rem;
     padding: 1rem 1rem;
 
-    background-color: #333;
-    color: white;
+    background-color: $background-color;
     font-size: .7em;
 
     &__copyright {
