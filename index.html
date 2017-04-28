@@ -57,7 +57,7 @@ styles: |
     <article class="post-list__item"
              itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting"
              itemid="{{ post.url | prepend: site.baseurl | prepend: site.url }}">
-        <a class="post-list__link page-content" href="{{ post.url | prepend: site.baseurl }}" itemprop="url">
+        <a class="post-list__link page-content" href="{{ post.url | prepend: site.baseurl }}" itemprop="mainEntityOfPage">
             <h2 class="post-list__headline" itemprop="headline">
                 {{ post.title | strip | escape }}
             </h2>
