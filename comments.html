@@ -2,6 +2,10 @@
 layout: null
 noindex: true
 title: Discuss Comments
+headers:
+  - ['Cache-Control', 'public, max-age=86400']
+  - ['Link', '<https://marco-zone.disqus.com/embed.js>;rel="preload prefetch dns-prefetch";as="script"']
+  - ['Link', '<https://disqus.com/>;rel="dns-prefetch"']
 ---
 <html lang="{{ page.lang }}">
     <head>
@@ -81,7 +85,7 @@ title: Discuss Comments
 
             (function () { // DON'T EDIT BELOW THIS LINE
                 var d = document, s = d.createElement('script');
-                s.src = {{ site.disqus.name | prepend: 'https://' | append: '.disqus.com/embed.js' | jsonify }};
+                s.src = 'https://marco-zone.disqus.com/embed.js';
                 s.setAttribute('data-timestamp', +new Date());
                 (d.head || d.body).appendChild(s);
             })();

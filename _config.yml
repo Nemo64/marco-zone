@@ -19,6 +19,7 @@ description: > # this means to ignore newlines until "baseurl:"
   Meinungen zu kram mit denen sich keiner so viel beschäftigen will.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.marco.zone" # the base hostname & protocol for your site, e.g. http://example.com
+url2: "https://marco-zone.netlify.com" # amp requires a secondary domain for iframes to work correctly. This is it
 
 website_schema:
   "@context": http://schema.org
@@ -31,11 +32,6 @@ authors:
   marco:
     name: Marco Pfeiffer
     twitter: "@TheTrueMemo"
-
-disqus:
-  name: marco-zone
-  # amp requires a secondary domain for iframes to work correctly. This is it
-  host: "https://marco-zone.netlify.com"
 
 # Build settings
 timezone: Europe/Berlin

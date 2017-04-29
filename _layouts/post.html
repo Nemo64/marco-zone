@@ -66,6 +66,7 @@ styles: >
 <article class="post"
          itemprop="mainEntity" itemscope itemtype="http://schema.org/BlogPosting"
          itemid="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
+    <meta itemprop="mainEntityOfPage" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
 
     <header class="page-content">
         <h1 class="post__headline" itemprop="headline">
@@ -117,8 +118,8 @@ styles: >
                         sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
                         resizable
                         frameborder="0"
-                        src="{{ site.disqus.host }}/comments?title={{ page.title | url_encode }}&url={{  page.url | url_encode }}">
-                <div overflow tabindex="0" role="button" aria-label="Read more">Read more!</div>
+                        src="{{ site.url2 }}/comments?title={{ page.title | url_encode }}&url={{  page.url | url_encode }}">
+                <div overflow tabindex="0" role="button" aria-label="Mehr lesen!">Mehr lesen!</div>
             </amp-iframe>
         {% endif %}
     </aside>
