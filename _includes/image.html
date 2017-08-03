@@ -37,7 +37,7 @@
 <noscript>
     <img src="{{ best_image.path | prepend: site.baseurl | prepend: '/' }}"
          alt="{{ alt }}"
-         {% if include.itemprop %}itemprop="{{ itemprop }}"{% endif %}>
+         {% if property %}property="{{ property }}"{% endif %}>
 </noscript>
 
 {% endcapture %}{{ image | strip_newlines | replace: '    ', '' }}

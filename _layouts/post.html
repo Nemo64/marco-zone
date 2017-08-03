@@ -63,46 +63,53 @@ styles: >
     }
 ---
 
-<article class="post"
-         itemprop="mainEntity" itemscope itemtype="http://schema.org/BlogPosting"
-         itemid="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
-    <meta itemprop="mainEntityOfPage" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
+<main class="post" vocab="http://schema.org/" typeof="BlogPosting" resource="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
+    <meta property="mainEntityOfPage" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
 
     <header class="page-content">
-        <h1 class="post__headline" itemprop="headline">
+        <h1 class="post__headline" property="headline">
             {{ page.title | strip | escape }}
         </h1>
 
         <p class="post__subheadline">
-            {% include time.html itemprop="datePublished" time=page.date %}
+            {% include time.html property="datePublished" time=page.date %}
             von <a href="#author">{{ site.authors[page.author].name | strip | escape }}</a>
-            {% if page.lastmod %}(Bearbeitet am {% include time.html itemprop="dateModified" time=page.lastmod %}){% endif %}
+            {% if page.lastmod %}(Bearbeitet am {% include time.html property="dateModified" time=page.lastmod %}){% endif %}
         </p>
 
-        <p class="post__lead lead" itemprop="description">
+        <p class="post__lead lead" property="description">
             {{ page.description | strip | escape }}
         </p>
     </header>
 
-    <div class="post__content page-content" itemprop="articleBody">
+    <div class="post__content page-content" property="articleBody">
         {{ content }}
     </div>
 
     <aside class="post__author page-content" id="author">
         <figure>
             <h2>Author:</h2>
-            <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <div class="author" property="author" typeof="Person">
                 <div class="author__meta">
                     <div class="author__image">
-                        {% responsive_image path: "assets/person/marco-desaturate.jpg" itemprop: "image" sizes="10rem" %}
+                        {% responsive_image path: "assets/person/marco-desaturate.jpg" property: "image" sizes="10rem" %}
                     </div>
                     <div class="author__body">
-                        <h3 class="author__name" itemprop="name">Marco Pfeiffer</h3>
+                        <h3 class="author__name" property="name">Marco Pfeiffer</h3>
                         <a class="author__twitter" href="https://twitter.com/TheTrueNemo">@TheTrueNemo</a>
                     </div>
                 </div>
             </div>
         </figure>
+    </aside>
+
+    <aside hidden typeof="Organization" property="publisher">
+        <meta property="name" content="{{ site.title }}">
+        <div property="logo" typeof="ImageObject">
+            <meta property="url" content="{{ '/assets/marco-zone-text.png' | prepend: site.baseurl | prepend: site.url }}">
+            <meta property="width" content="378">
+            <meta property="height" content="60">
+        </div>
     </aside>
 
     <aside class="post__comments page-content" id="comments">
@@ -124,5 +131,5 @@ styles: >
         {% endif %}
     </aside>
 
-</article>
+</main>
 

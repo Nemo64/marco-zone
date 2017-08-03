@@ -47,28 +47,24 @@ styles: |
     }
 ---
 
-<main class="post-list" itemscope itemtype="http://schema.org/Blog">
+<main class="post-list">
 
     <div class="page-content">
         <h1>Blog Post</h1>
     </div>
 
     {% for post in site.posts %}
-    <article class="post-list__item"
-             itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting"
-             itemid="{{ post.url | prepend: site.baseurl | prepend: site.url }}">
-        <a class="post-list__link page-content" href="{{ post.url | prepend: site.baseurl }}" itemprop="mainEntityOfPage">
-            <h2 class="post-list__headline" itemprop="headline">
+    <article class="post-list__item">
+        <a class="post-list__link page-content" href="{{ post.url | prepend: site.baseurl }}">
+            <h2 class="post-list__headline">
                 {{ post.title | strip | escape }}
             </h2>
             <p class="post-list__subheadline">
-                {% include time.html itemprop="datePublished" time=post.date %}
-                <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-                    von <span itemprop="name">{{ site.authors[post.author].name | escape }}</span>
-                </span>
-                {% if post.lastmod %}(Bearbeitet am {% include time.html itemprop="dateModified" time=post.lastmod %}){% endif %}
+                {% include time.html time=post.date %}
+                von {{ site.authors[post.author].name | escape }}
+                {% if post.lastmod %}(zuletzt Bearbeitet am {% include time.html time=post.lastmod %}){% endif %}
             </p>
-            <p class="post-list__bodytext" itemprop="description">
+            <p class="post-list__bodytext">
                 {{ post.description | strip_newlines | truncate: 160 | escape }}
             </p>
         </a>

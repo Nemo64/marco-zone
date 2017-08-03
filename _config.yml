@@ -101,7 +101,7 @@ defaults:
       og: {"type": "article"}
       analytics:
         triggers:
-          articleLinkClick: {"on": click, request: event, selector: "[itemprop=articleBody] a[href]", vars: {eventCategory: article, eventAction: click-link}}
+          articleLinkClick: {"on": click, request: event, selector: "[property=articleBody] a[href]", vars: {eventCategory: article, eventAction: click-link}}
           scroll25: {"on": scroll, request: event, scrollSpec: {verticalBoundaries: [25]}, vars: {eventCategory: article, eventAction: scroll, eventValue: 25}}
           scroll50: {"on": scroll, request: event, scrollSpec: {verticalBoundaries: [50]}, vars: {eventCategory: article, eventAction: scroll, eventValue: 50}}
           scroll75: {"on": scroll, request: event, scrollSpec: {verticalBoundaries: [75]}, vars: {eventCategory: article, eventAction: scroll, eventValue: 75}}
