@@ -5,8 +5,8 @@ image:          text.jpeg
 date:           2015-11-04 20:00:00 +0100
 lastmod:        2015-11-10 12:00:00 +0100
 categories:
-    - Webseite
-    - CSS
+    - Software-Entwicklung
+    - HTML
 redirects:
     - path: /posts/progressiver-html-blocksatz-mit-silbentrennung
     - path: /post/progressiver-html-blocksatz-mit-silbentrennung

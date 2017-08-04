@@ -5,7 +5,7 @@ image:       jekyll.jpeg
 date:        2015-11-03 20:00:00 +0100
 lastmod:     2015-11-08 20:00:00 +0100
 categories:
-    - Webseite
+    - Software-Entwicklung
     - Gulp
     - Jekyll
 redirects:

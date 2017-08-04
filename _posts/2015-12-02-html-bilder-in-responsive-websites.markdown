@@ -5,8 +5,8 @@ image:          banner.jpeg
 date:           2015-12-02 20:00:00 +0100
 lastmod:        2015-12-02 20:00:00 +0100
 categories:
-    - Webseite
-    - Bilder
+    - Software-Entwicklung
+    - HTML
 ---
 
 Jeder, der schon einmal eine Webseite für mobile Geräte erstellt hat, kennt das Problem. Bilder sollen überall gut aussehen und man will nicht mehr Bandbreite verwenden als unbedingt notwendig. Die umsetzung dafür war früher ziemlich einfach: man schaut sich das Layout der Seite an, misst wie groß ein Bild in Pixeln sein muss und benutzt eine der vielen Möglichkeiten das Bild auf exakt die Größe zu skalieren.

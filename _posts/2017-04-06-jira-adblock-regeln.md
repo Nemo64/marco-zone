@@ -3,7 +3,8 @@ title:      Jira Performance optimieren durch AdBlock
 description: >
     Jira ist langsam und, wie viele moderne Webseiten, überladen.
     Ich hab versucht Jira mit AdBlock etwas benutzbarer zu bekommen.
-categories: Software
+categories:
+    - Rant
 date:       2017-04-06 13:00:00 +0200
 lastmod:    2017-04-07 10:00:00 +0200
 ---
