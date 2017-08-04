@@ -51,13 +51,35 @@ figure {
     }
 }
 
-pre .c {
+.highlighter-rouge .c, // comments
+.highlighter-rouge .c1, // inline comment
+.highlighter-rouge .c2, // multi line comment
+.highlighter-rouge .sd // doc comment
+{
     color: gray;
 }
 
-pre .s1,
-pre .s {
+.highlighter-rouge .s, // strings
+.highlighter-rouge .s1, // single quote strings
+.highlighter-rouge .s2, // double quote strings
+.highlighter-rouge .k, // keywords
+.highlighter-rouge .nv // variables
+{
     color: indianred;
+}
+
+.language-yaml .s, // strings
+.language-yaml .s1, // single quote strings
+.language-yaml .s2, // double quote strings
+.language-yaml .nv, // keywords
+.language-yaml .nv // variables
+{
+    color: inherit;
+}
+
+.highlighter-rouge .k + .nv // don't highlight variables after a keyword
+{
+    color: inherit
 }
 
 .page-header {
