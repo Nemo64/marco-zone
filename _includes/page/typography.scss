@@ -1,57 +1,48 @@
+$line-height: 1.5;
+$paragraph-margin: .5rem;
+
 body {
     margin: 0;
     background-color: white;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
     font-weight: 300;
-    font-size: 1.2em;
-    line-height: 1.5;
+    line-height: $line-height;
     color: #333;
 
-    /* Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS. */
+    // Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS.
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-
-    /* better font rendering on osx */
-    -moz-osx-font-smoothing:grayscale;
-    -webkit-font-smoothing:antialiased;
-}
-
-.roboto-loaded body {
-    font-family: "Roboto", sans-serif;
 }
 
 strong, b {
-    /* since i use bold so rarely I decided that loading an extra font weight would be a waste. */
-    /* In this case, I prefer platform consistency over style which is why I prefer Arial here. */
+    // since i use bold so rarely I decided that loading an extra font weight would be a waste.
+    // In this case, I prefer platform consistency over style which is why I prefer Arial here.
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 700;
 }
 
 pre, code {
     font-family: "Courier New", monospace;
-    font-size: 1rem;
+    font-size: .9rem;
+    line-height: 1.2;
 }
 
 h1, h2, h3, .headline {
-    font-family: "Times New Roman", serif;
+    font-family: "Josefin Slab", "Times New Roman", serif;
+    // I only load a 600 version of Josefin Slab
+    // but since the fallback fonts look too bold with that weight i don't define it correctly here.
+    // since only one weight is loaded anyways the browser will use that one.
     font-weight: 400;
     line-height: 1.1;
     color: indianred;
     margin-top: 2rem;
-    margin-top: calc(4.1rem - 1.05em); /* adjust for font size */
+    margin-top: calc(4.1rem - 1.05em); // adjust for font size
     margin-bottom: .2rem;
-    /* todo fix ankers */
-}
+    // todo fix ankers
 
-.josefin-slab-loaded h1,
-.josefin-slab-loaded h2,
-.josefin-slab-loaded h3,
-.josefin-slab-loaded .headline {
-    font-family: "Josefin Slab", serif;
-    /* I only load a 600 version of Josefin Slab */
-    /* but since the fallback fonts look too bold with that weight i don't define it correctly here. */
-    /* since only one weight is loaded anyways the browser will use that one. */
-    /* font-weight: 600; */
+    // better font rendering on osx
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
 }
 
 h1 + h2, h2 + h3 {
@@ -98,7 +89,7 @@ a:hover {
 /* block elements */
 
 aside, p {
-    margin-top: 1rem;
+    margin-top: $paragraph-margin;
     margin-bottom: 0;
 }
 
@@ -111,24 +102,34 @@ pre {
 }
 
 .lead {
-    font-size: 1.4em;
-    line-height: 1.3;
+    $lead-font-size: 1.6rem;
+    $normal-line-height: $line-height * 1rem;
+    $wanted-line-height: $normal-line-height * 3;
+    $lead-line-height: ($wanted-line-height - $lead-font-size * 2) + 1rem;
+    font-size: $lead-font-size;
+    line-height: $lead-line-height;
+    margin-top: $paragraph-margin - ($lead-line-height - $lead-font-size) / 2;
     text-align: left;
     letter-spacing: -.05em;
 }
 
 @media print, screen and (min-width: 42em) {
-    .tldr-left {
+    .tldr-wrapper {
+        width: 42rem;
+    }
+
+    .tldr-wrapper .tldr-left {
         width: 18rem;
         clear: left;
         float: left;
+        margin-right: 1rem;
     }
 
-    .tldr-right {
-        //width: 18rem;
-        //clear: right;
-        //float: right;
-        //margin-left: 1em;
+    .tldr-wrapper .tldr-right {
+        width: 18rem;
+        clear: right;
+        float: right;
+        margin-left: 1rem;
     }
 
     p {
