@@ -1,12 +1,12 @@
 $content-size: 40rem;
-$desktop-sidebar-size: 13rem;
+$desktop-sidebar-size: 14rem;
 $desktop-sidebar-min-width: $desktop-sidebar-size + $content-size + 1rem;
 $desktop-sidebar-min-height: 30rem;
 $background-color: #f9f9f9;
 
 body {
     @media screen and (min-width: $desktop-sidebar-min-width / 1rem * 1em) and (min-height: $desktop-sidebar-min-height / 1rem * 1em) {
-        padding-left: $desktop-sidebar-size + 1rem;
+        padding-left: $desktop-sidebar-size;
     }
 }
 
@@ -42,6 +42,8 @@ figure {
     }
 
     @media (max-width: 42em) {
+        // if a page content (an image) is wide enough:
+        // stretch it over the entire screen width
         [sizes*="(max-width:42rem)100vw"] {
             display: block;
             margin-left: 0;
@@ -89,6 +91,7 @@ figure {
         display: inline-block;
         padding: 1rem;
         margin: 0;
+        font-size: 1.5rem;
     }
 
     @media screen and (min-width: $desktop-sidebar-min-width / 1rem * 1em) and (min-height: $desktop-sidebar-min-height / 1rem * 1em) {
@@ -97,7 +100,7 @@ figure {
         top: 0;
         width: $desktop-sidebar-size;
         height: 100%;
-        margin: 0;
+        margin: 1rem 0;
         padding: 0;
 
         // hack to make chrome create a layer
@@ -105,9 +108,8 @@ figure {
 
         &__logo {
             display: block;
-            text-align: right;
-            padding: 1rem 0;
-            margin: 1rem 0 0 1rem;
+            float: right;
+            padding: 1rem;
             font-size: 2rem;
         }
     }
