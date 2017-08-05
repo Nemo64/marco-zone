@@ -20,16 +20,16 @@ figure {
     background-color: $background-color;
 }
 
-div.highlighter-rouge,
-figure {
-    clear: both;
-    margin: 1rem 0;
-    padding: 1rem;
-    overflow: auto;
-}
+@media screen {
+    div.highlighter-rouge,
+    figure {
+        clear: both;
+        margin: 1rem 0;
+        padding: 1rem;
+        overflow: auto;
+    }
 
-.page-content {
-    @media screen {
+    .page-content {
         > p,
         > ul, > ol,
         > h1, > h2, > h3,
@@ -39,16 +39,16 @@ figure {
             margin-left: 1rem;
             margin-right: 1rem;
         }
-    }
 
-    @media (max-width: 42em) {
-        // if a page content (an image) is wide enough:
-        // stretch it over the entire screen width
-        [sizes*="(max-width:42rem)100vw"] {
-            display: block;
-            margin-left: 0;
-            margin-right: 0;
-            width: 100vw;
+        @media (max-width: 42em) {
+            // if a page content (an image) is wide enough:
+            // stretch it over the entire screen width
+            [sizes*="(max-width:42rem)100vw"] {
+                display: block;
+                margin-left: 0;
+                margin-right: 0;
+                width: 100vw;
+            }
         }
     }
 }
