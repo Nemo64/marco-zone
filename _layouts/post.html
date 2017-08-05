@@ -106,7 +106,7 @@ styles: >
     </header>
 
     <div class="post__content page-content" property="articleBody">
-        {{ content }}
+        {{ content | replace: 'href="http', 'target="_blank" rel="noopener" href="http' }}
     </div>
 
     <aside class="post__author page-content" id="author">
