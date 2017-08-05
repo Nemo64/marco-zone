@@ -2,7 +2,7 @@ $content-size: 40rem;
 $desktop-sidebar-size: 14rem;
 $desktop-sidebar-min-width: $desktop-sidebar-size + $content-size + 1rem;
 $desktop-sidebar-min-height: 30rem;
-$background-color: #f9f9f9;
+$background-color: snow;
 
 body {
     @media screen and (min-width: $desktop-sidebar-min-width / 1rem * 1em) and (min-height: $desktop-sidebar-min-height / 1rem * 1em) {
@@ -58,7 +58,7 @@ figure {
 .highlighter-rouge .c2, // multi line comment
 .highlighter-rouge .sd // doc comment
 {
-    color: #aaa;
+    color: darkgray;
 }
 
 .highlighter-rouge .s, // strings
