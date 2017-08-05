@@ -80,7 +80,7 @@ styles: >
 
         <p class="post__subheadline">
             {% include time.html property="datePublished" time=page.date %}
-            von <a href="#author">{{ site.authors[page.author].name | strip | escape }}</a>
+            von {{ site.authors[page.author].name | strip | escape }}
             {% if page.lastmod %}(Bearbeitet am {% include time.html property="dateModified" time=page.lastmod %}){% endif %}
         </p>
 
