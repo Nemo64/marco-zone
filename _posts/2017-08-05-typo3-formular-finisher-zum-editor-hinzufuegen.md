@@ -1,7 +1,7 @@
 ---
 title:      TYPO3 Formular Finisher zum Editor hinzufügen
 description: >
-    Der umständliche und undokumentierte Weg eigene Finisher in den Typo3 8.7 Formular-Editor hinzuzufügen.   
+    Der umständliche und undokumentierte Weg eigene Finisher in den neuen Typo3 8.7 Formular-Editor hinzuzufügen.   
 categories: 
     - Software-Entwicklung
     - Typo3
