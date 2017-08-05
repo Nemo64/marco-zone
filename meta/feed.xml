@@ -21,7 +21,7 @@ noindex:    true
             <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
             <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
             {% for cat in post.categories %}<category>{{ cat | xml_escape }}</category>{% endfor %}
-            <!--<comments>{{ post.url | prepend: site.baseurl | prepend: site.url | append: '#comments' }}</comments>-->
+            <comments>{{ post.url | prepend: site.baseurl | prepend: site.url | append: '#comments' }}</comments>
             <description>{{ post.description | strip_html | strip_newlines | xml_escape }}</description>
         </item>
         {% endfor %}
