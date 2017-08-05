@@ -1,8 +1,17 @@
 ---
 layout: base
 amp_tags:
+    amp-timeago: https://cdn.ampproject.org/v0/amp-timeago-0.1.js
     amp-iframe: https://cdn.ampproject.org/v0/amp-iframe-0.1.js
 styles: >
+
+    amp-timeago {
+        text-align: left;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        vertical-align: top;
+    }
+
     .post__subheadline {
         font-size: .7em;
         color: indianred;
@@ -79,9 +88,16 @@ styles: >
         </h1>
 
         <p class="post__subheadline">
-            {% include time.html property="datePublished" time=page.date %}
-            von {{ site.authors[page.author].name | strip | escape }}
-            {% if page.lastmod %}(Bearbeitet am {% include time.html property="dateModified" time=page.lastmod %}){% endif %}
+            von {{ site.authors[page.author].name | strip | escape }} veröffentlicht
+            <amp-timeago datetime="{{ page.date | date_to_xmlschema }}" cutoff="31536000" width="160" height="16">
+                am {{ page.date | date_to_long_string }}
+            </amp-timeago>
+            {% if page.lastmod %}<br>
+                zuletzt bearbeitet
+                <amp-timeago datetime="{{ page.lastmod | date_to_xmlschema }}" cutoff="31536000" width="100" height="16">
+                    am {{ page.lastmod | date_to_long_string }}
+                </amp-timeago>
+            {% endif %}
         </p>
 
         <p class="post__lead lead" property="description">

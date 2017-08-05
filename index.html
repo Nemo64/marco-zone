@@ -7,7 +7,17 @@ layout:     base
 startpage:  true
 priority:   1.0
 changefreq: weekly
+amp_tags:
+    amp-timeago: https://cdn.ampproject.org/v0/amp-timeago-0.1.js
 styles: |
+
+    amp-timeago {
+        text-align: left;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        vertical-align: top;
+    }
+
     .post-list__item {
         margin-top: 1rem;
         margin-bottom: 1rem;
@@ -60,9 +70,10 @@ styles: |
                 {{ post.title | strip | escape }}
             </h2>
             <p class="post-list__subheadline">
-                {% include time.html time=post.date %}
-                von {{ site.authors[post.author].name | escape }}
-                {% if post.lastmod %}(zuletzt Bearbeitet am {% include time.html time=post.lastmod %}){% endif %}
+                von {{ site.authors[post.author].name | strip | escape }} veröffentlicht
+                <amp-timeago datetime="{{ post.date | date_to_xmlschema }}" cutoff="31536000" width="160" height="16">
+                    am {{ post.date | date_to_long_string }}
+                </amp-timeago>
             </p>
             <p class="post-list__bodytext">
                 {{ post.description | strip_newlines | truncate: 160 | escape }}
