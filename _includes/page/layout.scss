@@ -115,8 +115,8 @@ figure {
         top: 0;
         width: $desktop-sidebar-size;
         height: 100%;
-        margin: 1rem 0;
-        padding: 0;
+        padding: 1rem 0;
+        box-sizing: border-box;
 
         // hack to make chrome create a layer
         backface-visibility: hidden;
