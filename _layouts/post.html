@@ -88,7 +88,7 @@ styles: >
         </h1>
 
         <p class="post__subheadline">
-            von {{ site.authors[page.author].name | strip | escape }} veröffentlicht
+            veröffentlicht
             <amp-timeago datetime="{{ page.date | date_to_xmlschema }}" cutoff="31536000" width="15em" height="1.5em">
                 am {{ page.date | date_to_long_string }}
             </amp-timeago>

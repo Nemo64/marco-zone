@@ -70,7 +70,7 @@ styles: |
                 {{ post.title | strip | escape }}
             </h2>
             <p class="post-list__subheadline">
-                von {{ site.authors[post.author].name | strip | escape }} veröffentlicht
+                veröffentlicht
                 <amp-timeago datetime="{{ post.date | date_to_xmlschema }}" cutoff="31536000" width="15em" height="1.5em">
                     am {{ post.date | date_to_long_string }}
                 </amp-timeago>
