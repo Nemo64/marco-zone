@@ -9,7 +9,7 @@ categories:
 date:       2017-08-05 22:00:00 +0200
 ---
 
-Es gibt viele Gründe weshalb man einen weiteren Finisher brauchen würde. Mein Grund war eine [Cleverreach] integration. Leider ist die TYPO3 Api etwas unnötig kompliziert gestalltet.  Ein einfaches `ValidatorInterface` kombiniert mit einer ext_localconf.php methode `FormUtility::addValidator` war wohl zu einfach.
+Es gibt viele Gründe weshalb man einen weiteren Finisher brauchen würde. Mein Grund war eine Cleverreach integration. Leider ist die TYPO3 Api etwas unnötig kompliziert gestalltet.  Ein einfaches `ValidatorInterface` kombiniert mit einer ext_localconf.php methode `FormUtility::addValidator` war wohl zu einfach.
 
 Das Ergebnis im TYPO3-Backend soll dann am Ende ungefähr so aussehen:
 
@@ -198,5 +198,3 @@ module.tx_form.settings.yamlConfigurations {
 ## Zusammenfassung
 
 Im Endeffekt ist es nicht sehr kompliziert wenn man weiß was man tun muss. Das nervigste ist, dass alles mehrfach definiert werden muss. Das hinzufügen einer Option muss an 4 Stellen über 3 Dateien eingetragen werden. Auch die pfade zu den Werten lassen sich nicht sonderlich gut merken. Ich vermute einfach, das nie daran gedacht wurde das jemand diese Api nutzt. Das würde auch das Fehlen der Dokumentation erklären ~ bei TYPO3 ist man sich da nie sicher.
-
-[Cleverreach]: https://www.cleverreach.com/
