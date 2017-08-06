@@ -23,8 +23,11 @@ strong, b {
 
 pre, code {
     font-family: "Courier New", monospace;
+
+    // cram code tightly together
     font-size: .9rem;
     line-height: 1.2;
+    letter-spacing: -0.02em;
 }
 
 h1, h2, h3, .headline {
