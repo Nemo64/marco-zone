@@ -7,6 +7,7 @@ categories:
     - Typo3
     - PHP
 date:       2017-08-05 22:00:00 +0200
+lastmod:    2017-08-06 14:33:00 +0200
 ---
 
 Es gibt viele Gründe weshalb man einen weiteren Finisher brauchen würde. Mein Grund war eine Cleverreach integration. Leider ist die TYPO3 Api etwas unnötig kompliziert gestalltet.  Ein einfaches `ValidatorInterface` kombiniert mit einer ext_localconf.php methode `FormUtility::addValidator` war wohl zu einfach.
@@ -32,7 +33,8 @@ class CleverreachSubscribeFinisher extends AbstractFinisher
      * @var array
      */
     protected $defaultOptions = [
-        'apiKey' => ''
+        'apiKey' => '',
+        'email' => ''
     ];
 
     /**
@@ -51,13 +53,11 @@ class CleverreachSubscribeFinisher extends AbstractFinisher
 }
 ```
 
-Das wirkt nun recht simple aber nun kommt der lustige Teil.
-
 ## Form Framework Konfiguration
 
 Wir brauchen 3 Yaml Dateien um den Finisher zu registrieren. Die Form Extension packt diese in `Configuration/Yaml`. Ich persöhnlich würde den Ordner allerdings `Form` nennen um ein wenig klarheit zu schaffen für was die Configuration ist.
 
-Ich dump die Yaml Datein einfach mal hier rein, den es ist nicht kompliziert, es ist einfach nur massiv.
+Ich zeig hier einfach beispielhaft yaml Datein. Ich definiere hier nur 2 Felder um die Dateien kurz zu halten, es ist so schon lang genug.
 
 ```yaml
 # BaseSetup.yaml
@@ -98,6 +98,7 @@ TYPO3:
                           10: 'TYPO3.CMS.Form.mixins.formElementMixins.BaseCollectionEditorsMixin'
                         100:
                           label: "Cleverreach Subscribe"
+                        # Das ist die Definition für die darstellung von apiKey im Backend
                         110:
                           identifier: 'apiKey'
                           templateName: 'Inspector-TextEditor'
@@ -105,24 +106,11 @@ TYPO3:
                           propertyPath: 'options.apiKey'
                           propertyValidators:
                             10: 'NotEmpty'
-                        120:
-                          identifier: 'listId'
-                          templateName: 'Inspector-TextEditor'
-                          label: 'listId'
-                          propertyPath: 'options.listId'
-                          enableFormelementSelectionButton: true
-                          propertyValidators:
-                            10: 'NotEmpty'
-                            20: 'FormElementIdentifierWithinCurlyBracesInclusive'
-                        130:
-                          identifier: 'formId'
-                          templateName: 'Inspector-TextEditor'
-                          label: 'formId'
-                          propertyPath: 'options.formId'
-                          enableFormelementSelectionButton: true
-                          propertyValidators:
-                            10: 'NotEmpty'
-                            20: 'FormElementIdentifierWithinCurlyBracesInclusive'
+                        # Und das hier ist die definition für das email feld.
+                        # Es hat die Besonderheit, dass ein Feld aus dem Formular ausgewählt werden kann
+                        # Es wird dann sowas wie {input-1} gespeichert.
+                        # ->parseOption('email') im Finisher löst die Referenz dann auf
+                        # und gibt den Wert von input-1 zurück.
                         140:
                           identifier: 'email'
                           templateName: 'Inspector-TextEditor'
@@ -132,16 +120,9 @@ TYPO3:
                           propertyValidators:
                             10: 'NotEmpty'
                             20: 'FormElementIdentifierWithinCurlyBracesInclusive'
-                        150:
-                          identifier: 'source'
-                          templateName: 'Inspector-TextEditor'
-                          label: 'Source (Cleverreaches examples use a Projekt Name here)'
-                          propertyPath: 'options.source'
-                          propertyValidators:
-                            10: 'NotEmpty'
                             
-          # hier ist definiert welche optionen das javascript im backend beim hinzufügen lädt
-          # am besten sollten es die selben sein wie in finisher 
+          # Hier ist definiert welche optionen das javascript im backend beim hinzufügen lädt.
+          # Am besten sollten es die selben sein wie in finisher. 
           finishersDefinition:
             CleverreachSubscribe:
               formEditor:
@@ -150,10 +131,7 @@ TYPO3:
                 predefinedDefaults:
                   options:
                     apiKey: ''
-                    listId: ''
-                    formId: ''
                     email: ''
-                    source: 'Typo3 Website'
 ```
 
 ```yaml
@@ -173,10 +151,7 @@ TYPO3:
                   # spontan würde ich behaupten das es tca configuration ist
                   # aber ich definiere keine Datenbank Felder ~ vielleicht ist das aber eine Option
                   apiKey: {label: apiKey, config: {type: input}}
-                  listId: {label: listId, config: {type: input}}
-                  formId: {label: formId, config: {type: input}}
                   email:  {label: email , config: {type: input}}
-                  source: {label: source, config: {type: input}}
 ```
 
 Und das war so ziemlich der nervigste Teil. Jetzt müssen wir nur noch unsere yaml Dateien registrieren. Dafür brauchen wir wieder gutes altes TypoScript.
