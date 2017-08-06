@@ -11,7 +11,7 @@ permalink:  /sitemap.xml
         <loc>{{ post.url | prepend: site.baseurl | prepend: site.url | escape  }}</loc>
         <lastmod>{{ post.date | default: post.lastmod | date_to_xmlschema  }}</lastmod>
         <priority>{{ 1.0 | divided_by: forloop.index | round: 2  }}</priority>
-        <changefreq>{% if forloop.index == 1 %}daily{% else %}monthly{% endif %}</changefreq>
+        <changefreq>{% if forloop.index == 1 %}daily{% else %}weekly{% endif %}</changefreq>
     </url>
     {% endif %}{% endfor %}
 
