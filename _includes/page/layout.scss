@@ -17,11 +17,6 @@ amp-img, img {
     height: auto;
 }
 
-.highlighter-rouge,
-figure {
-    background-color: $background-color;
-}
-
 figure {
     // i don't expect a h1 here ever
     > h2:first-child,
@@ -37,6 +32,14 @@ figure {
         margin: 1rem 0;
         padding: 1rem;
         overflow: auto;
+        border-top: 1px solid whitesmoke;
+        border-bottom: 1px solid whitesmoke;
+
+        + figure,
+        + div.highlighter-rouge {
+            border-top: none;
+            margin-top: -1rem;
+        }
     }
 
     .page-content {
