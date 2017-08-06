@@ -5,7 +5,9 @@ $desktop-sidebar-min-height: 30rem;
 $background-color: snow;
 
 body {
-    @media screen and (min-width: $desktop-sidebar-min-width / 1rem * 1em) and (min-height: $desktop-sidebar-min-height / 1rem * 1em) {
+    @media screen
+    and (min-width: $desktop-sidebar-min-width)
+    and (min-height: $desktop-sidebar-min-height) {
         padding-left: $desktop-sidebar-size;
     }
 }
@@ -48,7 +50,7 @@ figure {
             margin-right: 1rem;
         }
 
-        @media (max-width: 42em) {
+        @media (max-width: 42rem) {
             // if a page content (an image) is wide enough:
             // stretch it over the entire screen width
             [sizes*="(max-width:42rem)100vw"] {
@@ -102,7 +104,9 @@ figure {
         font-size: 1.5rem;
     }
 
-    @media screen and (min-width: $desktop-sidebar-min-width / 1rem * 1em) and (min-height: $desktop-sidebar-min-height / 1rem * 1em) {
+    @media screen
+    and (min-width: $desktop-sidebar-min-width)
+    and (min-height: $desktop-sidebar-min-height) {
         position: fixed;
         left: 0;
         top: 0;

@@ -113,19 +113,19 @@ pre {
     letter-spacing: -.05em;
 }
 
-@media print, screen and (min-width: 42em) {
+@media print, screen and (min-width: 42rem) {
     .tldr-wrapper {
         width: 42rem;
     }
 
-    .tldr-wrapper .tldr-left {
+    .tldr-left {
         width: 18rem;
         clear: left;
         float: left;
         margin-right: 1rem;
     }
 
-    .tldr-wrapper .tldr-right {
+    .tldr-right {
         width: 18rem;
         clear: right;
         float: right;
