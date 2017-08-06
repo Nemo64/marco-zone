@@ -89,12 +89,12 @@ styles: >
 
         <p class="post__subheadline">
             von {{ site.authors[page.author].name | strip | escape }} veröffentlicht
-            <amp-timeago datetime="{{ page.date | date_to_xmlschema }}" cutoff="31536000" width="160" height="16">
+            <amp-timeago datetime="{{ page.date | date_to_xmlschema }}" cutoff="31536000" width="15em" height="1.5em">
                 am {{ page.date | date_to_long_string }}
             </amp-timeago>
             {% if page.lastmod %}<br>
                 zuletzt bearbeitet
-                <amp-timeago datetime="{{ page.lastmod | date_to_xmlschema }}" cutoff="31536000" width="100" height="16">
+                <amp-timeago datetime="{{ page.lastmod | date_to_xmlschema }}" cutoff="31536000" width="15em" height="1.5em">
                     am {{ page.lastmod | date_to_long_string }}
                 </amp-timeago>
             {% endif %}

@@ -71,7 +71,7 @@ styles: |
             </h2>
             <p class="post-list__subheadline">
                 von {{ site.authors[post.author].name | strip | escape }} veröffentlicht
-                <amp-timeago datetime="{{ post.date | date_to_xmlschema }}" cutoff="31536000" width="160" height="16">
+                <amp-timeago datetime="{{ post.date | date_to_xmlschema }}" cutoff="31536000" width="15em" height="1.5em">
                     am {{ post.date | date_to_long_string }}
                 </amp-timeago>
             </p>
