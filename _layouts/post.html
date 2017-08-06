@@ -91,17 +91,26 @@ styles: >
             <amp-timeago datetime="{{ page.date | date_to_xmlschema }}" property="datePublished" cutoff="15768000" width="15em" height="1.5em">
                 am {{ page.date | date_to_long_string }}
             </amp-timeago>
+            {% capture modify_html %}
+
             {% assign modify_day = page.lastmod | default: page.date | date: "%s" | divided_by: 86400 %}
             {% assign create_day = page.date | date: "%s" | divided_by: 86400 %}
             {% assign first_day_to_show_modified = create_day | plus: 30 %}
-            {% if first_day_to_show_modified < modify_day %}<br>
-                zuletzt bearbeitet
-                <amp-timeago datetime="{{ page.lastmod | date_to_xmlschema }}" property="dateModified" cutoff="15768000" width="15em" height="1.5em">
-                    am {{ page.lastmod | date_to_long_string }}
-                </amp-timeago>
+            {% if first_day_to_show_modified < modify_day %}
+
+            <br>
+            zuletzt bearbeitet
+            <amp-timeago datetime="{{ page.lastmod | date_to_xmlschema }}" property="dateModified" cutoff="15768000" width="15em" height="1.5em">
+                am {{ page.lastmod | date_to_long_string }}
+            </amp-timeago>
+
             {% else %}
-                <meta property="dateModified" content="{{ page.lastmod | default: page.date | date_to_xmlschema }}">
+
+            <meta property="dateModified" content="{{ page.lastmod | default: page.date | date_to_xmlschema }}">
+
             {% endif %}
+
+            {% endcapture %}{{ modify_html | strip }}
         </p>
 
         <p class="post__lead lead" property="description">
