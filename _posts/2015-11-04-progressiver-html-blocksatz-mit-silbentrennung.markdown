@@ -20,13 +20,17 @@ Schon mal eine Zeitung gesehen und danach eine News-Seite? Das Schriftbild von Z
 
 Das Ergebnis sieht dann so aus:
 
-{% responsive_image path: 'assets/hyphans-manual.png' alt: 'Blocksatz ohne Silbentrennung' %}
+<figure>
+    {% responsive_image path: 'assets/hyphans-manual.png' alt: 'Blocksatz ohne Silbentrennung' %}
+</figure>
 
 Sieht gut aus, doch wenn man anfängt den Text zu lesen, sollten die großen Abstände zwischen den Wörtern auffallen. Besonders in der deutschen Sprache haben wir zum Teil sehr lange Wörter. Der Browser darf aber nur an Leerstellen und anderen Sonderzeichen umbrechen. Damit der Blocksatz dann noch funktioniert, müssen sehr große Abstände im Text eingefügt werden.
 
 ## Text mit Blocksatz und Silbentrennung
 
-{% responsive_image path: 'assets/hyphans-auto.png' alt: 'Blocksatz mit Silbentrennung' %}
+<figure>
+    {% responsive_image path: 'assets/hyphans-auto.png' alt: 'Blocksatz mit Silbentrennung' %}
+</figure>
 
 Direkt viel besser als ohne Silbentrennung! Das beste daran ist, dass es mit der css Eigenschaft [hyphens] auch mühelos in den Text eingefügt werden kann... wenn es vom Browser unterstützt wird, denn die [Browser-Unterstützung für hyphens] ist nicht sonderlich gut und wenn wir uns darauf verlassen werden einige unserer Besucher den Lückenhaften Blocksatz von oben sehen.
 

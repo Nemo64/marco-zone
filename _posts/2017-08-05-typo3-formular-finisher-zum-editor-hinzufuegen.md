@@ -14,7 +14,9 @@ Es gibt viele Gründe weshalb man einen weiteren Finisher brauchen würde. Mein 
 
 Das Ergebnis im TYPO3-Backend soll dann am Ende ungefähr so aussehen:
 
-{% responsive_image path: 'assets/cleverreach-typo3-form.png' alt: 'Ansicht vom TYPO3 Backend' %}
+<figure>
+    {% responsive_image path: 'assets/cleverreach-typo3-form.png' alt: 'Ansicht vom TYPO3 Backend' %}
+</figure>
 
 ## Die Finisher Klasse
 
