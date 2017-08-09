@@ -14,8 +14,8 @@ Alte Landstraße 40<br>
 22962 Siek
 
 ## Kontakt
-Telefon: [+49 176 52879735](tel: +4917652879735)<br>
-E-Mail: [webmaster@marco.zone](mailto: webmaster [at] marco.zone)
+Telefon: [+49 160 97505899](tel: +4916097505899)<br>
+E-Mail: [webmaster@marco.zone](mailto: webmaster@marco.zone)
 
 ## Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
 Marco Pfeiffer<br>
