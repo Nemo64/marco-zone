@@ -4,8 +4,8 @@
         <span>Marco Pfeiffer</span>
     </div>
     <ul class="page-footer__nav">
-        {% for page in site.pages %}{% if page.footernav %}
-        <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
-        {% endif %}{% endfor %}
+        {% assign footer_pages = site.pages | where: "footernav", true %}
+        {% for page in footer_pages %}{% include internal-link.html page=page %}
+        {% endfor %}
     </ul>
 </footer>

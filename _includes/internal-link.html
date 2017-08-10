@@ -1,0 +1,13 @@
+{% capture output %}
+
+    {% if include.page.noindex %}
+        <a href="{{ page.url | prepend: site.baseurl }}" rel="nofollow">
+            {{ include.content | default: include.page.title }}
+        </a>
+    {% else %}
+        <a href="{{ page.url | prepend: site.baseurl }}">
+            {{ include.content | default: include.page.title }}
+        </a>
+    {% endif %}
+
+{% endcapture %}{{ output | strip_newlines | replace: '    ', '' }}
