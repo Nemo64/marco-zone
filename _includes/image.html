@@ -12,7 +12,7 @@
         {{ i.path | prepend: site.baseurl | prepend: '/' }} {{ i.width }}w,
     {% endfor %}
     {% if original.width <= 1280 %}
-        {{ original.path | prepend: size.baseurl | prepend: '/' }} {{ original.width }}w
+        {{ original.path | prepend: site.baseurl | prepend: '/' }} {{ original.width }}w
     {% endif %}
 {% endcapture %}
 
