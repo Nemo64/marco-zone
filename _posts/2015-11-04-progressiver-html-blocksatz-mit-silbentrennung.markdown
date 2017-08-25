@@ -83,7 +83,7 @@ Was allerdings viel schlimmer ist, ist das der Chrome die hyphens Eigenschaft ü
 Ein weiteres Problem ist, dass die Browser alle eine andere Implementierung verwenden, welche nicht Zwangsläufig auf einem Wörterbuch basiert. W3C sagt uns:
 
 > CSS Text Level 3 does not define the exact rules for hyphenation [...] .
-> <cite>[CSS Text Module Level 3 vom 10 October 2013]</cite>
+> <cite>[CSS Text Module Level 3 vom 10 Oktober 2013]</cite>
 
 Ich hab die Eigenschaft nur im Safari und Firefox getestet und dort waren die Ergebnisse identisch. Dennoch sollte man sich nicht auf eine perfekte Silbentrennung verlassen und eventuell Redakteuren die Möglichkeit geben diese für einzelne Paragraphen zu deaktivieren.
 
@@ -97,16 +97,16 @@ Eine weitere Möglichkeit ist [phpHyphenator] welche scheinbar eine Portierung v
 
 ## Schlusswort
 
-Silbentrennung ist eine nette Spielerei, aber noch nicht ganz bereit für den Einsatz. Es Fehlen noch Dinge wie die Angabe wie viele Zeichen vor und nach dem Bindestich auftauchen sollen. Diese Features sind zwar im [CSS Text Module Level 4 vom 28 October 2015] geplant und auch zum Teil im Safari mit `-webkit-hyphenate-limit-before/after` unterstützt, aber dann haben wir schon so viele Möglichkeiten wie die Seite aussehen kann, dass es vermutlich den Aufwand nicht wert ist. Natürlich könnte man in der @support Regel alle diese Eigenschaften als Bedingung rein kippen, aber dann gibt es das Feature aktuell nur für iPads und Safari.
+Silbentrennung ist eine nette Spielerei, aber noch nicht ganz bereit für den Einsatz. Es Fehlen noch Dinge wie die Angabe wie viele Zeichen vor und nach dem Bindestich auftauchen sollen. Diese Features sind zwar im [CSS Text Module Level 4 vom 28 Oktober 2015] geplant und auch zum Teil im Safari mit `-webkit-hyphenate-limit-before/after` unterstützt, aber dann haben wir schon so viele Möglichkeiten wie die Seite aussehen kann, dass es vermutlich den Aufwand nicht wert ist. Natürlich könnte man in der @support Regel alle diese Eigenschaften als Bedingung rein kippen, aber dann gibt es das Feature aktuell nur für iPads und Safari.
 
 [@supports CSS at-rule]: https://developer.mozilla.org/en-US/docs/Web/CSS/@supports
 [Browser-Unterstützung für @supports]: http://caniuse.com/#feat=css-featurequeries
 [Modernizr]: https://modernizr.com/
 [hyphens]: https://developer.mozilla.org/en-US/docs/Web/CSS/hyphens
 [Browser-Unterstützung für hyphens]: http://caniuse.com/#feat=css-hyphens
-[CSS Text Module Level 3 vom 10 October 2013]: http://www.w3.org/TR/2013/WD-css-text-3-20131010/#hyphenation
+[CSS Text Module Level 3 vom 10 Oktober 2013]: http://www.w3.org/TR/2013/WD-css-text-3-20131010/#hyphenation
 [automatische hyphens unterstützten]: http://caniuse.com/#feat=css-featurequeries
 [Hyphenator.js]: http://mnater.github.io/Hyphenator/
 [phpHyphenator]: http://phphyphenator.yellowgreen.de/
 [composer]: https://getcomposer.org/
-[CSS Text Module Level 4 vom 28 October 2015]: https://drafts.csswg.org/css-text-4/#hyphenate-char-limits
+[CSS Text Module Level 4 vom 28 Oktober 2015]: https://drafts.csswg.org/css-text-4/#hyphenate-char-limits
