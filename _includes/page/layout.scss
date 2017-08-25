@@ -1,7 +1,7 @@
 $content-size: 34rem;
 $full-content-size: $content-size + 2rem;
 $desktop-sidebar-size: 14rem;
-$desktop-sidebar-min-width: $desktop-sidebar-size + $content-size + 1rem;
+$desktop-sidebar-min-width: $desktop-sidebar-size + $full-content-size;
 $desktop-sidebar-min-height: 30rem;
 $background-color: snow;
 
