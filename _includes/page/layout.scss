@@ -1,4 +1,4 @@
-$content-size: 34rem;
+$content-size: 540px / 16px * 1rem;
 $full-content-size: $content-size + 2rem;
 $desktop-sidebar-size: 14rem;
 $desktop-sidebar-min-width: $desktop-sidebar-size + $full-content-size;
@@ -55,10 +55,10 @@ figure {
             margin-right: 1rem;
         }
 
-        @media (max-width: $full-content-size) {
+        @media (max-width: $content-size) {
             // if a page content (an image) is wide enough:
             // stretch it over the entire screen width
-            > figure > [sizes*="(max-width:#{$full-content-size})100vw"] {
+            > figure > [sizes*="(max-width:#{$content-size})100vw"] {
                 display: block;
                 margin: -1rem;
                 max-width: none;

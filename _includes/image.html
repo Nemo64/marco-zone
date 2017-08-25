@@ -1,9 +1,11 @@
 {% capture image %}
 
+{% assign content_width = 540 %}
 {% assign rem_width = width | default: original.width | divided_by: 16.0 %}
+{% assign rem_content_width = content_width | divided_by: 16.0 %}
 
 {% assign best_image = original %}
-{% if best_image.width > 1280 %}
+{% if best_image.width > content_width %}
     {% assign best_image = resized | sort: 'width' | last %}
 {% endif %}
 
@@ -11,7 +13,7 @@
     {% for i in resized %}
         {{ i.path | prepend: site.baseurl | prepend: '/' }} {{ i.width }}w,
     {% endfor %}
-    {% if original.width <= 1280 %}
+    {% if original.width <= content_width %}
         {{ original.path | prepend: site.baseurl | prepend: '/' }} {{ original.width }}w
     {% endif %}
 {% endcapture %}
@@ -19,10 +21,10 @@
 {% capture sizes %}
     {% if sizes %}
         {{ sizes }}
-    {% elsif rem_width < 34 %}
+    {% elsif rem_width < rem_content_width %}
         (max-width:{{ rem_width | plus: 2 }}rem)calc(100vw - 2rem),{{ rem_width }}rem
     {% else %}
-        (max-width:36rem)100vw,34rem
+        (max-width:{{rem_content_width}}rem)100vw,{{rem_content_width}}rem
     {% endif %}
 {% endcapture %}
 

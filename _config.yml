@@ -56,9 +56,9 @@ responsive_image:
   template: _includes/image.html
   default_quality: 80
   sizes:
-    - width: 240
-    - width: 640
-    - width: 1280
+    - width: 240 # icon version (2x but it isn't worth making a 1x variant)
+    - width: 540 # 1x in content
+    - width: 1080 # 2x in content
       quality: 70
   auto_rotate: false
   base_path: assets
