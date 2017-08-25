@@ -76,7 +76,7 @@ amp_tags:
 
 {% include page/header.html %}
 
-{{ content | hyphenate | replace: '&amp;amp;', '&amp;' }}
+{{ content | hyphenate | replace: '&amp;amp;', '&amp;' | replace: '-­', '-' }}
 
 {% include page/footer.html %}
 
