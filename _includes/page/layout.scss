@@ -1,4 +1,5 @@
-$content-size: 40rem;
+$content-size: 34rem;
+$full-content-size: $content-size + 2rem;
 $desktop-sidebar-size: 14rem;
 $desktop-sidebar-min-width: $desktop-sidebar-size + $content-size + 1rem;
 $desktop-sidebar-min-height: 30rem;
@@ -27,7 +28,8 @@ figure {
 
 @media screen {
     div.highlighter-rouge,
-    figure {
+    figure,
+    blockquote {
         clear: both;
         margin: 1rem 0;
         padding: 1rem;
@@ -53,16 +55,57 @@ figure {
             margin-right: 1rem;
         }
 
-        @media (max-width: 42rem) {
+        @media (max-width: $full-content-size) {
             // if a page content (an image) is wide enough:
             // stretch it over the entire screen width
-            [sizes*="(max-width:42rem)100vw"] {
+            > figure > [sizes*="(max-width:#{$full-content-size})100vw"] {
                 display: block;
-                margin-left: 0;
-                margin-right: 0;
-                width: 100vw;
+                margin: -1rem;
+                max-width: none;
             }
         }
+    }
+}
+
+blockquote {
+    > p {
+        box-sizing: border-box;
+        max-width: $content-size - 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    cite {
+        display: block;
+        font-size: 0.8em;
+    }
+}
+
+.tldr-wrapper {
+    max-width: $full-content-size;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media print, screen and (min-width: $full-content-size) {
+
+    .tldr-left {
+        width: 18rem;
+        clear: left;
+        float: left;
+        margin-right: 1rem;
+    }
+
+    .tldr-right {
+        width: 18rem;
+        clear: right;
+        float: right;
+        margin-left: 1rem;
+    }
+
+    p {
+        /* I assume the text is probably hyphenated using &shy; */
+        text-align: justify;
     }
 }
 
@@ -138,7 +181,7 @@ figure {
     min-height: 3rem;
     margin-top: 3rem;
     padding: 1rem 1rem;
-    max-width: 40rem;
+    max-width: $content-size;
     font-size: .8em;
 
     &__copyright {

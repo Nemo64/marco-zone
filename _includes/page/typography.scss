@@ -57,11 +57,11 @@ h1 {
 }
 
 h2 {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
 }
 
 h3 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 }
 
 a {
@@ -109,34 +109,11 @@ pre {
     $normal-line-height: $line-height * 1rem;
     $wanted-line-height: $normal-line-height * 3;
     $lead-line-height: ($wanted-line-height - $lead-font-size * 2) + 1rem;
+    $lead-line-oversize: ($lead-line-height - $lead-font-size) / 3; // this calculation is a little spotty
+
     font-size: $lead-font-size;
     line-height: $lead-line-height;
-    margin-top: $paragraph-margin - ($lead-line-height - $lead-font-size) / 2;
+    margin-top: $paragraph-margin - $lead-line-oversize;
     text-align: left;
     letter-spacing: -.05em;
-}
-
-@media print, screen and (min-width: 42rem) {
-    .tldr-wrapper {
-        width: 42rem;
-    }
-
-    .tldr-left {
-        width: 18rem;
-        clear: left;
-        float: left;
-        margin-right: 1rem;
-    }
-
-    .tldr-right {
-        width: 18rem;
-        clear: right;
-        float: right;
-        margin-left: 1rem;
-    }
-
-    p {
-        /* I assume the text is probably hyphenated using &shy; */
-        text-align: justify;
-    }
 }

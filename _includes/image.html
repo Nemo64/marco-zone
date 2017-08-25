@@ -19,10 +19,10 @@
 {% capture sizes %}
     {% if sizes %}
         {{ sizes }}
-    {% elsif rem_width < 40 %}
+    {% elsif rem_width < 34 %}
         (max-width:{{ rem_width | plus: 2 }}rem)calc(100vw - 2rem),{{ rem_width }}rem
     {% else %}
-        (max-width:42rem)100vw,40rem
+        (max-width:36rem)100vw,34rem
     {% endif %}
 {% endcapture %}
 
