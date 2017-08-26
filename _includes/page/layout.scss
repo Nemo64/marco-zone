@@ -6,9 +6,7 @@ $desktop-sidebar-min-height: 30rem;
 $background-color: snow;
 
 body {
-    @media screen
-    and (min-width: $desktop-sidebar-min-width)
-    and (min-height: $desktop-sidebar-min-height) {
+    @media screen and (min-width: $desktop-sidebar-min-width) and (min-height: $desktop-sidebar-min-height) {
         padding-left: $desktop-sidebar-size;
     }
 }
@@ -62,6 +60,26 @@ figure {
                 display: block;
                 margin: -1rem;
                 max-width: none;
+            }
+        }
+
+        // If the scaling of an image would be an exact 2x (or 3x) and there isn't a retina version present
+        // i think it looks better to scale with nearest neighbor in those cases.
+        // i can't easily check if the image would be scaled 2x unless i know how wide the image is going to be
+        // this makes it hard to implement this in mobile layouts
+        // but i also assume that it is more annoying on a desktop since the images will be bigger there
+        // if your phone has a very high dpi, then i don't bother and just make it sharp
+        @media (device-pixel-ratio: 2) and (min-width: $full-content-size),
+        (-webkit-device-pixel-ratio: 2) and (min-width: $full-content-size),
+        (min-resolution: 288dpi) /* if your dpi is that high, don't bother with not making it crisp */
+        {
+            $retina-pixel-width-count: $content-size * 16 * 2 / 1rem;
+            //noinspection CssOverwrittenProperties
+            > figure > amp-img[srcset]:not([srcset*="#{$retina-pixel-width-count}w"]) img {
+                image-rendering: -webkit-crisp-edges;
+                image-rendering: -moz-crisp-edges;
+                image-rendering: pixelated;
+                -ms-interpolation-mode: nearest-neighbor;
             }
         }
     }
@@ -150,9 +168,7 @@ blockquote {
         font-size: 1.5rem;
     }
 
-    @media screen
-    and (min-width: $desktop-sidebar-min-width)
-    and (min-height: $desktop-sidebar-min-height) {
+    @media screen and (min-width: $desktop-sidebar-min-width) and (min-height: $desktop-sidebar-min-height) {
         position: fixed;
         left: 0;
         top: 0;
