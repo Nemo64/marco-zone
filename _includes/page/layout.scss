@@ -29,16 +29,24 @@ figure {
     figure,
     blockquote {
         clear: both;
-        margin: 1rem 0;
-        padding: 1rem;
+        margin: 0;
+        padding: 0 1rem;
         overflow: auto;
-        border-top: 1px solid whitesmoke;
-        border-bottom: 1px solid whitesmoke;
 
-        + figure,
-        + div.highlighter-rouge {
-            border-top: none;
-            margin-top: -1rem;
+        &:after,
+        &:before {
+            content: "";
+            display: block;
+            max-width: $full-content-size;
+            height: 1px;
+            background-color: whitesmoke;
+            margin: 1rem -1rem;
+        }
+
+        + div.highlighter-rouge:before,
+        + figure:before,
+        + blockquote:before {
+            content: none;
         }
     }
 
@@ -75,7 +83,7 @@ figure {
         {
             $retina-pixel-width-count: $content-size * 16 * 2 / 1rem;
             //noinspection CssOverwrittenProperties
-            > figure > amp-img[srcset]:not([srcset*="#{$retina-pixel-width-count}w"]) img {
+            > figure > amp-img[srcset]:not([srcset*="#{$retina-pixel-width-count}w"]) > img {
                 image-rendering: -webkit-crisp-edges;
                 image-rendering: -moz-crisp-edges;
                 image-rendering: pixelated;
