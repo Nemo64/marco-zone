@@ -102,6 +102,8 @@ article, aside, footer, header, nav, section, main {
 
 pre {
     margin: 0;
+    white-space: pre-wrap;
+    //word-break: break-all;
 }
 
 .lead {
