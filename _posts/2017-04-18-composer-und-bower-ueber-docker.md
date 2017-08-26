@@ -7,6 +7,7 @@ categories:
     - PHP
     - JavaScript
 date:       2017-04-18 9:00:00 +0200
+lastmod:    2017-08-26 17:00:00 +0200
 ---
 
 Ich brauche im Alltag sehr oft die Abhängigkeits-Management-Tools composer und bower. Zwar lassen sich diese auf dem Mac installieren, aber irgendwie ist es doch schöner nicht alles global in irgend einen bin ordner zu werfen.
@@ -15,14 +16,14 @@ Ich brauche im Alltag sehr oft die Abhängigkeits-Management-Tools composer und 
  
 ```bash
 # für composer
-docker run --rm --interactive --tty -v "$(pwd):/app:cached" -w /app -v ~/.ssh:/root/.ssh -v ~/.composer:/composer:cached composer
+docker run --rm -it -v "$(pwd):/app:cached" -w /app -v ~/.ssh:/root/.ssh -v ~/.composer:/composer:cached composer
 # für bower
-docker run --rm --interactive --tty -v "$(pwd):/app:cached" -w /app -v ~/.ssh:/root/.ssh digitallyseamless/nodejs-bower-grunt bower
+docker run --rm -it -v "$(pwd):/app:cached" -w /app -v ~/.ssh:/root/.ssh digitallyseamless/nodejs-bower-grunt bower
 ```
 
 Was mache ich genau?
 - `--rm` sorgt dafür das der container nach der ausführung entfernt wird.
-- `--interactive --tty` damit potenzielle eingaben funktionieren wie bei symfony parameters.yml zum beispiel. Sieht man auch oft abgekürzt mit `-it`.
+- `-it` (ausgeschrieben `--interactive --tty`) damit potenzielle eingaben funktionieren wie bei symfony parameters.yml zum beispiel.
 - `-v "$(pwd):/app:cached"` mounted den aktuellen Ordner in das `/app` Verzeichnis des Containers. Man beachte hier die `:cached` Option welche erst seit [Docker 2017-04-06-edge] verfügbar ist. Es sollte aber auch mit älteren Verisonen funktionieren, wenn diese Option nicht übergeben wird.
 - `-w /app` sorgt dafür, dass wir nach dem start auch in dem `/app` Verzeichnis sind.
 - `-v ~/.ssh:/root/.ssh` hohlt uns unsere ssh keys in den container. Dies ist wichtig wenn man von privaten repositories cloned. Hier hab ich die `:cached` option weg gelassen da hier io minimal sein dürfte. Dazu sei noch gesagt das dieser Mount mit den Vm-Implementationen (docker-toolbox) bei mir nicht funktioniert hat.
@@ -31,8 +32,8 @@ Was mache ich genau?
 Nun, dies auswendig jedes mal ein zu geben ist nicht ganz so leicht, daher hab ich mir diese Befehle als Alias in die `~/.bash_profile` geschrieben.
  
 ```bash
-alias composer='docker run --rm --interactive --tty -v $(pwd):/app:cached -w /app -v ~/.ssh:/root/.ssh -v ~/.composer:/composer:cached composer'
-alias bower='docker run --rm --interactive --tty -v $(pwd):/app:cached -w /app -v ~/.ssh:/root/.ssh digitallyseamless/nodejs-bower-grunt bower'
+alias composer='docker run --rm -it -v $(pwd):/app:cached -w /app -v ~/.ssh:/root/.ssh -v ~/.composer:/composer:cached composer'
+alias bower='docker run --rm -it -v $(pwd):/app:cached -w /app -v ~/.ssh:/root/.ssh digitallyseamless/nodejs-bower-grunt bower'
 ```
 
 So kann man nun composer und bower verwenden, als wären sie nativ installiert.
