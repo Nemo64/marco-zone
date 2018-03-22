@@ -1,6 +1,7 @@
 ---
 layout:     text
 title: Typo3 Extension Ideen
+noindex: true
 ---
 
 # Einige Typo3 Erweiterungs Ideen
