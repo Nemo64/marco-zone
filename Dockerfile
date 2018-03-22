@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY Gemfile /app
 COPY Gemfile.lock /app
-RUN bundler install
+RUN bundle install
 
 CMD bundle exec jekyll serve --host 0.0.0.0
