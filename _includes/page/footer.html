@@ -5,7 +5,7 @@
     </div>
     <ul class="page-footer__nav">
         {% assign footer_pages = site.pages | where: "footernav", true %}
-        <li>{% for page in footer_pages %}{% include internal-link.html page=page %}</li>
+        {% for page in footer_pages %}<li>{% include internal-link.html page=page %}</li>
         {% endfor %}
     </ul>
 </footer>
