@@ -107,12 +107,13 @@ pre {
 }
 
 .lead {
-    $lead-font-size: 1.6rem;
+    $lead-font-size: 1.7rem;
     $normal-line-height: $line-height * 1rem;
     $wanted-line-height: $normal-line-height * 3;
     $lead-line-height: ($wanted-line-height - $lead-font-size * 2) + 1rem;
     $lead-line-oversize: ($lead-line-height - $lead-font-size) / 3; // this calculation is a little spotty
 
+    font-family: "Josefin Slab", "Times New Roman", serif;
     font-size: $lead-font-size;
     line-height: $lead-line-height;
     margin-top: $paragraph-margin - $lead-line-oversize;
