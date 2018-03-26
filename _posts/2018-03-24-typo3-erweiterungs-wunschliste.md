@@ -5,10 +5,12 @@ categories:
     - Software-Entwicklung
     - Typo3
 date:        2018-03-24 21:36:00 +0100
-lastmod:     2018-03-26 12:00:00 +0200
+lastmod:     2018-03-26 12:20:00 +0200
 ---
 
-Ich arbeite jeden Tag mit Typo3 und stolper daher ständig über Funktionen bei denen ich denke "Ich kann doch nicht der erste sein der so etwas haben will". Eventuell baue ich diese mal als extension aber zur dokumentation schreibe ich sie hier auf.
+Ich arbeite jeden Tag mit Typo3 und stolper daher ständig über Funktionen bei denen ich denke "Ich kann doch nicht der erste sein der so etwas haben will". Eventuell baue ich diese mal als extension aber zur Dokumentation schreibe ich sie hier auf.
+
+Die Reihenfolge hat keinerlei Bedeutung, es ist einfach die Reihenfolge in der sie mir ein gefallen sind. Ich aktuallisiere diese List auch ab und zu.
 
 ## ProcedureCommandController
 
