@@ -1,7 +1,8 @@
 ---
 title:       Typo3 Erweiterungs Wunschliste
 description: Eine Sammelstelle für Typo3 Erweiterungen die ich unbedingt haben will und irgendwann vielleicht auch baue.
-date:       2018-03-24 21:36:00 +0100
+date:        2018-03-24 21:36:00 +0100
+lastmod:     2018-03-26 12:00:00 +0200
 ---
 
 Ich arbeite jeden Tag mit Typo3 und stolper daher ständig über Funktionen bei denen ich denke "Ich kann doch nicht der erste sein der so etwas haben will". Eventuell baue ich diese mal als extension aber zur dokumentation schreibe ich sie hier auf.
@@ -19,6 +20,7 @@ Dies ist dann ein psr LoggerInterface. Dahinter würde ich dann einen speziellen
 - Die Log-Meldungen in den Command output weiterreichen. Dies kann sehr elegant gelöst werden mit verschiedenen verbositätsleveln die dann "notice", "info" und "debug" weiterreichen wenn zutreffend.
 
 Natürlich muss das alles dann auch Fehlertolerant werden und auch typo3 typische Vorgehensweisen wie `exit()` unterstützen.
+Diese Extension hängt vermutlich sehr stark mit der nächsten zusammen.
 
 ## Gutes Logging
 
@@ -41,13 +43,34 @@ Folgendes will ich haben: Wenn kein cHash vorhanden ist müssen alle Parameter d
 
 Was sich dann auch noch anbietet, ist einen canonical url utility. Im Endeffekt will ich eine URL aus `TSFE:cHash_array` generieren können.
 
-## internationalization utilities
+## Internationalization utilities
 
 Es gibt in php die intl extension welche Klassen wie den 'NumberFormatter' und den 'IntlDateFormatter' mitbringen. Dies sind Features die Zwingend in ViewHelper verpackt gehören. Ich habe diese ViewHelper bereits (inspiriert von der [Twig Intl Erweiterung]), ich muss sie nur noch in eine Extension auslagern.
 
 Mir fallen aber noch mehr Funktionalitäten ein. zB. möchte ich eine Typolink-Erweiterung ein bauen die `tel:` unterstützt und mithilfe von [giggsey/libphonenumber-for-php] formatiert.
 
 Und wenn wir schon dabei sind, [Symfony's intl polyfill], welcher als Abhängigkeit durchaus Sinn ergibt wenn die Erweiterung intl sowieso vorausgesetzt ist, [enthält auch icu Daten] womit ich einen 'CountryNameViewHelper' und einen 'LanguageNameViewHelper' implementieren kann.
+
+## Kopieren von sys_lanugage in typoscript constanten
+
+Ja, dazu fällt mir kein richtiger Name ein und eventuel gehört das zur Erweiterung oben.
+
+Aktuell muss man in Typo3 jede Sprache hardcodieren und mit der Datenbank synchron halten mit so lustigen Bedingungen in typoscript wie:
+```
+[globalVar = GP:L=1]
+config.sys_language_uid = 1 
+config.language = de
+config.htmlTag_langKey = de
+config.locale_all = de_DE.utf8
+[global]
+``` 
+
+Das heißt bei neuen sprachen muss man diese in die Datenbank hinzufügen und im typoscript etwas copy paste arbeit leisten.
+Viel schöner wäre es doch wenn eine extension einem dieses typoscript generiert. Im einfachsten fall würde man einfach alle Spalten von sys_language record in typoscript constanten kopieren. Dann gibt es an jeder stelle so etwas:
+- `{$sys_language.uid}`
+- `{$sys_language.title}` 
+- `{$sys_language.language_isocode}` 
+- `{$sys_language.flag}` 
 
 [Twig Intl Erweiterung]: http://twig-extensions.readthedocs.io/en/latest/intl.html
 [giggsey/libphonenumber-for-php]: https://packagist.org/packages/giggsey/libphonenumber-for-php
