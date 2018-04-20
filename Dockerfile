@@ -1,9 +1,9 @@
-FROM ruby:2.4
+FROM ruby:2.5
 
 WORKDIR /app
 
-COPY Gemfile /app
-COPY Gemfile.lock /app
+COPY Gemfile* /app/
 RUN bundle install
 
-CMD bundle exec jekyll serve --host 0.0.0.0 --unpublished --future --drafts
+ENTRYPOINT ["bundle", "exec", "jekyll"]
+CMD ["serve", "--host=0.0.0.0", "--unpublished", "--future", "--drafts"]
