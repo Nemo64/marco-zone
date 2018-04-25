@@ -2,8 +2,8 @@
 title:       Typo3 Erweiterungs Wunschliste
 description: Eine Sammelstelle für Typo3 Erweiterungen die ich unbedingt haben will und irgendwann vielleicht auch baue.
 categories:
-    - Software-Entwicklung
     - Typo3
+    - Software-Entwicklung
 date:        2018-03-24 21:36:00 +0100
 lastmod:     2018-03-26 14:40:00 +0200
 ---

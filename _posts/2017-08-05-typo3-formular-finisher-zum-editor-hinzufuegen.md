@@ -3,9 +3,8 @@ title:      Formular-Finisher zum TYPO3 Backend-Editor hinzufügen
 description: >
     Der umständliche und undokumentierte Weg eigene Finisher in den neuen Typo3 8.7 Formular-Editor hinzuzufügen.   
 categories: 
-    - Software-Entwicklung
     - Typo3
-    - PHP
+    - Software-Entwicklung
 date:       2017-08-05 22:00:00 +0200
 lastmod:    2017-08-06 14:33:00 +0200
 ---
