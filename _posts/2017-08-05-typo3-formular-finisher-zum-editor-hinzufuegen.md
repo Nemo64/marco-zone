@@ -6,7 +6,7 @@ categories:
     - Typo3
     - Software-Entwicklung
 date:       2017-08-05 22:00:00 +0200
-lastmod:    2017-08-06 14:33:00 +0200
+lastmod:    2018-05-29 9:31:00 +0200
 ---
 
 Es gibt viele Gründe weshalb man einen weiteren Finisher brauchen würde. Mein Grund war eine Cleverreach integration. Leider ist die TYPO3 Api etwas unnötig kompliziert gestalltet.  Ein einfaches `ValidatorInterface` kombiniert mit einer ext_localconf.php methode `FormUtility::addValidator` war wohl zu einfach.
@@ -73,7 +73,7 @@ TYPO3:
 ```
 
 ```yaml
-# FormEditor.yaml
+# FormEditorSetup.yaml
 TYPO3:
   CMS:
     Form:
