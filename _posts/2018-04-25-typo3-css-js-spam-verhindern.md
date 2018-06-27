@@ -118,7 +118,7 @@ class PageRenderer extends \TYPO3\CMS\Core\Page\PageRenderer
 Und in der `ext_localconf.php` dann einfach:
 
 ```php?start_inline=true
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Core\Page\PageRenderer::class]['className'] = \Hn\HnTemplates\Override\PageRenderer::class;
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][\TYPO3\CMS\Core\Page\PageRenderer::class]['className'] = \Vendor\Extension\Override\PageRenderer::class;
 ```
 
 Das ist immer noch nicht so geil, da man schließlich eigentlich nur eine Datei am Ende haben will, aber es ist um Welten besser als das Standardverhalten. 
