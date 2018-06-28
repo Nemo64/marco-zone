@@ -4,7 +4,7 @@ description: Eine echte Canonical Url die sich nicht durch AdWords Parameter und
 categories:
     - Typo3
     - Software-Entwicklung
-date:        2018-06-28 19:43:00 +0100
+date:        2018-06-28 19:43:00 +0200
 ---
 
 ## Falsche Lösungen
