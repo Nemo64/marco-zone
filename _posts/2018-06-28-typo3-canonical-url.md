@@ -5,6 +5,7 @@ categories:
     - Typo3
     - Software-Entwicklung
 date:        2018-06-28 19:43:00 +0200
+lastmod:     2018-06-29 9:40:00 +0200
 ---
 
 ## Falsche Lösungen
@@ -76,13 +77,13 @@ Super, oder? Was ist also das Problem? Nun, es ist sogar grob [dokumentiert](htt
 - Da die Seite (hoffentlich) gecached wird, bestimmt der erste Besucher der Webseite was für Parameter im Canonical sind.
 - Durch `useCacheHash` ist effektiv auch noch der [cHash Mechanismus] aus gekurbelt. Das heißt: wenn uns Jemand was Böses will, kann er Gigabyte an Cache erzeugen und auch noch gigantische Mengen an doppelten Inhalten bei Google einreichen.
 
+Wenn du diesen Weg also nutzt solltest du den Canonical lieber gleich weg lassen. Der einzige Grund den Link so zu bauen ist um SEO tools aus zu tricksen.
+
 ## Wie also richtig?
 
 Nach etwas Überlegung hab ich fest gestellt das typo3 einem das Problem unabsichtlich bereits löst. Man kommt nur nicht ran.
 
-Der [cHash Mechanismus] von Typo3 verhindert eine Flut an unsinnigen Parametern im Cache in dem er durch eine Checksumme verifiziert das die Parameter tatsächlich von der Typo3 Instanz generiert wurden. Also müssen wir nur daran kommen.
-
-Es gibt in TypoScript keinen vorgesehenen Weg an die Werte heranzukommen, also müssen wir uns einen selbst schaffen.
+Der [cHash Mechanismus] von Typo3 verhindert eine Flut an unsinnigen Parametern im Cache in dem er durch eine Checksumme verifiziert das die Parameter tatsächlich von der Typo3 Instanz generiert wurden. Es gibt in TypoScript allerdings keinen vorgesehenen Weg an die Werte heranzukommen, also müssen wir uns einen schaffen.
 
 ```php?start_inline=true
 namespace Extension\Hook;
