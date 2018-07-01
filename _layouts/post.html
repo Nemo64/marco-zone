@@ -47,7 +47,6 @@ styles: >
 
     .post__author {
         margin-top: 4rem;
-        margin-bottom: 4rem;
     }
 
     .author__image {
@@ -121,8 +120,8 @@ styles: >
         {{ content }}
     </div>
 
-    <aside class="post__author page-content" id="author">
-        <figure>
+    <aside class="page-content">
+        <figure class="post__author" id="author">
             <h2>Author:</h2>
             <div class="author" property="author" typeof="Person">
                 <div class="author__meta">
@@ -135,6 +134,21 @@ styles: >
                     </div>
                 </div>
             </div>
+        </figure>
+
+        <figure class="post__similar">
+            {% for category in page.categories %}
+            <h2>Ähnliche {{category}} Posts</h2>
+            <ul>
+                {% for categoryPage in site.categories[category] limit: 5 %}
+                <li>
+                    <a href="{{ categoryPage.url | prepend: site.baseurl }}">
+                        {{ categoryPage.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
         </figure>
     </aside>
 

@@ -18,9 +18,9 @@ amp-img, img {
 
 figure {
     // i don't expect a h1 here ever
-    > h2:first-child,
-    > h3:first-child {
-        margin-top: 0;
+    > h2,
+    > h3 {
+        margin-top: 1rem;
     }
 }
 
