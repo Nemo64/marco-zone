@@ -9,7 +9,7 @@ ruby RUBY_VERSION
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "~> 3.5.2"
+gem "jekyll", "~> 3.8.3"
 
 group :jekyll_plugins do
     gem "jekyll-hyphenate_filter"
