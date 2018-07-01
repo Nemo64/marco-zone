@@ -27,6 +27,7 @@ website_schema:
   name: Marco Zone
   alternateName: Die Marco Zone
   url: https://www.marco.zone/
+  sameAs: https://twitter.com/TheTrueNemo
 
 authors:
   marco:
