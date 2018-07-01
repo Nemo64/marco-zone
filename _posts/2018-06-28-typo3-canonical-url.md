@@ -5,7 +5,7 @@ categories:
     - Typo3
     - Software-Entwicklung
 date:        2018-06-28 19:43:00 +0200
-lastmod:     2018-06-29 9:40:00 +0200
+lastmod:     2018-07-01 13:50:00 +0200
 ---
 
 ## Falsche Lösungen
@@ -81,9 +81,9 @@ Wenn du diesen Weg also nutzt solltest du den Canonical lieber gleich weg lassen
 
 ## Wie also richtig?
 
-Nach etwas Überlegung hab ich fest gestellt das typo3 einem das Problem unabsichtlich bereits löst. Man kommt nur nicht ran.
+Nach etwas Überlegung hab ich fest gestellt das typo3 einem das Problem unabsichtlich bereits löst.
 
-Der [cHash Mechanismus] von Typo3 verhindert eine Flut an unsinnigen Parametern im Cache in dem er durch eine Checksumme verifiziert das die Parameter tatsächlich von der Typo3 Instanz generiert wurden. Es gibt in TypoScript allerdings keinen vorgesehenen Weg an die Werte heranzukommen, also müssen wir uns einen schaffen.
+Der [cHash Mechanismus] von Typo3 verhindert eine Flut an unsinnigen Parametern im Cache in dem er durch eine Checksumme verifiziert das die Parameter tatsächlich von der Typo3 Instanz generiert wurden. Er ist daher ideal für unseren Zweck da es von außen nicht möglich sein sollte Parameter hinzuzufügen. Es gibt in TypoScript allerdings keinen vorgesehenen Weg an die Werte heranzukommen, also müssen wir uns einen schaffen.
 
 ```php?start_inline=true
 namespace Extension\Hook;
@@ -103,7 +103,8 @@ class CanonicalParametersGetDataHook implements ContentObjectGetDataHookInterfac
         return GeneralUtility::implodeArrayForUrl('', $cHash_array);
     }
 }
-
+```
+```php?start_inline=true
 // ext_localconf.php
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_content.php']['getData'][$_EXTKEY] =
     \Extension\Hook\CanonicalParametersGetDataHook::class;
