@@ -45,7 +45,7 @@ styles: >
         width: 160px;
     }
 
-    .post__author {
+    main aside {
         margin-top: 4rem;
     }
 
@@ -121,20 +121,14 @@ styles: >
     </div>
 
     <aside class="page-content">
-        <figure class="post__author" id="author">
-            <h2>Author:</h2>
-            <div class="author" property="author" typeof="Person">
-                <div class="author__meta">
-                    <div class="author__image">
-                        {% responsive_image path: "assets/person/marco-desaturate.jpg" property: "image" sizes="10rem" %}
-                    </div>
-                    <div class="author__body">
-                        <h3 class="author__name" property="name">Marco Pfeiffer</h3>
-                        <a class="author__twitter" href="https://twitter.com/TheTrueNemo">@TheTrueNemo</a>
-                    </div>
-                </div>
+        <div hidden typeof="Organization" property="publisher">
+            <meta property="name" content="{{ site.title }}">
+            <div property="logo" typeof="ImageObject">
+                <meta property="url" content="{{ '/assets/marco-zone-text.png' | prepend: site.baseurl | prepend: site.url }}">
+                <meta property="width" content="378">
+                <meta property="height" content="60">
             </div>
-        </figure>
+        </div>
 
         <figure class="post__similar">
             {% for category in page.categories %}
@@ -150,20 +144,26 @@ styles: >
             </ul>
             {% endfor %}
         </figure>
-    </aside>
 
-    <aside hidden typeof="Organization" property="publisher">
-        <meta property="name" content="{{ site.title }}">
-        <div property="logo" typeof="ImageObject">
-            <meta property="url" content="{{ '/assets/marco-zone-text.png' | prepend: site.baseurl | prepend: site.url }}">
-            <meta property="width" content="378">
-            <meta property="height" content="60">
-        </div>
-    </aside>
+        <figure class="post__author" id="author">
+            <h2>Author:</h2>
+            <div class="author" property="author" typeof="Person">
+                <div class="author__meta">
+                    <div class="author__image">
+                        {% responsive_image path: "assets/person/marco-desaturate.jpg" property: "image" sizes="10rem" %}
+                    </div>
+                    <div class="author__body">
+                        <h3 class="author__name" property="name">Marco Pfeiffer</h3>
+                        <a class="author__twitter" href="https://twitter.com/TheTrueNemo">@TheTrueNemo</a>
+                    </div>
+                </div>
+            </div>
+        </figure>
 
-    <aside class="post__comments page-content" id="comments">
         {% if false %}
             <iframe height="320"
+                    id="comments"
+                    class="post__comments"
                     sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
                     style="width: 100%"
                     resizable
@@ -171,6 +171,8 @@ styles: >
                     src="/comments?title={{ page.title | url_encode }}&url={{  page.url | url_encode }}"></iframe>
         {% else %}
             <amp-iframe height="320"
+                        id="comments"
+                        class="post__comments"
                         sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
                         resizable
                         frameborder="0"
