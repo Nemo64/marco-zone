@@ -134,7 +134,8 @@ styles: >
             {% for category in page.categories %}
             <h2>Ähnliche {{category}} Posts</h2>
             <ul>
-                {% for categoryPage in site.categories[category] limit: 5 %}
+                {% assign categoryPages = site.categories[category]|where_exp:"item", "item.url != page.url" %}
+                {% for categoryPage in categoryPages limit: 5 %}
                 <li>
                     <a href="{{ categoryPage.url | prepend: site.baseurl }}">
                         {{ categoryPage.title }}
