@@ -137,5 +137,5 @@ Einen wirklichen Nachteil dieser Methode hab ich noch nicht gefunden, außer das
 Falls du noch etwas mehr wissen willst empfehle ich dir die Klasse/Methode `\TYPO3\CMS\Frontend\Page\CacheHashCalculator::getRelevantParameters` einmal zu überfliegen. Diese ist für die Liste in cHash_array verantwortlich.
 
 
-[cHash Mechanismus]: (https://www.typo3lexikon.de/typo3-tutorials/core/cache/chash-was-ist-das.html)
-[getText]: (https://docs.typo3.org/typo3cms/TyposcriptReference/8.7/DataTypes/Gettext/)
+[cHash Mechanismus]: https://www.typo3lexikon.de/typo3-tutorials/core/cache/chash-was-ist-das.html
+[getText]: https://docs.typo3.org/typo3cms/TyposcriptReference/8.7/DataTypes/Gettext/
