@@ -1,11 +1,11 @@
 ---
 title:       Typo3 Canonical-Url
-description: Eine echte Canonical Url die sich nicht durch AdWords Parameter und Ähnlichem austricksen lässt. 
+description: Eine echte Canonical Url in Typo3 die sich nicht durch AdWords Parameter und Ähnlichem austricksen lässt und keine Sicherheitslücken öffnet.
 categories:
     - Typo3
     - Software-Entwicklung
 date:        2018-06-28 19:43:00 +0200
-lastmod:     2018-07-01 13:50:00 +0200
+lastmod:     2018-07-10 15:00:00 +0200
 ---
 
 ## Falsche Lösungen
@@ -74,7 +74,7 @@ Das löst das Problem und alle Parameter werden übernommen. Es gibt sogar die M
 Super, oder? Was ist also das Problem? Nun, es ist sogar grob [dokumentiert](https://docs.typo3.org/typo3cms/TyposcriptReference/latest/Functions/Typolink/#addquerystring).
 
 - Ich kann die Seite nun mit zB. AdWords Parametern wie `?gclid=somedata` aufrufen und der Canonical übernimmt diese.
-- Da die Seite (hoffentlich) gecached wird, bestimmt der erste Besucher der Webseite was für Parameter im Canonical sind.
+- Da die Seite (hoffentlich) gecached wird, bestimmt der erste Besucher der Webseite was für Parameter im Canonical sind. Dies ist potenziell sogar ein Sicherheitsrisiko wenn die Seite gleichzeitig für XSS anfällig ist.
 - Durch `useCacheHash` ist effektiv auch noch der [cHash Mechanismus] aus gekurbelt. Das heißt: wenn uns Jemand was Böses will, kann er Gigabyte an Cache erzeugen und auch noch gigantische Mengen an doppelten Inhalten bei Google einreichen.
 
 Wenn du diesen Weg also nutzt solltest du den Canonical lieber gleich weg lassen. Der einzige Grund den Link so zu bauen ist um SEO tools aus zu tricksen.
