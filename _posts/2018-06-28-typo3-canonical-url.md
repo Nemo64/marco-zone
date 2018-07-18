@@ -5,8 +5,10 @@ categories:
     - Typo3
     - Software-Entwicklung
 date:        2018-06-28 19:43:00 +0200
-lastmod:     2018-07-10 15:00:00 +0200
+lastmod:     2018-07-18 15:00:00 +0200
 ---
+
+update vom 18.7.2018: Ich hab eine winzige [canonical url extension] gebaut die nichts weiter tut als die canonical url korrekt zu generieren. 
 
 ## Falsche Lösungen
 
@@ -132,10 +134,11 @@ Parameter können außerdem auf 2 Wege ausgeschlossen werden.
 1. [FE][cHashExcludedParameters] entfernt den parameter nun sowohl aus der canonical als auch aus der cache relevance und ist daher ideal für zB. AdWords, Suchparameter ...
 2. In dem Hook selbst kann man einfach weitere Parameter entfernen. Dadurch sind diese immer noch für den Cache relevant. Die ist sinnvoll für zB. eine zurück url 
 
-Einen wirklichen Nachteil dieser Methode hab ich noch nicht gefunden, außer das man natürlich etwas PHP braucht. Vielleicht bau ich auch nochmal eine Extension die nichts weiter tut als ein canonical tag und die getText Funktion bereit zu stellen.
+Einen wirklichen Nachteil dieser Methode hab ich noch nicht gefunden, außer das man natürlich etwas PHP braucht. ~~Vielleicht bau ich auch nochmal eine Extension die nichts weiter tut als ein canonical tag und die getText Funktion bereit zu stellen.~~ Ich habe nun eine [canonical url extension] gebaut die den weg oben nochmal sauber implementiert.
 
 Falls du noch etwas mehr wissen willst empfehle ich dir die Klasse/Methode `\TYPO3\CMS\Frontend\Page\CacheHashCalculator::getRelevantParameters` einmal zu überfliegen. Diese ist für die Liste in cHash_array verantwortlich.
 
 
+[canonical url extension]: https://packagist.org/packages/nemo64/canonical-url
 [cHash Mechanismus]: https://www.typo3lexikon.de/typo3-tutorials/core/cache/chash-was-ist-das.html
 [getText]: https://docs.typo3.org/typo3cms/TyposcriptReference/8.7/DataTypes/Gettext/
