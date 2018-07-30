@@ -1,11 +1,11 @@
 ---
-title:       Typo3 Canonical-Url
-description: Eine echte Canonical Url in Typo3 die sich nicht durch AdWords Parameter und Ähnlichem austricksen lässt und keine Sicherheitslücken öffnet.
+title:       TYPO3 Canonical-Url
+description: Eine echte Canonical Url in TYPO3 die sich nicht durch AdWords Parameter und Ähnlichem austricksen lässt und keine Sicherheitslücken öffnet.
 categories:
-    - Typo3
+    - TYPO3
     - Software-Entwicklung
 date:        2018-06-28 19:43:00 +0200
-lastmod:     2018-07-18 15:00:00 +0200
+lastmod:     2018-07-30 15:00:00 +0200
 ---
 
 update vom 18.7.2018: Ich hab eine winzige [canonical url extension] gebaut die nichts weiter tut als die canonical url korrekt zu generieren. 
@@ -83,9 +83,9 @@ Wenn du diesen Weg also nutzt solltest du den Canonical lieber gleich weg lassen
 
 ## Wie also richtig?
 
-Nach etwas Überlegung hab ich fest gestellt das typo3 einem das Problem unabsichtlich bereits löst.
+Nach etwas Überlegung hab ich fest gestellt das TYPO3 einem das Problem unabsichtlich bereits löst.
 
-Der [cHash Mechanismus] von Typo3 verhindert eine Flut an unsinnigen Parametern im Cache in dem er durch eine Checksumme verifiziert das die Parameter tatsächlich von der Typo3 Instanz generiert wurden. Er ist daher ideal für unseren Zweck da es von außen nicht möglich sein sollte Parameter hinzuzufügen. Es gibt in TypoScript allerdings keinen vorgesehenen Weg an die Werte heranzukommen, also müssen wir uns einen schaffen.
+Der [cHash Mechanismus] von TYPO3 verhindert eine Flut an unsinnigen Parametern im Cache in dem er durch eine Checksumme verifiziert das die Parameter tatsächlich von der TYPO3 Instanz generiert wurden. Er ist daher ideal für unseren Zweck da es von außen nicht möglich sein sollte Parameter hinzuzufügen. Es gibt in TypoScript allerdings keinen vorgesehenen Weg an die Werte heranzukommen, also müssen wir uns einen schaffen.
 
 ```php?start_inline=true
 namespace Extension\Hook;

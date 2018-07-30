@@ -1,12 +1,12 @@
 ---
 title:      Formular-Finisher zum TYPO3 Backend-Editor hinzufügen
 description: >
-    Der umständliche und undokumentierte Weg eigene Finisher in den neuen Typo3 8.7 Formular-Editor hinzuzufügen.   
+    Der umständliche und undokumentierte Weg eigene Finisher in den neuen TYPO3 8.7 Formular-Editor hinzuzufügen.   
 categories: 
-    - Typo3
+    - TYPO3
     - Software-Entwicklung
 date:       2017-08-05 22:00:00 +0200
-lastmod:    2018-07-11 15:15:00 +0200
+lastmod:    2018-07-30 15:00:00 +0200
 ---
 
 Es gibt viele Gründe weshalb man einen weiteren Finisher brauchen würde. Mein Grund war eine Cleverreach integration. Leider ist die TYPO3 Api etwas unnötig kompliziert gestalltet.  Ein einfaches `ValidatorInterface` kombiniert mit einer ext_localconf.php methode `FormUtility::addValidator` war wohl zu einfach.

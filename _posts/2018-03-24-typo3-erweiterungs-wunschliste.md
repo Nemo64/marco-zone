@@ -1,14 +1,14 @@
 ---
-title:       Typo3 Erweiterungs Wunschliste
-description: Eine Sammelstelle für Typo3 Erweiterungen die ich unbedingt haben will und irgendwann vielleicht auch baue.
+title:       TYPO3 Erweiterungs Wunschliste
+description: Eine Sammelstelle für TYPO3 Erweiterungen die ich unbedingt haben will und irgendwann vielleicht auch baue.
 categories:
-    - Typo3
+    - TYPO3
     - Software-Entwicklung
 date:        2018-03-24 21:36:00 +0100
-lastmod:     2018-03-26 14:40:00 +0200
+lastmod:     2018-07-30 15:00:00 +0200
 ---
 
-Ich arbeite jeden Tag mit Typo3 und stolper daher ständig über Funktionen bei denen ich denke "Ich kann doch nicht der erste sein der so etwas haben will". Eventuell baue ich diese mal als extension aber zur Dokumentation schreibe ich sie hier auf.
+Ich arbeite jeden Tag mit TYPO3 und stolper daher ständig über Funktionen bei denen ich denke "Ich kann doch nicht der erste sein der so etwas haben will". Eventuell baue ich diese mal als extension aber zur Dokumentation schreibe ich sie hier auf.
 
 Die Reihenfolge hat keinerlei Bedeutung, es ist einfach die Reihenfolge in der sie mir ein gefallen sind. Ich aktuallisiere diese List auch ab und zu.
 
@@ -24,7 +24,7 @@ Und wenn wir schon dabei sind, [Symfony's intl polyfill], welcher als Abhängigk
 
 Ja, dazu fällt mir kein richtiger Name ein und eventuel gehört das zur Erweiterung oben.
 
-Aktuell muss man in Typo3 jede Sprache hardcodieren und mit der Datenbank synchron halten mit so lustigen Bedingungen in typoscript wie:
+Aktuell muss man in TYPO3 jede Sprache hardcodieren und mit der Datenbank synchron halten mit so lustigen Bedingungen in typoscript wie:
 ```
 [globalVar = GP:L=1]
 config.sys_language_uid = 1 
@@ -43,18 +43,18 @@ Viel schöner wäre es doch wenn eine extension einem dieses typoscript generier
 
 ## Gutes Logging
 
-Die Logging Situation in typo3 ist ... unvollständig. Es gibt syslog, welches scheinbar nie verwendet wird, und es gibt den LogManager. Der LogManager scheint der aktuellere Weg zu sein aber kaum jemand verwendet diesen. Auch der core selbst loggt so gut wie nichts außer fehler und diese auch nur indirekt. Die Standardkonfiguration ist ok, Warnungen werden in eine Datei geloggt und Plugin-Exceptions landen auch darin. Soweit so gut.
+Die Logging Situation in TYPO3 ist ... unvollständig. Es gibt syslog, welches scheinbar nie verwendet wird, und es gibt den LogManager. Der LogManager scheint der aktuellere Weg zu sein aber kaum jemand verwendet diesen. Auch der core selbst loggt so gut wie nichts außer fehler und diese auch nur indirekt. Die Standardkonfiguration ist ok, Warnungen werden in eine Datei geloggt und Plugin-Exceptions landen auch darin. Soweit so gut.
 
 Was fehlt sind anständige LogWriter. Es gibt keinen EmailWriter, von fortgeschrittenden Writern in zB. Slack mal zu schweigen.
 Meine Idee wäre es hier einen 'MonologAdapterWriter' zu definieren. Das würde schlagartig alle Adapter von Monolog freischalten.
 
-Dann wäre da noch das Problem das extbase nichts loggt. Ich würde mir wünschen, dass Änderungen an extbase Objekten zumindest im Logger auftauchen. Premium wäre natürlich, wenn Änderungen durch extbase im ganz normalem history modul von typo3 auftauchen würden aber ich hab da mal rein geguckt und das wird glaube ich nicht einfach.
+Dann wäre da noch das Problem das extbase nichts loggt. Ich würde mir wünschen, dass Änderungen an extbase Objekten zumindest im Logger auftauchen. Premium wäre natürlich, wenn Änderungen durch extbase im ganz normalem history modul von TYPO3 auftauchen würden aber ich hab da mal rein geguckt und das wird glaube ich nicht einfach.
 
-Und da es sich um ein logger mit Gewichtung handelt... warum nicht einfach alles mit debug loggen. Typo3 hat Hooks und Signal-Slots für so ziemlich alles. Pluginaufrufe, SQL anfragen etc.. Das könnte einem auch eine grobe Echtzeitvorstellung geben was typo3 eigentlich die ganze zeit macht, wenn man eine Seite aufruft.
+Und da es sich um ein logger mit Gewichtung handelt... warum nicht einfach alles mit debug loggen. TYPO3 hat Hooks und Signal-Slots für so ziemlich alles. Pluginaufrufe, SQL anfragen etc.. Das könnte einem auch eine grobe Echtzeitvorstellung geben was TYPO3 eigentlich die ganze zeit macht, wenn man eine Seite aufruft.
 
 ## cHash utility
 
-Der cHash Mechanismus von typo3 wirkt auf mich undurchdacht. Also Parameter werden alle fürs Caching ignoriert solang es keinen cHash gibt. Ruft man also eine News-Detail-Seite mit den nötigen Parametern auf ohne cHash funktioniert dies und die Seite wird gecached. Wenn man die Parameter nun ändert passiert nichts da typo3 die Parameter-Änderung ignoriert.
+Der cHash Mechanismus von TYPO3 wirkt auf mich undurchdacht. Also Parameter werden alle fürs Caching ignoriert solang es keinen cHash gibt. Ruft man also eine News-Detail-Seite mit den nötigen Parametern auf ohne cHash funktioniert dies und die Seite wird gecached. Wenn man die Parameter nun ändert passiert nichts da TYPO3 die Parameter-Änderung ignoriert.
 
 Ich sehe dort einige große Probleme. Wenn eine Seite kalt aufgerufen wird, sind die Parameter relevant. Das kann große Debug-Probleme hervorrufen, die sich zwar schnell durch ein Cache löschen beheben lassen aber super nervig sind da man diese meist nicht reproduzieren kann. Zum anderen kann es erhebliche Sicherheitsprobleme geben. Sollte ein Parameter aus irgend einem Grund unescaped auf der Seite ausgegeben werden kann das Ergebnis gecached werden und andere Nutzer, die die Seite später aufrufen, bekommen dann potenziell Scripte untergeschoben.
 
@@ -71,10 +71,10 @@ Meine Idee ist es einen speziellen ProcedureCommandController zu bauen welcher k
 Dies ist dann ein psr LoggerInterface. Dahinter würde ich dann einen speziellen Logger bauen der mehrere Dinge tut.
 
 - In eine Tabelle (zb. `tx_procedure_run`) einen Eintrag anlegen der nach Ausführung gruppiertbar ist damit die Ausführung des Tasks nachvollziehbar ist.
-- Die Log-Meldungen an and Typo3's Logger weitergeben
+- Die Log-Meldungen an and TYPO3's Logger weitergeben
 - Die Log-Meldungen in den Command output weiterreichen. Dies kann sehr elegant gelöst werden mit verschiedenen verbositätsleveln die dann "notice", "info" und "debug" weiterreichen wenn zutreffend.
 
-Natürlich muss das alles dann auch Fehlertolerant werden und auch typo3 typische Vorgehensweisen wie `exit()` unterstützen.
+Natürlich muss das alles dann auch Fehlertolerant werden und auch TYPO3 typische Vorgehensweisen wie `exit()` unterstützen.
 Diese Extension hängt vermutlich sehr stark mit dem logging zusammen.
 
 

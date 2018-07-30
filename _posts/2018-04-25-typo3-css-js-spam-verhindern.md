@@ -1,19 +1,20 @@
 ---
-title:       Typo3 Css/Js-Spam verhindern
-description: Typo3 kombiniert normalerweise alle css/js Dateien zu einer Datei. Dies hat jedoch einen großen Hacken. 
+title:       TYPO3 Css/Js-Spam verhindern
+description: TYPO3 kombiniert normalerweise alle css/js Dateien zu einer Datei. Dies hat jedoch einen großen Hacken. 
 categories:
-    - Typo3
+    - TYPO3
     - Software-Entwicklung
 date:        2018-04-25 16:00:00 +0100
+lastmod:     2018-07-30 15:00:00 +0200
 ---
 
 ## Das Problem
 
-Im Normalfall ist alles einfach. Man inkludiert alle Ressourcen via TypoScript in 'page.includeCss' und 'page.includeJsFooter'. Typo3 generiert jeweils eine CSS und JS Datei und alle sind glücklich.
+Im Normalfall ist alles einfach. Man inkludiert alle Ressourcen via TypoScript in 'page.includeCss' und 'page.includeJsFooter'. TYPO3 generiert jeweils eine CSS und JS Datei und alle sind glücklich.
 
 Dann gibt es aber noch Erweiterungen. Viele davon fügen gerne mal CSS und JavaScript über den 'PageRenderer' via 'addCssFile' und 'addJsFooterFile' hinzu (ganz böse Erweiterungen fügen auch mal JS im head hinzu).
 Das Problem: Der Parameter 'excludeFromConcatenation' ist Standardmäßig 'false'.
-Das heißt das auf der Seite, auf der das Plugin vorhanden ist, typo3 ein komplett neues Css/Js Bundle erstellen muss. Jedes Bundle enthält dann alle bisherigen Ressourcen die der Nutzer eigentlich bereits hat.
+Das heißt das auf der Seite, auf der das Plugin vorhanden ist, TYPO3 ein komplett neues Css/Js Bundle erstellen muss. Jedes Bundle enthält dann alle bisherigen Ressourcen die der Nutzer eigentlich bereits hat.
 
 ## Workaround
 
