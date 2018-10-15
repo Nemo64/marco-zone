@@ -6,7 +6,7 @@ categories:
     - TYPO3
     - Software-Entwicklung
 date:       2017-08-05 22:00:00 +0200
-lastmod:    2018-07-30 15:00:00 +0200
+lastmod:    2018-10-15 17:25:00 +0200
 ---
 
 Es gibt viele Gründe weshalb man einen weiteren Finisher brauchen würde. Mein Grund war eine Cleverreach integration. Leider ist die TYPO3 Api etwas unnötig kompliziert gestalltet.  Ein einfaches `ValidatorInterface` kombiniert mit einer ext_localconf.php methode `FormUtility::addValidator` war wohl zu einfach.
@@ -165,7 +165,7 @@ plugin.tx_form.settings.yamlConfigurations {
 }
 # backend configuration
 module.tx_form.settings.yamlConfigurations {
-    1499086547 = EXT:extension/Configuration/Form/BaseSetup.yml
+    1499086547 = EXT:extension/Configuration/Form/BaseSetup.yaml
     1499086867 = EXT:extension/Configuration/Form/FormEditorSetup.yaml
     1499088215 = EXT:extension/Configuration/Form/FormEngineSetup.yaml
 }
