@@ -5,7 +5,7 @@ categories:
     - TYPO3
     - Software-Entwicklung
 date:        2018-06-28 19:43:00 +0200
-lastmod:     2018-07-30 15:00:00 +0200
+lastmod:     2019-03-25 12:24:00 +0100
 ---
 
 update vom 18.7.2018: Ich hab eine winzige [canonical url extension] gebaut die nichts weiter tut als die canonical url korrekt zu generieren. 
@@ -44,8 +44,8 @@ page.headerData.20 {
     typolink.useCacheHash = 1
 }
 
-[globalVar = GP:tx_news_pi1:news > 0]
-page.headerData.20.typolink.additionalParams = &tx_news_pi1[news]={GP:tx_news_pi1:news}
+[globalVar = GP:tx_news_pi1|news > 0]
+page.headerData.20.typolink.additionalParams = &tx_news_pi1[news]={GP:tx_news_pi1|news}
 page.headerData.20.typolink.additionalParams.insertData = 1
 [end]
 ```
