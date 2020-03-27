@@ -47,12 +47,6 @@ permalink: /:title
 sass:
   style: compressed
 
-hyphenate_filter:
-  language: de
-  selector: p
-  left: 4
-  right: 3
-
 responsive_image:
   template: _includes/image.html
   default_quality: 80
@@ -78,7 +72,7 @@ defaults:
     values:
       layout:     base
       author:     marco
-      language:   de
+      language:   en
       analytics:
         vars:
           account: UA-60388424-1
