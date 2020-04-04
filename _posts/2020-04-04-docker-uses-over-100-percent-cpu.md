@@ -1,6 +1,6 @@
 ---
 title:       Docker for mac uses over 100% cpu while doing nothing
-description: I use a mac and docker is already fairly inefficient. But it seems the interface in the background might be an even worse offender. 
+description: I use a docker for mac which has some performance problems. But it seems the interface in the background might also have some flaws.
 categories:
     - Software-Development
 date:        2020-04-04 20:00:00 +0200
