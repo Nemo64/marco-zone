@@ -1,13 +1,10 @@
 ---
-language:    en
 title:       Docker for mac uses over 100% cpu while doing nothing
 description: I use a mac and docker is already fairly inefficient. But it seems the interface in the background might be an even worse offender. 
 categories:
-    - TYPO3
-    - Software-Entwicklung
-language:    en
-date:        2020-03-17 9:00:00 +0200
-lastmod:     2020-03-17 9:00:00 +0200
+    - Software-Development
+date:        2020-04-04 20:00:00 +0200
+lastmod:     2020-04-04 20:00:00 +0200
 ---
 
 Today I started my mac back up after it crashed because of catalina awesome stability when it comes to external
