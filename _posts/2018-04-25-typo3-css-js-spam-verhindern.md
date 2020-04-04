@@ -1,9 +1,10 @@
 ---
+language:    de
 title:       TYPO3 Css/Js-Spam verhindern
 description: TYPO3 kombiniert normalerweise alle css/js Dateien zu einer Datei. Dies hat jedoch einen großen Hacken. 
 categories:
     - TYPO3
-    - Software-Entwicklung
+    - Software-Development
 date:        2018-04-25 16:00:00 +0100
 lastmod:     2018-07-30 15:00:00 +0200
 ---

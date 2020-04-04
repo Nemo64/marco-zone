@@ -1,11 +1,12 @@
 ---
-title:          HTML Bilder in Responsive Websites
-description:    Einige Ansätze Bilder in Webseiten zu verwalten, die sich an die Bildschirmgröße anpassen müssen.
-image:          banner.jpeg
-date:           2015-12-02 20:00:00 +0100
-lastmod:        2015-12-02 20:00:00 +0100
+language:    de
+title:       HTML Bilder in Responsive Websites
+description: Einige Ansätze Bilder in Webseiten zu verwalten, die sich an die Bildschirmgröße anpassen müssen.
+image:       banner.jpeg
+date:        2015-12-02 20:00:00 +0100
+lastmod:     2015-12-02 20:00:00 +0100
 categories:
-    - Software-Entwicklung
+    - Software-Development
     - HTML
 ---
 

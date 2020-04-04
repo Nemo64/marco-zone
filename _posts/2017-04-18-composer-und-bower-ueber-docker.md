@@ -1,9 +1,10 @@
 ---
+language:   de
 title:      Composer und Bower über Docker ausführen
 description: >
     Composer und Bower via Docker so einrichten als wären sie nativ auf dem Mac installiert.
 categories:
-    - Software-Entwicklung
+    - Software-Development
     - PHP
     - JavaScript
 date:       2017-04-18 9:00:00 +0200

@@ -85,9 +85,9 @@ styles: >
         </h1>
 
         <p class="post__subheadline">
-            veröffentlicht
+            published
             <amp-timeago datetime="{{ page.date | date_to_xmlschema }}" property="datePublished" cutoff="15768000" width="15em" height="1.5em">
-                am {{ page.date | date_to_long_string }}
+                {{ page.date | date_to_long_string }}
             </amp-timeago>
             {% capture modify_html %}
 
@@ -132,7 +132,7 @@ styles: >
 
         <figure class="post__similar">
             {% for category in page.categories %}
-            <h2>Ähnliche {{category}} Posts</h2>
+            <h2>Similar "{{category}}" posts</h2>
             <ul>
                 {% assign categoryPages = site.categories[category]|where_exp:"item", "item.url != page.url" %}
                 {% for categoryPage in categoryPages limit: 5 %}

@@ -1,9 +1,10 @@
 ---
+language:    de
 title:       TYPO3 Canonical-Url
 description: Eine echte Canonical Url in TYPO3 die sich nicht durch AdWords Parameter und Ähnlichem austricksen lässt und keine Sicherheitslücken öffnet.
 categories:
     - TYPO3
-    - Software-Entwicklung
+    - Software-Development
 date:        2018-06-28 19:43:00 +0200
 lastmod:     2019-03-25 12:24:00 +0100
 ---

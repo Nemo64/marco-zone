@@ -1,9 +1,10 @@
 ---
+language:    de
 title:       TYPO3 Erweiterungs Wunschliste
 description: Eine Sammelstelle für TYPO3 Erweiterungen die ich unbedingt haben will und irgendwann vielleicht auch baue.
 categories:
     - TYPO3
-    - Software-Entwicklung
+    - Software-Development
 date:        2018-03-24 21:36:00 +0100
 lastmod:     2018-07-30 15:00:00 +0200
 ---

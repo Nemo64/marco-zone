@@ -1,4 +1,5 @@
 ---
+language:   de
 title:      MacBook Pro 13" (2016) Bildschirm Rant
 description: >
     Das MacBook Pro hat viele schwächen. Hier ist noch eine die mich wahnsinnig macht und scheinbar niemandem auffällt.

@@ -68,9 +68,9 @@ styles: |
                 {{ post.title | strip | escape }}
             </h2>
             <p class="post-list__subheadline">
-                veröffentlicht
+                published
                 <amp-timeago datetime="{{ post.date | date_to_xmlschema }}" cutoff="15768000" width="15em" height="1.5em">
-                    am {{ post.date | date_to_long_string }}
+                    {{ post.date | date_to_long_string }}
                 </amp-timeago>
             </p>
             <p class="post-list__bodytext">

@@ -1,4 +1,5 @@
 ---
+language:   de
 layout:     text
 title:      Datenschutzerklärung
 permalink:  /datenschutzerklaerung
