@@ -12,6 +12,5 @@ ruby RUBY_VERSION
 gem "jekyll", "~> 3.8.3"
 
 group :jekyll_plugins do
-    gem "jekyll-hyphenate_filter"
     gem "jekyll-responsive-image"
 end
