@@ -4,7 +4,7 @@ description: I use a docker for mac which has some performance problems. But it 
 categories:
     - Software-Development
 date:        2020-04-04 20:00:00 +0200
-lastmod:     2020-04-04 20:00:00 +0200
+lastmod:     2020-04-06 11:30:00 +0200
 ---
 
 Today I started my mac back up after it crashed because of catalina awesome stability when it comes to external
@@ -19,7 +19,8 @@ The thing is, I haven't done anything with docker yet... and normally it is hype
 So I ran this command
 
 ```bash
-kill -STOP 693 # pauses the process 693 which is docker in my case
+kill -STOP $(pgrep Docker) # searches and pauses the "Docker" process
+kill -CONT $(pgrep Docker) # searches and resumes the "Docker" process
 ```
 
 and what happened? The docker command still runs fine, I can start projects without any problems. So what have I stopped?
@@ -29,3 +30,8 @@ You know, that thing that you use once to increase the docker vm memory and to r
 
 So apparently you need to keep an eye out for it and when it happens,
 just pause the interface indefinitely until MacOS crashes again.
+
+
+## Edits
+
+- 2020-04-06: Use commands that you can simply copy&paste instead of having to search the process id.
