@@ -160,6 +160,11 @@ blockquote {
     color: inherit;
 }
 
+.language-yaml .na, // keys
+{
+    color: indianred;
+}
+
 .highlighter-rouge .k + .nv // don't highlight variables after a keyword
 {
     color: inherit
