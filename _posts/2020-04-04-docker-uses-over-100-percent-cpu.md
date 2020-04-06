@@ -16,7 +16,7 @@ monitors and had my fans running while i haven't started anything yet. I looked 
 
 The thing is, I haven't done anything with docker yet... and normally it is hyperkit that uses 100% cpu.
 
-So I ran this command
+So I ran the `kill -STOP` command to pause Docker:
 
 ```bash
 kill -STOP $(pgrep Docker) # searches and pauses the "Docker" process
