@@ -188,11 +188,7 @@ It'll then appear when you run `sls info -v`.
 
 Of course you'll want to configure a domain for your Distribution.
 Doing that correctly is actually worth a guide within itself (especially with correctly proxying it to the lambda)
-but the short version is:
-
-- use this guide in [creating a domain for HTTP lambdas] but don't add it to the api gateway.
-  (and yes, do it manually to because you'll need to create it in the us-east-1 region and because it needs verification)
-- Lookup the [Aliases] and [ViewerCertificate] key for the distribution and configure the values there.
+But the [Bref documentation on a CDN domain] is a good starting point. 
 
 ## Other resources
 
@@ -206,5 +202,6 @@ but the short version is:
 [creating a domain for HTTP lambdas]: https://bref.sh/docs/environment/custom-domains.html#custom-domains-for-http-lambdas
 [Aliases]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-aliases
 [ViewerCertificate]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-viewercertificate
+[Bref documentation on a CDN domain]: https://bref.sh/docs/websites.html#setting-up-a-domain-name
 [bref documentation]: https://bref.sh/docs/websites.html
 [StaticS3CloudFront]: https://github.com/awslabs/aws-cloudformation-templates/blob/5c66bbfaec08313fcfee48b49ce6ba0a38f6bb1a/community/solutions/StaticS3CloudFront.yml
