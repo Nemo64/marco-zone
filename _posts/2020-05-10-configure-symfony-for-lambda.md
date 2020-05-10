@@ -7,6 +7,8 @@ categories:
     - Software-Development
 date:        2020-05-10 20:00:00 +0200
 lastmod:     2020-05-10 20:00:00 +0200
+redirects:
+    - path: /prepare-symfony-for-lambda
 ---
 
 I'm going to assume a few things:
@@ -20,6 +22,7 @@ I'm going to assume a few things:
 - You are hosting or at least testing in `us-east-1`, `us-east-2`, `us-west-2` or `eu-west-1`.
   Other regions will have limitations in this guide since not all services are available everywhere.
   I'll mention if a service is strangely limited but if you stick to the regions above, you won't have any problems.
+  I personally stick to `eu-west-1`.
 
 ## Table of contents
 
