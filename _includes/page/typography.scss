@@ -38,9 +38,9 @@ h1, h2, h3, .headline {
     font-weight: 400;
     line-height: 1.1;
     color: indianred;
-    margin-top: 2rem;
-    margin-top: calc(4.1rem - 1.05em); // adjust for font size
-    margin-bottom: 0;
+    padding-top: 2rem;
+    padding-top: calc(4.1rem - 1.05em); // adjust for font size
+    margin: 0;
     // todo fix ankers
 
     // better font rendering on osx

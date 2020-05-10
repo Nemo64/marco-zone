@@ -146,7 +146,7 @@ blockquote {
 .highlighter-rouge .s1, // single quote strings
 .highlighter-rouge .s2, // double quote strings
 .highlighter-rouge .k, // keywords
-.highlighter-rouge .nv // variables
+.highlighter-rouge .nv, // variables
 {
     color: indianred;
 }
@@ -168,6 +168,16 @@ blockquote {
 .highlighter-rouge .k + .nv // don't highlight variables after a keyword
 {
     color: inherit
+}
+
+.highlighter-rouge .gd // diff removal
+{
+    background-color: transparentize(indianred, 0.8);
+}
+
+.highlighter-rouge .gi // diff addition
+{
+    background-color: transparentize(lightgreen, 0.8);
 }
 
 .page-header {

@@ -172,7 +172,7 @@ resources:
 
 Now just run `serverless deploy` and expect this to take a few minutes on the first deploy.
 
-To make it simpler to find the cloudfront domain, i recommend you define an output to show it:
+To make it simpler to find the cloudfront domain, I recommend you define an output to show it:
 
 ```yaml
 resources:
@@ -186,9 +186,9 @@ resources:
 
 It'll then appear when you run `sls info -v`.
 
-Of course you'll want to configure a domain for your Distribution.
+Of course, you'll want to configure a domain for your Distribution.
 Doing that correctly is actually worth a guide within itself (especially with correctly proxying it to the lambda)
-But the [Bref documentation on a CDN domain] is a good starting point. 
+But the [bref documentation on a CDN domain] is a good starting point. 
 
 ## Other resources
 
@@ -202,6 +202,6 @@ But the [Bref documentation on a CDN domain] is a good starting point.
 [creating a domain for HTTP lambdas]: https://bref.sh/docs/environment/custom-domains.html#custom-domains-for-http-lambdas
 [Aliases]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-aliases
 [ViewerCertificate]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-distributionconfig.html#cfn-cloudfront-distribution-distributionconfig-viewercertificate
-[Bref documentation on a CDN domain]: https://bref.sh/docs/websites.html#setting-up-a-domain-name
+[bref documentation on a CDN domain]: https://bref.sh/docs/websites.html#setting-up-a-domain-name
 [bref documentation]: https://bref.sh/docs/websites.html
 [StaticS3CloudFront]: https://github.com/awslabs/aws-cloudformation-templates/blob/5c66bbfaec08313fcfee48b49ce6ba0a38f6bb1a/community/solutions/StaticS3CloudFront.yml
