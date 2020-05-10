@@ -26,7 +26,7 @@ I'm going to assume a few things:
 
 ## Table of contents
 
-This is bigger than my usual posts so I'm going to include the headlines here:
+This is bigger than my usual posts (as if anyone is following my posts) so I'm going to include the headlines here:
 
 - [What do I want](#what-do-i-want)
 - [Creating the "lambda" environment](#creating-the-lambda-environment)
