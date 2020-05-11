@@ -6,7 +6,7 @@ categories:
     - serverless
     - Software-Development
 date:        2020-05-10 20:00:00 +0200
-lastmod:     2020-05-10 20:00:00 +0200
+lastmod:     2020-05-11 10:30:00 +0200
 redirects:
     - path: /prepare-symfony-for-lambda
 ---
@@ -29,6 +29,7 @@ I'm going to assume a few things:
 This is bigger than my usual posts (as if anyone is following my posts) so I'm going to include the headlines here:
 
 - [What do I want](#what-do-i-want)
+- [Configure serverless](#configure-serverless)
 - [Creating the "lambda" environment](#creating-the-lambda-environment)
 - [Configure caching](#configure-caching)
 - [Configure logging](#configure-logging)
@@ -50,6 +51,71 @@ This is bigger than my usual posts (as if anyone is following my posts) so I'm g
 I'm writing this guide from memory and by copy&pasting from a working project so I have probably forgotten some things.
 If I notice that I missed something I'll add it later.
 I'll also try to update it when things get easier.
+
+## Configure serverless
+
+Serverless is the deployment tool I'm going to use.
+Configuring it is fairly simple but if you have already played [bref], you should be aware of how it works.
+
+```sh
+composer require bref/bref
+```
+
+```yaml
+# serverless.yaml
+service: symfony-project
+
+plugins:
+  - ./vendor/bref/bref
+
+functions:
+  website:
+    handler: public/index.php
+    timeout: 5 # seconds
+    layers:
+      - ${bref:layer.php-74-fpm}
+    events:
+      # use the http api instead of the rest api ~ this shouldn't make a difference for you as you probably aren't using advanced features
+      # the http api is a lot cheaper than the rest api though and is supposed to be faster
+      - httpApi: '*'
+  console:
+    handler: bin/console.php
+    timeout: 120 # seconds
+    layers:
+      - ${bref:layer.php-74}
+      - ${bref:layer.console} # The "console" layer
+
+package:
+  excludeDevDependencies: false # only excludes node dev dependencies
+  exclude:
+    - 'node_modules/**'
+    - 'tests/**'
+    - '.env*.local*'
+    # further excludes in the separate sections
+
+provider:
+  name: aws
+  runtime: provided
+  region: eu-west-1
+  environment:
+    APP_ENV: prod
+    APP_SECRET: !Join ['', [{% raw %}'{{resolve:secretsmanager:', !Ref AppSecret, ':SecretString:secret}}'{% endraw %}]]
+
+resources:
+  Resources:
+    # The symfony secret used eg. for csrf protection
+    AppSecret:
+      Type: AWS::SecretsManager::Secret # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html
+      Properties:
+        Name: '/${self:service}/${opt:stage, self:provider.stage}/app_secret'
+        GenerateSecretString:
+          SecretStringTemplate: '{}'
+          GenerateStringKey: "secret"
+          PasswordLength: 32
+```
+
+This should already somewhat work if you warm the cache but depending on what you log or write in the cache,
+it can also silently fail. If that is the case: don't worry, the next 3 sections will probably solve that issue.
 
 ## Creating the "lambda" environment
 
@@ -559,8 +625,8 @@ resources:
           EngineMode: serverless
           EnableHttpEndpoint: true # this is the important part
           DatabaseName: '${opt:stage, self:provider.stage}'
-          MasterUsername: !Join ['', ['{{resolve:secretsmanager:', !Ref DatabaseSecret, ':SecretString:username}}']]
-          MasterUserPassword: !Join ['', ['{{resolve:secretsmanager:', !Ref DatabaseSecret, ':SecretString:password}}']]
+          MasterUsername: !Join ['', ['{% raw %}{{resolve:secretsmanager:', !Ref DatabaseSecret, ':SecretString:username}}{% endraw %}']]
+          MasterUserPassword: !Join ['', ['{% raw %}{{resolve:secretsmanager:', !Ref DatabaseSecret, ':SecretString:password}}{% endraw %}']]
           # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbcluster-scalingconfiguration.html
           ScalingConfiguration: {MinCapacity: 1, MaxCapactiy: 2, AutoPause: true}
       DatabaseSecret:
@@ -584,9 +650,11 @@ You can now run the usual commands to create the schema but you'll have to do th
 
 ```sh
 sls invoke -f console -d '{"cli": "doctrine:migrations:migrate --no-interaction"}'
+# or
+php vendor/bin/bref cli symfony-project-dev-console --region=eu-west-1 -- doctrine:migrations:migrate --no-interaction
 ```
 
-You can also use the [bref cli command] which has a much nicer output but you'll need to pass the region and the full lambda name.
+You can use the [bref cli command] which has a much nicer output but you'll need to pass the region and the full lambda name.
 
 ## Final words
 
