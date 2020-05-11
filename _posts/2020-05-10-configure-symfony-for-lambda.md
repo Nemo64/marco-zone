@@ -15,11 +15,10 @@ I'm going to assume a few things:
 
 - You have already played around with [bref].
   If not, go to the excellent [bref documentation] and start with a simple php example.
-  There is also a part on hosting symfony. I'm going to build on that.
 - You use the full symfony/skeleton. The minimal version is similar but not everything here is needed.
 - You use Symfony 4.4 or 5.0. Future version may differ.
-- You are using `serverless`. This is the obvious choice if you followed the [bref documentation].
-- You are hosting or at least testing in `us-east-1`, `us-east-2`, `us-west-2` or `eu-west-1`.
+- You know and are using `serverless`. This is the obvious choice if you followed the [bref documentation].
+- You are hosting or at least testing the AWS region `us-east-1`, `us-east-2`, `us-west-2` or `eu-west-1`.
   Other regions will have limitations in this guide since not all services are available everywhere.
   I'll mention if a service is strangely limited but if you stick to the regions above, you won't have any problems.
   I personally stick to `eu-west-1`.
