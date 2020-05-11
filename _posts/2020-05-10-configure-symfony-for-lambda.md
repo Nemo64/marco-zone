@@ -644,7 +644,7 @@ resources:
           TargetType: AWS::RDS::DBCluster
 ```
 
-And now you have application has a database.
+And now your application has a database.
 You can now run the usual commands to create the schema but you'll have to do that within your lambda so:
 
 ```sh
