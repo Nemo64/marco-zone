@@ -1,12 +1,14 @@
 ---
-title:       Configure symfony for lambda
-description: Here are some configurations you need to set or be aware of when using symfony in AWS lambda using bref. 
+title:       Configure symfony for a lambda environment in bref
+description: |-
+    A guide on how to configure everything in the full multipage symfony skeleton to run on aws lambda,
+    with code snippets, to get you started.
 categories:
     - AWS
     - serverless
     - Software-Development
 date:        2020-05-10 20:00:00 +0200
-lastmod:     2020-05-11 10:30:00 +0200
+lastmod:     2020-05-13 11:00:00 +0200
 redirects:
     - path: /prepare-symfony-for-lambda
 ---
@@ -47,7 +49,7 @@ This is bigger than my usual posts (as if anyone is following my posts) so I'm g
   
 ### Disclaimer
 
-I'm writing this guide from memory and by copy&pasting from a working project so I have probably forgotten some things.
+I'm writing this guide from memory and by copy&pasting from a working project, so I have probably forgotten some things.
 If I notice that I missed something I'll add it later.
 I'll also try to update it when things get easier.
 
