@@ -8,7 +8,7 @@ categories:
     - serverless
     - Software-Development
 date:        2020-05-10 20:00:00 +0200
-lastmod:     2020-05-13 11:00:00 +0200
+lastmod:     2020-05-14 12:00:00 +0200
 redirects:
     - path: /prepare-symfony-for-lambda
 ---
@@ -80,7 +80,7 @@ functions:
       # the http api is a lot cheaper than the rest api though and is supposed to be faster
       - httpApi: '*'
   console:
-    handler: bin/console.php
+    handler: bin/console
     timeout: 120 # seconds
     layers:
       - ${bref:layer.php-74}
