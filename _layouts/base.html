@@ -1,6 +1,5 @@
 ---
-amp_tags:
-    amp-analytics: https://cdn.ampproject.org/v0/amp-analytics-0.1.js
+amp_tags: []
 ---
 <!DOCTYPE html>
 <html ⚡ lang="{{ page.language }}" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
@@ -79,8 +78,6 @@ amp_tags:
 {{ content | hyphenate | replace: '&amp;', '&' | replace: '-­', '-' }}
 
 {% include page/footer.html %}
-
-<amp-analytics type="googleanalytics"><script type="application/json">{{ page.analytics | jsonify }}</script></amp-analytics>
 
 </body>
 </html>

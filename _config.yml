@@ -73,15 +73,6 @@ defaults:
       layout:     base
       author:     marco
       language:   en
-      analytics:
-        vars:
-          account: UA-60388424-1
-          # as far as i can tell, google analytics is automatically anonymized in amp
-          # https://support.google.com/analytics/answer/6343176?hl=en&vid=0-679344420636-1488275777141
-        triggers:
-          pageview: {"on": visible, request: pageview, vars: {documentLocation: "${canonicalUrl}"}}
-          headerLinkClick: {"on": click, request: event, selector: "#page-header a[href]", vars: {eventCategory: header, eventAction: click-link}}
-          footerLinkClick: {"on": click, request: event, selector: "#page-footer a[href]", vars: {eventCategory: footer, eventAction: click-link}}
   -
     scope:
       path: "meta"
@@ -94,9 +85,3 @@ defaults:
     values:
       layout: post
       og: {"type": "article"}
-      analytics:
-        triggers:
-          articleLinkClick: {"on": click, request: event, selector: "[property=articleBody] a[href]", vars: {eventCategory: article, eventAction: click-link}}
-          scroll25: {"on": scroll, request: event, scrollSpec: {verticalBoundaries: [25]}, vars: {eventCategory: article, eventAction: scroll, eventValue: 25}}
-          scroll50: {"on": scroll, request: event, scrollSpec: {verticalBoundaries: [50]}, vars: {eventCategory: article, eventAction: scroll, eventValue: 50}}
-          scroll75: {"on": scroll, request: event, scrollSpec: {verticalBoundaries: [75]}, vars: {eventCategory: article, eventAction: scroll, eventValue: 75}}
