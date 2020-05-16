@@ -29,11 +29,6 @@ website_schema:
   url: https://www.marco.zone/
   sameAs: https://twitter.com/TheTrueNemo
 
-authors:
-  marco:
-    name: Marco Pfeiffer
-    twitter: "@TheTrueMemo"
-
 # Build settings
 timezone: Europe/Berlin
 markdown: kramdown

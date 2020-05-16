@@ -65,10 +65,6 @@ styles: >
         padding: 0;
     }
 
-    .author__twitter {
-        display: block;
-    }
-
     @media print {
         .post__comments {
             display: none;
@@ -148,6 +144,7 @@ styles: >
             {% endfor %}
         </figure>
 
+        {% assign author = site.data.authors[page.author] %}
         <figure class="post__author" id="author">
             <h2>Author:</h2>
             <div class="author" property="author" typeof="Person">
@@ -156,10 +153,10 @@ styles: >
                         {% responsive_image path: "assets/person/marco-desaturate.jpg" property: "image" sizes="10rem" %}
                     </div>
                     <div class="author__body">
-                        <h3 class="author__name" property="name">Marco Pfeiffer</h3>
-                        <div><a class="author__twitter" target="_blank" rel="noopener" href="https://twitter.com/TheTrueNemo">@TheTrueNemo</a></div>
-                        <div><a class="author__github" target="_blank" rel="noopener" href="https://github.com/Nemo64">github.com/Nemo64</a></div>
-                        <div>currently working for <a class="author__employer" target="_blank" rel="noopener" href="https://www.hauptsache.net/">hauptsache.net</a></div>
+                        <h3 class="author__name" property="name">{{ author.name }}</h3>
+                        {% if author.twitter %}<div><a href="https://twitter.com/{{ author.twitter }}">@{{ author.twitter }}</a></div>{% endif %}
+                        {% if author.github %}<div><a href="https://github.com/{{ author.github }}">github.com/{{ author.github }}</a></div>{% endif %}
+                        {% if author.employer %}<div>working for <a href="{{ author.employer.link }}">{{ author.employer.name }}</a></div>{% endif %}
                     </div>
                 </div>
             </div>
