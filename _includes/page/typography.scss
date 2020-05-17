@@ -48,6 +48,10 @@ h1, h2, h3, .headline {
     -webkit-font-smoothing: antialiased;
 }
 
+.counter-headline {
+    padding-bottom: 2rem;
+}
+
 h1 + h2, h2 + h3 {
     margin-top: 1rem;
 }
@@ -102,7 +106,7 @@ article, aside, footer, header, nav, section, main {
 
 pre {
     margin: 0;
-    white-space: pre-wrap;
+    //white-space: pre-wrap;
     //word-break: break-all;
 }
 

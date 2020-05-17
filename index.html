@@ -9,6 +9,7 @@ changefreq: daily
 amp_tags:
     amp-timeago: https://cdn.ampproject.org/v0/amp-timeago-0.1.js
 styles: |
+    $image-blend-width: 3rem;
 
     amp-timeago {
         text-align: left;
@@ -23,6 +24,23 @@ styles: |
         padding-top: 1rem;
         padding-bottom: 1rem;
         max-width: $full-content-size;
+        position: relative;
+    }
+
+    .post-list__image {
+        position: absolute;
+        left: 0;
+        top: -$image-blend-width;
+        bottom: -$image-blend-width;
+        opacity: 0.1;
+        pointer-events: none;
+        object-fit: cover;
+        -webkit-mask: linear-gradient(to bottom, transparent, black $image-blend-width * 1.5, black calc(100% - #{$image-blend-width * 1.5}), transparent);
+        mask: linear-gradient(to bottom, transparent, black $image-blend-width * 1.5, black calc(100% - #{$image-blend-width * 1.5}), transparent);
+
+        img {
+            object-fit: cover;
+        }
     }
 
     a.post-list__link {
@@ -63,6 +81,15 @@ styles: |
 
     {% for post in site.posts %}
     <article class="post-list__item">
+        {% if post.image %}
+            {% responsive_image_block %}
+                path: "{{ post.image }}"
+                property: "image"
+                class: "post-list__image"
+                layout: "fill"
+                sizes: "(min-width: 35.75rem)35.75rem, 100vw"
+            {% endresponsive_image_block %}
+        {% endif %}
         <a class="post-list__link page-content" href="{{ post.url | prepend: site.baseurl }}">
             <h2 class="post-list__headline">
                 {{ post.title | strip | escape }}

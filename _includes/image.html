@@ -3,6 +3,8 @@
 {% assign content_width = 540 %}
 {% assign rem_width = width | default: original.width | divided_by: 16.0 %}
 {% assign rem_content_width = content_width | divided_by: 16.0 %}
+{% assign alt = alt | default: site.data.images[original.path].alt | default: '' %}
+{% assign attribution = attribution | default: site.data.images[original.path].attribution | default: '' %}
 
 {% assign best_image = original %}
 {% if best_image.width > content_width %}
@@ -31,15 +33,19 @@
 <amp-img srcset="{{ srcset }}"
          width="{{ original.width }}"
          height="{{ original.height }}"
-         {% if alt %}alt="{{ alt }}"{% endif %}
-         layout="responsive"
-         sizes="{{ sizes }}">
+         {% if alt != '' %}alt="{{ alt | escape }}"{% endif %}
+         {% if attribution != '' %}title="source: {{ attribution | escape }}"{% endif %}
+         {% if class != '' %}class="{{ class | escape }}"{% endif %}
+         layout="{{ layout | default: 'responsive' }}"
+         sizes="{{ sizes | escape }}">
 </amp-img>
 
 <noscript>
     <img src="{{ best_image.path | prepend: site.baseurl | prepend: '/' }}"
          alt="{{ alt }}"
-         {% if property %}property="{{ property }}"{% endif %}>
+         {% if attribution != '' %}title="source: {{ attribution | escape }}"{% endif %}
+         {% if property != '' %}property="{{ property | escape }}"{% endif %}
+         {% if class != '' %}class="{{ class | escape }}"{% endif %}>
 </noscript>
 
 {% endcapture %}{{ image | strip_newlines | replace: '    ', '' }}

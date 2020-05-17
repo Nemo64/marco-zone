@@ -9,6 +9,7 @@ categories:
     - Software-Development
 date:        2020-05-10 20:00:00 +0200
 lastmod:     2020-05-14 12:00:00 +0200
+image:       assets/aws-lambda.png
 redirects:
     - path: /prepare-symfony-for-lambda
 ---

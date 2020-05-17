@@ -12,9 +12,44 @@ styles: >
         vertical-align: top;
     }
 
+    .post__image {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        z-index: -1;
+        opacity: 0.1;
+        -webkit-mask: linear-gradient(to bottom, black 75vw, transparent);
+        mask: linear-gradient(to bottom, black 75vw, transparent);
+    }
+
+    @media (min-width: $full-content-size) {
+        .post__head {
+            display: flex;
+            align-items: center;
+        }
+
+        .post__image {
+            position: relative;
+            width: 10rem;
+            opacity: 1;
+            flex-shrink: 0;
+            margin: 0 0 0 1rem;
+            order: 1;
+        }
+
+        .post__image-text {
+            flex-grow: 1;
+        }
+    }
+
     .post__subheadline {
         color: indianred;
         margin-top: .1em;
+    }
+
+    .post_lead {
+        clear: both;
     }
 
     .post__content > amp-img,
@@ -75,44 +110,57 @@ styles: >
 <main class="post" vocab="http://schema.org/" typeof="BlogPosting" resource="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
     <meta property="mainEntityOfPage" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
 
-    <header class="page-content">
-        <h1 class="post__headline" property="headline">
-            {{ page.title | strip | escape }}
-        </h1>
-
-        <p class="post__subheadline">
-            published
-            <amp-timeago datetime="{{ page.date | date_to_xmlschema }}" property="datePublished" cutoff="15768000" width="15em" height="1.5em">
-                {{ page.date | date_to_long_string }}
-            </amp-timeago>
-            {% capture modify_html %}
-
-            {% assign modify_day = page.lastmod | default: page.date | date: "%s" | divided_by: 86400 %}
-            {% assign create_day = page.date | date: "%s" | divided_by: 86400 %}
-            {% assign first_day_to_show_modified = create_day | plus: 30 %}
-            {% if first_day_to_show_modified < modify_day %}
-
-            <br>
-            zuletzt bearbeitet
-            <amp-timeago datetime="{{ page.lastmod | date_to_xmlschema }}" property="dateModified" cutoff="15768000" width="15em" height="1.5em">
-                am {{ page.lastmod | date_to_long_string }}
-            </amp-timeago>
-
-            {% else %}
-
-            <meta property="dateModified" content="{{ page.lastmod | default: page.date | date_to_xmlschema }}">
-
+    <div class="page-content">
+        <header class="fake-paragraph post__head">
+            {% if page.image %}
+                {% responsive_image_block %}
+                    path: "{{ page.image }}"
+                    layout: "fill"
+                    sizes: "(min-width: 35.75rem) 10rem, 100vw"
+                    property: "image"
+                    class: "post__image"
+                {% endresponsive_image_block %}
             {% endif %}
+            <div class="post__image-text">
+                <h1 class="post__headline" property="headline">
+                    {{ page.title | strip | escape }}
+                </h1>
 
-            {% endcapture %}{{ modify_html | strip }}
-        </p>
+                <p class="post__subheadline counter-headline">
+                    published
+                    <amp-timeago datetime="{{ page.date | date_to_xmlschema }}" property="datePublished" cutoff="15768000" width="15em" height="1.5em">
+                        {{ page.date | date_to_long_string }}
+                    </amp-timeago>
+                    {% capture modify_html %}
+
+                    {% assign modify_day = page.lastmod | default: page.date | date: "%s" | divided_by: 86400 %}
+                    {% assign create_day = page.date | date: "%s" | divided_by: 86400 %}
+                    {% assign first_day_to_show_modified = create_day | plus: 30 %}
+                    {% if first_day_to_show_modified < modify_day %}
+
+                    <br>
+                    zuletzt bearbeitet
+                    <amp-timeago datetime="{{ page.lastmod | date_to_xmlschema }}" property="dateModified" cutoff="15768000" width="15em" height="1.5em">
+                        am {{ page.lastmod | date_to_long_string }}
+                    </amp-timeago>
+
+                    {% else %}
+
+                    <meta property="dateModified" content="{{ page.lastmod | default: page.date | date_to_xmlschema }}">
+
+                    {% endif %}
+
+                    {% endcapture %}{{ modify_html | strip }}
+                </p>
+            </div>
+        </header>
 
         <p class="post__lead lead" property="description">
             {{ page.description | strip | escape }}
         </p>
-    </header>
+    </div>
 
-    <div class="post__content page-content" property="articleBody">
+    <div class="page-content post__content" property="articleBody">
         {{ content }}
     </div>
 

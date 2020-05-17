@@ -5,13 +5,14 @@ categories:
     - Software-Development
 date:        2020-04-04 20:00:00 +0200
 lastmod:     2020-04-06 11:30:00 +0200
+image:       assets/docker-moby-logo.png
 ---
 
 Today I started my mac back up after it crashed because of catalina awesome stability when it comes to external
 monitors and had my fans running while i haven't started anything yet. I looked into the my processes and…
 
 <figure>
-    {% responsive_image path: 'assets/docker-high-cpu.png' alt: 'Docker uses 130% CPU' %}
+    {% responsive_image path: 'assets/docker-high-cpu.png' %}
 </figure>
 
 The thing is, I haven't done anything with docker yet... and normally it is hyperkit that uses 100% cpu.

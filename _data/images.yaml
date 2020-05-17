@@ -1,0 +1,14 @@
+assets/aws-cloudfront.png:
+  attribution: https://aws.amazon.com/de/architecture/icons/
+  alt: AWS CloudFront logo
+
+assets/aws-lambda.png:
+  attribution: https://aws.amazon.com/de/architecture/icons/
+  alt: AWS Lambda logo
+
+assets/docker-high-cpu.png:
+  alt: Image of MacOS activity monitor showing Docker using 132.4% CPU
+
+assets/docker-moby-logo.png:
+  attribution: https://www.docker.com/company/newsroom/media-resources
+  alt: Docker Moby logo

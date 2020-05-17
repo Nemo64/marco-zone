@@ -50,7 +50,7 @@ figure {
     }
 
     .page-content {
-        > p,
+        > p, > .fake-paragraph,
         > ul, > ol,
         > h1, > h2, > h3,
         > amp-img, > noscript > img {

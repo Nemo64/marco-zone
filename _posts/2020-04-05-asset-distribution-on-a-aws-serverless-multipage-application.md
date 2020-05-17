@@ -6,6 +6,7 @@ categories:
     - serverless
 date:        2020-04-05 21:00:00 +0200
 lastmod:     2020-04-05 21:00:00 +0200
+image:       assets/aws-cloudfront.png
 ---
 
 ## Basic setup
