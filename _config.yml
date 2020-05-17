@@ -46,7 +46,8 @@ responsive_image:
   template: _includes/image.html
   default_quality: 80
   sizes:
-    - width: 320 # 10rem * 16px icon version (2x but it isn't worth making a 1x variant)
+    - width: 160 # 10rem * 16px icon version
+    - width: 320 # 10rem * 16px * 2x icon version
     - width: 540 # 1x in content
     - width: 1080 # 2x in content
       quality: 70
