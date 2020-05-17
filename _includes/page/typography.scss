@@ -14,6 +14,13 @@ body {
     -webkit-text-size-adjust: 100%;
 }
 
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #33302e;
+        color: white;
+    }
+}
+
 strong, b {
     // since i use bold so rarely I decided that loading an extra font weight would be a waste.
     // In this case, I prefer platform consistency over style which is why I prefer Arial here.
