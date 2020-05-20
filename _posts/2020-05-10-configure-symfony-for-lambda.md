@@ -8,7 +8,7 @@ categories:
     - serverless
     - Software-Development
 date:        2020-05-10 20:00:00 +0200
-lastmod:     2020-05-14 12:00:00 +0200
+lastmod:     2020-05-20 11:25:00 +0200
 image:       assets/aws-lambda.png
 redirects:
     - path: /prepare-symfony-for-lambda
@@ -251,11 +251,19 @@ You can even use `serverless logs -f [function name]` to access them quickly.
 
 ## Configure assets (and distribution)
 
-Newer symfony version come with [Encore] which is basically [Webpack] and that is awesome because we need it.
+You don't want to deliver assets though php so you'll need somewhere to store them.
+S3 is the place to do that within the AWS ecosystem but you'll need to split your code from your assets during deployment.
 
-Your static files will all be build into `public/build/**` So we need to upload them into an s3 bucket.
-You can follow my guide on how to setup a [asset distribution on a serverless multipage application]
-but I have a few additions for symfony.
+I already wrote something on that topic: [asset distribution on a serverless multipage application] so go though that.
+
+### Configure a custom domain
+
+This isn't optional and I'll tell you why.
+
+Symfony, as many other frameworks, uses the `Host` header for some url generation.
+The problem is that CloudFront has to request your lambda using `Host: https://abc123abc1.execute-api.eu-west-1.amazonaws.com`
+or else the ApiGateway won't know which configuration to use.
+There is a `X-Forwarded-Host` header for that reason but CloudFront does not support it natively so we'll have to do some trickery.
 
 You should use a custom domain so you can work around the limitation that Cloudfront can't pass the HOST header as `X-Forwarded-Host`.
 I show you how I configured it but please go though [asset distribution on a serverless multipage application] first.
@@ -273,11 +281,10 @@ custom:
       default:
         name: '${opt:stage, self:provider.stage}.example.com'
         certificate: 'arn:aws:acm:us-east-1:012345678901:certificate/61d153aa-92d7-11ea-bb37-0242ac130002'
-        cdnPriceClass: PriceClass_100
+        cdnPriceClass: 
       production:
         name: 'example.com'
         certificate: 'arn:aws:acm:us-east-1:012345678901:certificate/61d153aa-92d7-11ea-bb37-0242ac130002'
-        cdnPriceClass: PriceClass_100
 
 package:
   exclude:
@@ -287,9 +294,6 @@ package:
     - '!public/build/manifest.json'
     - '!public/index.php'
     # [...]
-  # this exclude is useless as it is just for node modules which are excluded entirely
-  # https://serverless.com/framework/docs/providers/aws/guide/packaging#development-dependencies
-  excludeDevDependencies: false
 
 provider:
   # [...]
@@ -305,13 +309,13 @@ resources:
   Resources:
     DistributionConfig: # https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_DistributionConfig.html
       Enabled: true
-      PriceClass: ${self:custom.environment.domain.current.cdnPriceClass}
-      HttpVersion: http2
-      Aliases:
-        - '${self:custom.environment.domain.current.name}'
+      PriceClass: PriceClass_100 # cheapest option which only proxies in North America and Europe
+      HttpVersion: http2 # the docs say this is the default but it isn't for some reason
+  
+      # Specify which hostnames the cdn will forward to your configuration.
+      Aliases: ['${self:custom.environment.domain.current.name}']
       ViewerCertificate:
         AcmCertificateArn: ${self:custom.environment.domain.current.certificate}
-        # https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesClientsSupported
         SslSupportMethod: sni-only
         MinimumProtocolVersion: TLSv1.2_2018
 
@@ -320,8 +324,7 @@ resources:
       Origins: # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-distribution-origin.html
         - Id: Website
           DomainName: !Join ['.', [!Ref HttpApi, 'execute-api', !Ref AWS::Region, 'amazonaws.com']]
-          CustomOriginConfig:
-            OriginProtocolPolicy: https-only
+          CustomOriginConfig: {OriginProtocolPolicy: https-only}
           OriginCustomHeaders:
             # CloudFront does not set X-Forwarded headers except for X-Forwarded-For
             - {HeaderName: X-Forwarded-Host, HeaderValue: '${self:custom.environment.domain.current.name}'}
@@ -331,7 +334,7 @@ resources:
       # [...] keep the rest of the original article 
 ```
 
-You need to configure your application to accept the `X-Forwared-Host` header.
+You now need to configure your application to accept the `X-Forwared-Host` header.
 
 ```diff
 // public/index.php
@@ -339,14 +342,17 @@ You need to configure your application to accept the `X-Forwared-Host` header.
 + Request::setTrustedProxies(explode(',', $trustedProxies), Request::HEADER_X_FORWARDED_ALL);
 ```
 
-And you are done.
-
 You can now deploy your code as well as your assets:
 
 ```sh
 sls deploy # deploy your code and infrastructure
 sls s3deploy # deploy your assets (you can do that before the code update after the first deploy)
 ```
+
+Just 1 last step. If you now search for your CloudFront distribution in the AWS console,
+you'll get a `abc123abc123.cloudfront.com` domain. You need to configure your domain to point to that as a CNAME. 
+
+And you are done!
 
 You should also take a look at the [bref documentation on website hosting] since it has pictures
 and explains other ways that you may be interested in.
@@ -677,8 +683,6 @@ and also [Tobias](https://tnyholm.se/) because he somehow gets involved in nearl
 [experimented with deploying a warmed pools folder]: https://github.com/brefphp/symfony-bridge/issues/21#issuecomment-612942058
 [a lot of cache deploying solutions]: https://github.com/brefphp/symfony-bridge/issues/31#issuecomment-615917906
 [an issue open in the symfony project]: https://github.com/symfony/symfony/issues/23354
-[Encore]: https://symfony.com/doc/current/frontend/encore/installation.html
-[Webpack]: https://webpack.js.org/
 [asset distribution on a serverless multipage application]: /asset-distribution-on-a-aws-serverless-multipage-application
 [bref documentation on website hosting]: https://bref.sh/docs/websites.html
 [DynamoDB]: https://aws.amazon.com/dynamodb/
