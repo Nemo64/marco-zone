@@ -7,12 +7,15 @@ amp_tags: []
     <meta charset="utf-8">
 
     <!-- external resources -->
-    <!-- it is important that the amp script is the second child according to the amp docs. -->
+    <link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     {% for script in layout.amp_tags %}
     <script async custom-element="{{ script[0] | escape }}" src="{{ script[1] | escape }}"></script>{% endfor %}
     {% for script in page.amp_tags %}{% unless layout.amp_tags contains script[0] %}
     <script async custom-element="{{ script[0] | escape }}" src="{{ script[1] | escape }}"></script>{% endunless %}{% endfor %}
+
+    <!-- fonts -->
+    <link rel="preconnect dns-prefetch" href="https://fonts.gstatic.com/" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:600|Roboto:300">
 
     <title>{{ page.title | escape }}</title>
@@ -49,7 +52,7 @@ amp_tags: []
     <meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url | escape }}">
     <meta property="og:locale" content="{{ page.language | escape }}">
     <meta property="og:site_name" content="{{ site.title | escape }}">
-    {% if page.image != '' %}
+    {% if page.image %}
     <meta property="og:image" content="{{ page.image | prepend: '/' | prepend: site.baseurl | prepend: site.url | escape }}">
     {% endif %}
     {% if page.og.type == 'article' %}
@@ -58,13 +61,13 @@ amp_tags: []
     {% for category in page.categories %}
     <meta property="article:tag" content="{{ category | escape }}">{% endfor %}
     {% endif %}
+
     <!-- twitter card -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@TheTrueNemo" />
     <meta name="twitter:creator" content="@{{ site.data.authors[page.author].twitter | escape }}" />
 
     <!-- styles -->
-    {% include page/amp-boilerplate.html %}
     {% capture styles %}
         {% include page/typography.scss %}
         {% include page/layout.scss %}
@@ -72,6 +75,7 @@ amp_tags: []
         {{ page.styles }}
     {% endcapture %}
     <style amp-custom>{{ styles | scssify | strip_newlines }}</style>
+    {% include page/amp-boilerplate.html %}
 
 </head>
 <body>
