@@ -13,10 +13,10 @@
 
 {% capture srcset %}
     {% for i in resized %}
-        {{ i.path | prepend: site.baseurl | prepend: '/' }} {{ i.width }}w,
+        {{ i.path | prepend: '/' | prepend: site.baseurl }} {{ i.width }}w,
     {% endfor %}
     {% if original.width <= content_width %}
-        {{ original.path | prepend: site.baseurl | prepend: '/' }} {{ original.width }}w
+        {{ original.path | prepend: '/' | prepend: site.baseurl }} {{ original.width }}w
     {% endif %}
 {% endcapture %}
 
@@ -35,17 +35,17 @@
          height="{{ original.height }}"
          {% if alt != '' %}alt="{{ alt | escape }}"{% endif %}
          {% if attribution != '' %}title="source: {{ attribution | escape }}"{% endif %}
-         {% if class != '' %}class="{{ class | escape }}"{% endif %}
+         {% if class %}class="{{ class | escape }}"{% endif %}
          layout="{{ layout | default: 'responsive' }}"
          sizes="{{ sizes | escape }}">
 </amp-img>
 
 <noscript>
-    <img src="{{ best_image.path | prepend: site.baseurl | prepend: '/' }}"
+    <img src="{{ best_image.path | prepend: '/' | prepend: site.baseurl }}"
          alt="{{ alt }}"
          {% if attribution != '' %}title="source: {{ attribution | escape }}"{% endif %}
          {% if property != '' %}property="{{ property | escape }}"{% endif %}
-         {% if class != '' %}class="{{ class | escape }}"{% endif %}>
+         {% if class %}class="{{ class | escape }}"{% endif %}>
 </noscript>
 
 {% endcapture %}{{ image | strip_newlines | replace: '    ', '' }}
