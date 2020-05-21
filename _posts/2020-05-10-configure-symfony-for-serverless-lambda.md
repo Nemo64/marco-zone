@@ -8,10 +8,11 @@ categories:
     - serverless
     - Software-Development
 date:        2020-05-10 20:00:00 +0200
-lastmod:     2020-05-20 11:25:00 +0200
+lastmod:     2020-05-21 21:24:00 +0200
 image:       assets/aws-lambda.png
 redirects:
     - path: /prepare-symfony-for-lambda
+    - path: /configure-symfony-for-lambda
 ---
 
 I'm going to assume a few things:
