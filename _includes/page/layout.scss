@@ -55,6 +55,14 @@ figure {
         &::-webkit-scrollbar-thumb {
             background-color: whitesmoke;
         }
+
+        @media (prefers-color-scheme: dark) {
+            border-color: #333333;
+
+            &::-webkit-scrollbar-thumb {
+                background-color: #333333;
+            }
+        }
     }
 
     .page-content {
