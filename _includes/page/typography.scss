@@ -100,6 +100,57 @@ a:hover {
     color: black;
 }
 
+@media screen {
+    .permalink {
+        $space: 15px;
+        $border: 2px;
+        $size: 9px;
+        $drift: 1px;
+
+        position: relative;
+        vertical-align: baseline;
+        display: inline-block;
+        width: $space - $drift;
+        height: $space;
+
+        // add more click area
+        border: solid transparent;
+        border-width: 2rem 2rem 1rem .5rem;
+        margin: -2rem 0 -1rem -.5rem;
+
+        // fade in animation
+        transition: opacity .2s, transform .2s;
+        opacity: 0;
+        transform: translateX(-10%);
+
+        h1:hover > &, h2:hover > &, h3:hover > & {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        // add link symbol
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            width: $size - $border * 2;
+            height: $size - $border * 2;
+            border: $border solid currentColor;
+            border-radius: 50%;
+        }
+
+        &::before {
+            left: $space - $size - $drift;
+            bottom: 0;
+        }
+
+        &::after {
+            left: 0;
+            bottom: $space - $size;
+        }
+    }
+}
+
 /* block elements */
 
 aside, p {

@@ -5,6 +5,10 @@ $desktop-sidebar-min-width: $desktop-sidebar-size + $full-content-size;
 $desktop-sidebar-min-height: 30rem;
 $background-color: snow;
 
+html, body {
+    scroll-behavior: smooth;
+}
+
 body {
     @media screen and (min-width: $desktop-sidebar-min-width) and (min-height: $desktop-sidebar-min-height) {
         padding-left: $desktop-sidebar-size;
