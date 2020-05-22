@@ -135,13 +135,13 @@ styles: >
 
                     {% assign modify_day = page.lastmod | default: page.date | date: "%s" | divided_by: 86400 %}
                     {% assign create_day = page.date | date: "%s" | divided_by: 86400 %}
-                    {% assign first_day_to_show_modified = create_day | plus: 30 %}
+                    {% assign first_day_to_show_modified = create_day | plus: 5 %}
                     {% if first_day_to_show_modified < modify_day %}
 
                     <br>
-                    zuletzt bearbeitet
+                    last modified
                     <amp-timeago datetime="{{ page.lastmod | date_to_xmlschema }}" property="dateModified" cutoff="15768000" width="15em" height="1.5em">
-                        am {{ page.lastmod | date_to_long_string }}
+                        at {{ page.lastmod | date_to_long_string }}
                     </amp-timeago>
 
                     {% else %}
