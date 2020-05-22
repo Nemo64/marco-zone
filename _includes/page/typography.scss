@@ -114,9 +114,8 @@ a:hover {
         height: $space;
 
         // add more click area
-        border: solid transparent;
-        border-width: 2rem 2rem 1rem .5rem;
-        margin: -2rem 0 -1rem -.5rem;
+        border: .5rem solid transparent;
+        margin: -.5rem 0 -.5rem -.5rem;
 
         // fade in animation
         transition: opacity .2s, transform .2s;
