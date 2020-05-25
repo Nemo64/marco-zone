@@ -33,7 +33,7 @@ headers:
                     }
 
                     var msg = JSON.parse(event.data);
-                    if (msg.name !== 'resize') {
+                    if (msg.name !== 'resize' && msg.name !== 'rendered') {
                         return;
                     }
 
