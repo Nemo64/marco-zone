@@ -8,7 +8,7 @@ categories:
     - serverless
     - Software-Development
 date:        2020-05-10 20:00:00 +0200
-lastmod:     2020-05-21 21:24:00 +0200
+lastmod:     2020-08-13 15:11:00 +0200
 image:       assets/aws-lambda.png
 redirects:
     - path: /prepare-symfony-for-lambda
@@ -20,7 +20,7 @@ I'm going to assume a few things:
 - You have already played around with [bref].
   If not, go to the excellent [bref documentation] and start with a simple php example.
 - You use the full symfony/skeleton. The minimal version is similar but not everything here is needed.
-- You use Symfony 4.4 or 5.0. Future version may differ.
+- You use Symfony 5.1. Previous versions don't support directly all aws services directly. Specifically mail.
 - You know and are using `serverless`. This is the obvious choice if you followed the [bref documentation].
 - You are hosting or at least testing the AWS region `us-east-1`, `us-east-2`, `us-west-2` or `eu-west-1`.
   Other regions will have limitations in this guide since not all services are available everywhere.
@@ -71,10 +71,31 @@ service: symfony-project
 plugins:
   - ./vendor/bref/bref
 
+provider:
+  name: aws
+  region: eu-west-1
+
+  # Use the username as the default stage
+  # This way, multiple developers don't get in the way of each other.
+  stage: ${opt:stage, env:USER}
+
+  runtime: provided
+  environment:
+    APP_ENV: prod
+    APP_SECRET: !Join ['', [{% raw %}'{{resolve:secretsmanager:', !Ref AppSecret, ':SecretString:secret}}'{% endraw %}]]
+
+package:
+  excludeDevDependencies: false # only excludes node dev dependencies which we exclude entirely 2 lines below
+  exclude:
+    - 'node_modules/**'
+    - 'tests/**'
+    - '.env*.local*'
+    # further excludes in the separate sections
+
 functions:
   website:
     handler: public/index.php
-    timeout: 5 # seconds
+    timeout: 28 # seconds, which is the http api maximum
     layers:
       - ${bref:layer.php-74-fpm}
     events:
@@ -87,22 +108,6 @@ functions:
     layers:
       - ${bref:layer.php-74}
       - ${bref:layer.console} # The "console" layer
-
-package:
-  excludeDevDependencies: false # only excludes node dev dependencies
-  exclude:
-    - 'node_modules/**'
-    - 'tests/**'
-    - '.env*.local*'
-    # further excludes in the separate sections
-
-provider:
-  name: aws
-  runtime: provided
-  region: eu-west-1
-  environment:
-    APP_ENV: prod
-    APP_SECRET: !Join ['', [{% raw %}'{{resolve:secretsmanager:', !Ref AppSecret, ':SecretString:secret}}'{% endraw %}]]
 
 resources:
   Resources:
@@ -147,16 +152,15 @@ Doing this has some advantages:
 - I don't need to touch the normal `prod` configuration and can therefore still use it outside lambda
 - My lambda modifications are obvious and mostly limited to this folder
 
-Now I'm going to shoot my last argument a bit since there is 1 modification needed outside the `lambda/` folder.
-Every environment will be `debug=true` by default which isn't that big of a deal if you set the `APP_DEBUG` environment variable to `0`
-but I want debug to default to false there, so I need to modify `config/bootstrap.php`.
+Now every environment (except prod) will be `debug=true` by default.
+That isn't that big of a deal, if you set the `APP_DEBUG` environment variable to `0`,
+but I want debug to default to false in the lambda environment.
+The most portable way to achieve this, is to create a `.env.lambda` in your project.
 
-```diff
-- $_SERVER['APP_DEBUG'] = $_SERVER['APP_DEBUG'] ?? $_ENV['APP_DEBUG'] ?? 'prod' !== $_SERVER['APP_ENV'];
-+ $_SERVER['APP_DEBUG'] = $_SERVER['APP_DEBUG'] ?? $_ENV['APP_DEBUG'] ?? in_array($_SERVER['APP_ENV'], ['dev', 'test']);
 ```
-
-This way you can't accidentally enable the `debug` option while using the `lambda` environment.
+# .env.lambda
+APP_DEBUG=0
+```
 
 You now just need to configure your `serverless.yaml` to set the `APP_ENV` environment variable.
 
@@ -193,7 +197,7 @@ framework:
 
 This will make all symfony cache pools write into `/tmp/pools` instead of `var/cache/{environment}/pools`.
 Note that twig, translations and doctrine will still be in `var/cache/{environment}`
-but those caches aren't generated at runtime if you warm the cache so that is fine.
+but those caches aren't generated at runtime but during `cache:clear` so that is great.
 
 You'll need to be aware of a few things though:
 
@@ -224,7 +228,7 @@ package:
     - '!var/cache/${self:provider.environment.APP_ENV}/**'
 ```
 
-If you don't like this solution because the cache will be cold…
+If you don't like this solution, because the cache will be cold,
 I have considered [a lot of cache deploying solutions] and think this is the best compromise between easy and performance
 but your mileage may vary depending on your project so if you need to optimize, take a look and experiment.
 
@@ -245,6 +249,13 @@ monolog:
             type: stream
             path: "php://stderr"
             level: debug # info, notice, warning or error but I keep it at debug to start out
+            formatter: app.monolog.formatter.cloudwatch
+
+services:
+    # default format but without date ~ cloudwatch adds that automatically
+    app.monolog.formatter.cloudwatch:
+        class: Monolog\Formatter\LineFormatter
+        arguments: ["%%channel%%.%%level_name%%: %%message%% %%context%% %%extra%%\n"]
 ```
 
 And you are done. To access your logs you can go through the aws console to your lambda function and just click on invocations.
@@ -368,67 +379,39 @@ Luckily, the official aws-sdk comes with a php session handler that stores them 
 which is the most scalable database aws has to offer so this should be _the solution_ for every php project
 that needs classical sessions.
 
-### install the [aws-sdk]
+### install the [async-aws]-sdk
 
-First of, install the [aws-sdk] and the corresponding symfony bundle to save yourself some configuration.
+First of all, install the [async-aws]-sdk and the corresponding symfony bundle to save yourself some configuration.
+
+The reason I don't use the official aws-sdk is because the async-sdk is a lot smaller.
 
 ```sh
-composer require aws/aws-sdk-php aws/aws-sdk-php-symfony
+composer require async-aws/async-aws-bundle async-aws/dynamo-db-session
 ```
 
-Symfony flex will automatically configure the bundle but we will change those configurations
-so that the bundle is only loaded in our `lambda` environment. 
+Symfony flex will automatically enable and configure the bundle, but we are going to make 2 changes to those generated files.
+1. The generated configuration is more suited as an example for a more classical environment.
+   The async-aws-sdk reads all configuration it needs from the lambda environment so we can simply delete the config file.
+2. We only need the bundle in the lambda environment so I'm going to only load it there
 
 ```diff
 your-project/
  ├─ config/
  ├─ ├─ packages/
- ├─ ├─ ├─ lambda/
-+├─ ├─ ├─ └─ aws.yaml # move this file from the directory above
--├─ ├─ └─ aws.yaml
+-├─ ├─ └─ async_aws.yaml
 ~└─ └─ bundles.php # and also change the environment in the bundle configuration
 ~.env # you can remove the credentials that symfony/flex created here since those aren't needed in lambda
 ```
 
 ```diff
 // config/bundles.php
-- Aws\Symfony\AwsBundle::class => ['all' => true],
-+ Aws\Symfony\AwsBundle::class => ['lambda' => true],
-```
-
-```yaml
-# config/packages/lambda/aws.yaml
-aws:
-    # you can remove the credential config here since the aws-sdk will pick them up from running in lambda
-    version: latest
-    region: '%env(AWS_REGION)%' # AWS_REGION is automatically defined in lambda
-    http:
-        connect_timeout: 2 # this is important if you later play with vpc's as this will quickly timeout if you did something wrong
-        timeout: 30 # you can probably get away with 5 seconds, but everything is better than the default (which is infinite)
-        handler: '@aws.http_handler' # this allows us to configure logging
-
-# all of these services are just to configure logging in guzzle, which is used by the aws-sdk
-# but it makes understanding what's happening a lot simpler so definitely do this.
-services:
-    aws.http_handler:
-        class: GuzzleHttp\HandlerStack
-        factory: [GuzzleHttp\HandlerStack, create]
-        calls: [[push, ['@aws.http_logger']]]
-    
-    aws.http_logger:
-        class: Closure
-        factory: [GuzzleHttp\Middleware, log]
-        arguments: ['@logger', '@aws.log_formatter']
-        tags: [{name: monolog.logger, channel: aws}]
-
-    aws.log_formatter:
-        class: GuzzleHttp\MessageFormatter
-        arguments: ['{method} {uri} HTTP/{version} {code}']
+- AsyncAws\Symfony\Bundle\AsyncAwsBundle::class => ['all' => true],
++ AsyncAws\Symfony\Bundle\AsyncAwsBundle::class => ['lambda' => true],
 ```
 
 ### actually configuring the session handler
 
-Now that we have configured the aws sdk so that the DynamoDB client is available with just `@aws.dynamodb`.
+Now that we have configured the aws sdk so that the DynamoDB client is available with just `@async_aws.client.dynamo_db`.
 
 Symfony allows us to easily change the standard php session handler with just some configuration:
 
@@ -436,16 +419,14 @@ Symfony allows us to easily change the standard php session handler with just so
 # config/packages/lambda/framework.yaml
 framework:
     session:
-        handler_id: app.dynamodb_session_handler
+        handler_id: AsyncAws\DynamoDbSession\SessionHandler
 
 services:
-    app.dynamodb_session_handler:
-        class: Aws\DynamoDb\SessionHandler
-        factory: [Aws\DynamoDb\SessionHandler, fromClient]
+    AsyncAws\DynamoDbSession\SessionHandler:
+        class: AsyncAws\DynamoDbSession\SessionHandler
         arguments:
-            - '@aws.dynamodb'
+            - '@async_aws.client.dynamo_db'
             -   table_name: '%env(resolve:SESSION_TABLE)%'
-                locking: false
 ```
 
 Now we also need the DynamoDB Table and define the `SESSION_TABLE` environment variable.
@@ -463,8 +444,6 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Resource: !GetAtt SessionTable.Arn
-      # https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazondynamodb.html
-      # I don't allow Scan because I don't do manual garbage collection, DynamoDB will do that automatically using TTL
       Action: dynamodb:*Item
 
 # [...]
@@ -485,10 +464,8 @@ resources:
 
 And now you have working sessions.
 
-Some of the documentation of the session handler that comes with the aws-sdk states
-that you need to configure garbage collection.
-This isn't true anymore since we configured the [TimeToLiveSpecification] which automatically cleans up
-and the best thing about that is that you aren't even charged for the delete operations.
+You don't even need to worry about garbage collection because of the [TimeToLiveSpecification] which automatically cleans up.
+You aren't even charged for the delete operations.
 
 ## Configure mailing
 
@@ -500,36 +477,13 @@ The easiest way is to [verify a domain] (like your work domain) but you can also
 Later, you'll have to request a limit increase so you can send emails to everyone
 but you'll still need to verify an email or domain to send _FROM_.
 
-Now here is the next problem: There is a [symfony/amazon-mailer] but it currently does not support
-to assume the role of the current lambda function.
-[That feature is now added](https://github.com/symfony/symfony/pull/35992) but only in the dev version of `5.1`
-so we are going to install that. This works even in symfony 4.4 so don't worry there.
-
-For that you'll need to modify your `composer.json` a bit since symfony/flex will prevent the installation
-of newer version of symfony which normally is a good thing to prevent a version mess… but in our case we want that.
-
-```diff
-"extra": {
-    "symfony": {
-        "allow-contrib": false,
--       "require": "4.4.*"
-+       "require": "4.4.*||v5.1.0-BETA1"
-    }
-}
-```
-
-Now you can install the newest beta version of the [symfony/amazon-mailer].
-Since beta versions aren't implicitly installed, you don't have to worry about accidentally installing other `5.1` packages.
-For the future, [there is an issue](https://github.com/symfony/flex/issues/619) addressing the problem of installing none-beta versions.
+To use it, we are going to install the [symfony/amazon-mailer].
+Make sure you have at least version 5.1 because that is the first version which uses the async-aws-sdk if available.
+Previous versions weren't able to use the environment variables of the lambda function to authenticate. 
 
 ```
-composer require 'symfony/amazon-mailer:v5.0.1-BETA1' async-aws/ses
+composer require symfony/amazon-mailer async-aws/ses
 ```
-
-This will install [`v5.1.0-BETA1`](https://github.com/symfony/amazon-mailer/releases/tag/v5.1.0-BETA1)
-and the [async-aws] implementation of the ses client which the ses factory 
-[will use if available](https://github.com/symfony/amazon-mailer/blob/v5.1.0-BETA1/Transport/SesTransportFactory.php#L37)
-which is capable of picking up the credentials from the lambda environment.
 
 Now you just need to configure your `serverless.yaml` to set the `MAILER_DSN` and the iam permissions.
 
@@ -548,7 +502,7 @@ provider:
     - Effect: Allow
       Resource: '*' # allow sending with every available identity
       # https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonses.html
-      Action: ses:Send*
+      Action: [ses:SendEmail, ses:SendRawEmail]
 ```
 
 And if you have a verified domain or email, you should now be able to send emails.
@@ -556,7 +510,7 @@ And if you have a verified domain or email, you should now be able to send email
 ## Configure doctrine
 
 There is again a good [bref documentation on databases] and I might be biased but I'm going to use [Aurora Serverless]
-(in MySQL 5.6 compatible mode) with my own [Nemo64/dbal-rds-data] driver. Here is why:
+(in MySQL 5.7 compatible mode) with my own [Nemo64/dbal-rds-data] driver. Here is why:
 
 Aurora Serverless does cost at least $50.40 per month if run continuously + storage, but it saves you more money than you think.
 
@@ -630,7 +584,7 @@ resources:
       Database:
         Type: AWS::RDS::DBCluster # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html
         Properties:
-          Engine: aurora
+          Engine: aurora-mysql # aurora = mysql 5.6, aurora-mysql = mysql 5.7
           EngineMode: serverless
           EnableHttpEndpoint: true # this is the important part
           DatabaseName: '${opt:stage, self:provider.stage}'
@@ -687,14 +641,13 @@ and also [Tobias](https://tnyholm.se/) because he somehow gets involved in nearl
 [asset distribution on a serverless multipage application]: /asset-distribution-on-a-aws-serverless-multipage-application
 [bref documentation on website hosting]: https://bref.sh/docs/websites.html
 [DynamoDB]: https://aws.amazon.com/dynamodb/
-[aws-sdk]: https://github.com/aws/aws-sdk-php
+[async-aws]: https://async-aws.com/
 [TimeToLiveSpecification]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/howitworks-ttl.html
 [SES]: https://aws.amazon.com/ses/
 [region-table]: https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/
 [verify a domain]: https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domain-procedure.html
 [verify a single email]: https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses-procedure.html
 [symfony/amazon-mailer]: https://github.com/symfony/amazon-mailer
-[async-aws]: https://async-aws.com/
 [bref documentation on databases]: https://bref.sh/docs/environment/database.html
 [Aurora Serverless]: https://aws.amazon.com/de/rds/aurora/serverless/
 [Nemo64/dbal-rds-data]: https://github.com/Nemo64/dbal-rds-data
