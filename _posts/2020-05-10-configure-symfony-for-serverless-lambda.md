@@ -8,7 +8,7 @@ categories:
     - serverless
     - Software-Development
 date:        2020-05-10 20:00:00 +0200
-lastmod:     2020-08-13 15:11:00 +0200
+lastmod:     2020-08-14 21:18:00 +0200
 image:       assets/aws-lambda.png
 redirects:
     - path: /prepare-symfony-for-lambda
@@ -40,6 +40,7 @@ This is bigger than my usual posts (as if anyone is following my posts) so I'm g
 - [Configure sessions (and the aws-sdk)](#configure-sessions-and-the-aws-sdk)
 - [Configure mailing](#configure-mailing)
 - [Configure doctrine](#configure-doctrine)
+- [Working example](#working-example)
 
 ## What do I want
 
@@ -618,6 +619,13 @@ php vendor/bin/bref cli symfony-project-dev-console --region=eu-west-1 -- doctri
 ```
 
 You can use the [bref cli command] which has a much nicer output but you'll need to pass the region and the full lambda name.
+
+## Working example
+
+I build a working symfony 2 application as a reference and to test out new things outside of real projects.
+
+You can find it here: [github.com/Nemo64/serverless-symfony](https://github.com/Nemo64/serverless-symfony).
+Usage instructions are in the readme.
 
 ## Final words
 
