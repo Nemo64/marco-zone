@@ -1,6 +1,6 @@
 ---
 title:       Configure symfony for a serverless lambda environment in bref
-description: |-
+description: >-
     A guide on how to configure everything in the full multipage symfony skeleton to run on aws lambda,
     with code snippets, to get you started.
 categories:
