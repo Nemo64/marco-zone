@@ -33,9 +33,7 @@ Every manual step is 1 step too much.
 
 ## Basic structure
 
-<figure>
-    {% responsive_image path: 'assets/aws-aurora-shared.png' %}
-</figure>
+{% responsive_image path: 'assets/aws-aurora-shared.png' %}
 
 I'm going to use serverless to deploy the infrastructure, but most of my examples will be pure CloudFormation
 so you should be able to get along if you us other tools. 

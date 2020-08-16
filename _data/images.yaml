@@ -1,3 +1,11 @@
+assets/aws-aurora.png:
+  attribution: https://aws.amazon.com/de/architecture/icons/
+  alt: AWS Aurora logo
+
+assets/aws-aurora-shared.png:
+  attribution: https://aws.amazon.com/de/architecture/icons/ and combined with draw.io
+  alt: Chart showing a single Aurora used by multiple CloudFormation stacks
+
 assets/aws-cloudfront.png:
   attribution: https://aws.amazon.com/de/architecture/icons/
   alt: AWS CloudFront logo
