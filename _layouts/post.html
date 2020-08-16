@@ -123,7 +123,7 @@ styles: >
             {% endif %}
             <div class="post__image-text">
                 <h1 class="post__headline" property="headline">
-                    {{ page.title | strip | escape }}
+                    {{ page.title | strip | escape }}&nbsp;<a href="#" class="permalink" title="permalink"></a>
                 </h1>
 
                 <p class="post__subheadline counter-headline">
@@ -179,7 +179,7 @@ styles: >
     {% endif %}
 
     <div class="page-content post__content" property="articleBody">
-        {{ content }}
+        {{ content | regex_replace: '<h([23]) id="(.*?)">(.*)<\/h', '<h\1 id="\2">\3&nbsp;<a href="#\2" class="permalink" title="permalink"></a></h' }}
     </div>
 
     <aside class="page-content">

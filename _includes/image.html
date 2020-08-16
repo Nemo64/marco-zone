@@ -24,20 +24,20 @@
     {% if sizes %}
         {{ sizes }}
     {% elsif rem_width < rem_content_width %}
-        (max-width:{{ rem_width | plus: 2 }}rem)calc(100vw - 2rem),{{ rem_width }}rem
+        (max-width:{{ rem_width | plus: 2 }}rem)calc(100vw-2rem),{{ rem_width }}rem
     {% else %}
         (max-width:{{rem_content_width}}rem)100vw,{{rem_content_width}}rem
     {% endif %}
 {% endcapture %}
 
-<amp-img srcset="{{ srcset }}"
+<amp-img srcset="{{ srcset | strip }}"
          width="{{ original.width }}"
          height="{{ original.height }}"
          {% if alt != '' %}alt="{{ alt | escape }}"{% endif %}
          {% if attribution != '' %}title="source: {{ attribution | escape }}"{% endif %}
          {% if class %}class="{{ class | escape }}"{% endif %}
          layout="{{ layout | default: 'responsive' }}"
-         sizes="{{ sizes | escape }}">
+         sizes="{{ sizes | strip | escape }}">
 </amp-img>
 
 <noscript>
@@ -48,4 +48,4 @@
          {% if class %}class="{{ class | escape }}"{% endif %}>
 </noscript>
 
-{% endcapture %}{{ image | strip_newlines | replace: '    ', '' }}
+{% endcapture %}{{ image | regex_replace: '\s+', ' ' | regex_replace: '>\s+<', '><' | strip }}
