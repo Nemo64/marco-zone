@@ -79,6 +79,11 @@ a {
     color: indianred;
     text-decoration: none;
     -webkit-tap-highlight-color: transparentize(indianred, 0.8);
+
+    p > &:hover, p > &:focus,
+    li > &:hover, li > &:focus {
+        text-decoration: underline;
+    }
 }
 
 a:hover {
