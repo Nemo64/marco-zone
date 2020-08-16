@@ -155,10 +155,28 @@ styles: >
             </div>
         </header>
 
-        <p class="post__lead lead" property="description">
+        <p class="post__lead" property="description">
             {{ page.description | strip | escape }}
         </p>
     </div>
+
+    {% assign headlines = content | regex_scan: '<h(\d)\s*id="([^"]*)">(.*)<\/h' %}
+    {% assign headline_count = headlines | size %}
+    {% if headline_count > 5 %}
+    <nav class="page-content post__index">
+        <h2>Table of contents</h2>
+        {% assign level = 2 %}
+        <ul>
+        {% for headline in headlines %}
+            {% assign current_level = headline[0]|to_integer %}
+            {% if level < current_level %}<ul>{% endif %}
+            {% if level > current_level %}</ul>{% endif %}
+            {% assign level = current_level %}
+            <li><a href="#{{ headline[1] }}">{{ headline[2] | strip_html }}</a></li>
+        {% endfor %}
+        {% for i in (2..level) %}</ul>{% endfor %}
+    </nav>
+    {% endif %}
 
     <div class="page-content post__content" property="articleBody">
         {{ content }}
@@ -176,16 +194,12 @@ styles: >
 
         <figure class="post__similar">
             {% for category in page.categories %}
-            {% assign categoryPages = site.categories[category]|where_exp:"item", "item.url != page.url" %}
+            {% assign categoryPages = site.categories[category] | where_exp:"item", "item.url != page.url" %}
             {% if categoryPages.size > 0 %}
             <h2>Similar "{{category}}" posts</h2>
             <ul>
                 {% for categoryPage in categoryPages limit: 5 %}
-                <li>
-                    <a href="{{ categoryPage.url | prepend: site.baseurl }}">
-                        {{ categoryPage.title }}
-                    </a>
-                </li>
+                <li><a href="{{ categoryPage.url | prepend: site.baseurl }}">{{ categoryPage.title }}</a></li>
                 {% endfor %}
             </ul>
             {% endif %}

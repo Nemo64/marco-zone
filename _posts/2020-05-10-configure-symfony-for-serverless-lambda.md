@@ -27,21 +27,6 @@ I'm going to assume a few things:
   I'll mention if a service is strangely limited but if you stick to the regions above, you won't have any problems.
   I personally stick to `eu-west-1`.
 
-## Table of contents
-
-This is bigger than my usual posts (as if anyone is following my posts) so I'm going to include the headlines here:
-
-- [What do I want](#what-do-i-want)
-- [Configure serverless](#configure-serverless)
-- [Creating the "lambda" environment](#creating-the-lambda-environment)
-- [Configure caching](#configure-caching)
-- [Configure logging](#configure-logging)
-- [Configure assets (and distribution)](#configure-assets-and-distribution)
-- [Configure sessions (and the aws-sdk)](#configure-sessions-and-the-aws-sdk)
-- [Configure mailing](#configure-mailing)
-- [Configure doctrine](#configure-doctrine)
-- [Working example](#working-example)
-
 ## What do I want
 
 - I want a symfony installation that can run using bref in aws lambda.
