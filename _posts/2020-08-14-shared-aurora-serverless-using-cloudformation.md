@@ -84,7 +84,13 @@ Resources:
   # the simplest possible VPC with 3 Availability Zones
   VPC:
     Type: AWS::EC2::VPC
-    Properties: {CidrBlock: 10.192.0.0/16, EnableDnsSupport: true, EnableDnsHostnames: true}
+    Properties:
+      CidrBlock: 10.192.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - {Key: Name, Value: !Ref AWS::StackName} # the console will display this as the name
+  
   Subnet1:
     Type: AWS::EC2::Subnet
     Properties: {CidrBlock: 10.192.0.0/20, AvailabilityZone: !Select [0, !GetAZs ''], VpcId: !Ref VPC}
