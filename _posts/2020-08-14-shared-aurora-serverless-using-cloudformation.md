@@ -8,7 +8,8 @@ categories:
     - serverless
     - MySQL
     - Software-Development
-date: 2020-08-16 17:17:00 +0200
+date:    2020-08-16 17:17:00 +0200
+lastmod: 2020-08-17 14:18:00 +0200
 image: assets/aws-aurora.png
 ---
 
@@ -195,64 +196,9 @@ The secret content will look like this in the end:
 }
 ```
 
-Note that the secret manager costs [~40 cents per month](https://aws.amazon.com/secrets-manager/pricing/)
-for managing this secret but we'll put that to good use in the next step.
-
-## Implement password rotation
-
-This is a feature of the secret manager that is historically annoying to use,
-even though it is the main selling feature of the SecretManager.
-However, CloudFormation recently got a new transformation making this easy.
-
-```yaml
-# serverless-shared.yml
-Transform:
-  - AWS::SecretsManager-2020-07-23 # for the password rotation function
-
-Resources:
-  DatabaseSecretRotation:
-    Type: AWS::SecretsManager::RotationSchedule
-    DependsOn: [DatabaseSecretAttachment, VpcSecretManagerEndpoint]
-    Properties:
-      SecretId: !Ref DatabaseSecret
-      RotationRules: {AutomaticallyAfterDays: 30}
-      HostedRotationLambda:
-        RotationType: MySQLSingleUser
-        RotationLambdaName: !Sub '${AWS::StackName}-database-secret-rotation'
-        VpcSecurityGroupIds: !GetAtt VPC.DefaultSecurityGroup
-        VpcSubnetIds: !Join [',', [!Ref Subnet1, !Ref Subnet2, !Ref Subnet3]]
-  # VPC endpoint that will enable the rotation Lambda to make api calls to Secrets Manager
-  VpcSecretManagerEndpoint:
-    Type: AWS::EC2::VPCEndpoint
-    Properties:
-      SubnetIds: [!Ref Subnet1, !Ref Subnet2, !Ref Subnet3]
-      SecurityGroupIds: [!GetAtt VPC.DefaultSecurityGroup]
-      VpcEndpointType: Interface
-      ServiceName: !Sub 'com.amazonaws.${AWS::Region}.secretsmanager'
-      PrivateDnsEnabled: true
-      VpcId: !Ref VPC
-
-Outputs:
-  DatabaseSecretRotationLambda:
-    Description: Secret Rotation Lambda Arn
-    Value: !GetAtt DatabaseSecretRotationHostedRotationLambda.Outputs.RotationLambdaARN
-    Export: {Name: !Sub '${AWS::StackName}-database-secret-rotation-lambda'}
-```
-
-Now, your MySQL password will now rotate every 30 days and give you peace of mind
-that even if you leak information, it rotates at some point.
-Not that that makes a big difference since the database is in a VPC isolated from the outside world but still.
-
-The Transformation will create a sub stack that defines a lambda function that will do the heavy lifting.
-This function is a python function provided by AWS that will use a TCP connection to the database which is why
-we have to define the VPC. But a function running in our VPC has no internet access,
-so we have to bring the SecretManager into the VPC which is the reason for the VPC endpoint. 
-
-I also output the lambda arn so we can use it later in different stacks and don't have to have multiple rotation lambdas.
-
-Also note that I make the Rotation explicitly depending on the `DatabaseSecretAttachment` and `VpcSecretManagerEndpoint`.
-Normally, CloudFormation figures out the order on it's own based on `!Ref`erences, but the SecretRotation has no
-property dependency on either the Attachment nor the Endpoint so, to be safe, I declare it. 
+Note that the secret manager costs [~40 cents per month](https://aws.amazon.com/secrets-manager/pricing/) for managing this secret.
+We, however, need the password packaged as a secret in order to use the rds-data api later.
+You could also implement password rotation here if you like.
 
 ## Implement custom resources
 
@@ -408,13 +354,6 @@ Resource:
       SecretId: !Ref DatabaseUserSecret
       Privileges:
         - {Permission: ALL, Database: !Ref Database, Table: '*'}
-  DatabaseUserSecretRotation:
-    Type: AWS::SecretsManager::RotationSchedule
-    DependsOn: DatabaseUser
-    Properties:
-      SecretId: !Ref DatabaseUserSecret
-      RotationRules: {AutomaticallyAfterDays: 30}
-      RotationLambdaARN: !ImportValue 'shared-global-database-secret-rotation-lambda'
 ```
 
 Ok so there are multiple things going on here.
@@ -426,8 +365,6 @@ Ok so there are multiple things going on here.
 3. Use the custom resource, that I'll show you later, to create the user with the secret.
    I also define the users privileges, so I can limit the user to the database we defined earlier.
    Feel free to create even more restricted user but remeber that any secret in the SecretManager costs 40 cents per month.
-4. Define Password rotation on that user, because we now easily can.
-   Just import it from the shared stack.
 
 So now, let's define the custom resource in the shared stack:
 
@@ -622,3 +559,8 @@ I build a demo project that has shows a symfon/PHP project running with this dat
 Even if you don't use PHP or Serverless, it might be worth a look to see or even try a working example.
 
 See it here: [github.com/Nemo64/serverless-symfony](https://github.com/Nemo64/serverless-symfony)
+
+## Changes
+
+- 2020-09-17: I removed the canned password rotation since it requires a VpcEndpoint that costs extra.
+              I don't want to increase the size of this post so I decided to remove it rather than to extend it.
