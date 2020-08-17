@@ -452,7 +452,7 @@ So that is a lot of YAML so how can we use it all.
 Let me show with more pseudo-yaml™.
 
 ```yaml
-
+# serverless.yml
 provider:
   # [...]
   environment:
