@@ -290,7 +290,7 @@ Resources:
             Statement:
               - {Effect: Allow, Action: logs:CreateLog*, Resource: !Sub 'arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${AWS::StackName}*:*'}
               - {Effect: Allow, Action: logs:PutLogEvents, Resource: !Sub 'arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${AWS::StackName}*:*:*'}
-              - {Effect: Allow, Action: rds-data:ExecuteStatement, Resource: '*'}
+              - {Effect: Allow, Action: rds-data:ExecuteStatement, Resource: '*'} # this api does not support target resources
               - {Effect: Allow, Action: secretsmanager:GetSecretValue, Resource: !Sub 'arn:${AWS::Partition}:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:/${AWS::StackName}/database/*'}
 
 Outputs:
