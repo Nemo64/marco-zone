@@ -21,7 +21,8 @@ Although it is called Aurora _Serverless_, it still allocates a server that just
 Aurora is capable of scaling down to 0 compute, but the wake up process is way too slow to use this in production,
 and it's also quiet annoying in dev environment.
 
-Then, if you use microservices, it is even harder to justify an entire database for a service that idles most of the time.
+Then, if you use microservices, it is even harder to justify an entire database server for a service
+which idles most of the time and/or only stores a few hundred records.
 
 MySQL has a solution build in: databases, which act like namespaces.
 You can use a single MySQL server for multiple purposes by just creating multiple databases and users.
@@ -39,7 +40,7 @@ Every manual step is 1 step too much.
 </figure>
 
 I'm going to use serverless to deploy the infrastructure, but most of my examples will be pure CloudFormation
-so you should be able to get along if you us other tools. 
+so you should be able to get along if you use other tools. 
 
 I'm going to use 2 kinds of cloudformation stacks
 
