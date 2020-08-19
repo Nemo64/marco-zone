@@ -242,7 +242,6 @@ Resources:
       FunctionName: !Sub '${AWS::StackName}-database-resource'
       Handler: index.handler
       Runtime: nodejs12.x
-      MemorySize: 128 # mb, this function basically just waits for the database
       Role: !GetAtt DatabaseAccessPolicy.Arn # attach role to access the database
       Environment:
         Variables:
@@ -382,7 +381,6 @@ Resources:
       FunctionName: !Sub '${AWS::StackName}-database-user-resource'
       Handler: index.handler
       Runtime: nodejs12.x
-      MemorySize: 128 # mb, this function basically just waits for the database
       Role: !GetAtt DatabaseAccessPolicy.Arn # attach role to access the database
       Environment:
         Variables:
@@ -522,7 +520,6 @@ Resources:
       FunctionName: !Sub '${AWS::StackName}-database-scaling'
       Handler: index.handler
       Runtime: nodejs12.x
-      MemorySize: 128 # mb, this function basically just waits for the api
       Role: !GetAtt DatabaseAccessPolicy.Arn
       Environment: {Variables: {SERVER: !Ref DatabaseServer}}
       Events:
