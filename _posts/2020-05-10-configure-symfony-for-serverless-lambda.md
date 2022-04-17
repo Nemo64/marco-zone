@@ -577,7 +577,7 @@ resources:
           MasterUsername: !Join ['', ['{% raw %}{{resolve:secretsmanager:', !Ref DatabaseSecret, ':SecretString:username}}{% endraw %}']]
           MasterUserPassword: !Join ['', ['{% raw %}{{resolve:secretsmanager:', !Ref DatabaseSecret, ':SecretString:password}}{% endraw %}']]
           # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-rds-dbcluster-scalingconfiguration.html
-          ScalingConfiguration: {MinCapacity: 1, MaxCapactiy: 2, AutoPause: true}
+          ScalingConfiguration: {MinCapacity: 1, MaxCapacity: 2, AutoPause: true}
       DatabaseSecret:
         Type: AWS::SecretsManager::Secret # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-secretsmanager-secret.html
         Properties:
