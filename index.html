@@ -58,12 +58,35 @@ styles: |
         display: block;
         text-align: left;
     }
+
+    .old-notice {
+        background-color: hsl(0deg, 53%, 80%);
+        color: black;
+
+        @media (prefers-color-scheme: dark) {
+            background-color: hsl(0deg, 53%, 40%);
+            color: white;
+        }
+    }
 ---
 
 <main class="post-list">
 
     <div class="page-content">
         <h1>Blog Post</h1>
+    </div>
+
+    <div class="post-list__item old-notice">
+        <a class="post-list__link page-content" href="https://medium.marco.zone/" rel="noopener">
+            <p class="post-list__bodytext">
+                Find more current articles on Medium:<br/>
+                https://medium.marco.zone/
+            </p>
+        </a>
+    </div>
+
+    <div class="page-content">
+        <h1>Old Blog Post</h1>
     </div>
 
     {% for post in site.posts %}
